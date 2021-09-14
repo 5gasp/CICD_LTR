@@ -1,3 +1,8 @@
+'''
+5GASP - NetApp Surrogates - Bandwidth KPI Test
+@author: Rafael Direito <rdireito@av.it.pt> & Daniel Ruiz Villa <daniel.ruiz7@um.es> 
+'''
+
 import paramiko, re
 import statistics as stats
 import json
@@ -25,10 +30,9 @@ def bandwidth():
         exit()
 
     # Executing iPerf commands
-    machine1.exec_command("iperf3 -s -1")
+    print(machine1.exec_command("iperf3 -s -1"))
     stdin, stdout, stderr = machine2.exec_command(f"iperf3 -c {host1} -u --json -t 5")
     iperfResult = stdout.read().decode()
-    
     bits_per_second_results = []
     obj = json.loads(iperfResult)
     for iteration_data in (obj['intervals']):
@@ -36,12 +40,8 @@ def bandwidth():
     
     if len(bits_per_second_results) > 0: 
         # Calculating the packet loss mean between Sender and Receiver
-        mean_bw_bits_per_second = stats.mean(bits_per_second_results)
-        if mean_bw_bits_per_second > 800000: 
-            return "The bandwidth is bigger than 0.1 MB/sec"
-        else:
-            return "The bandwidth is lower than 0.1 MB/sec"
-        #return f"The mean bandwith is {mean_bw_bits_per_second} bits/sec"
+        mean_bw_mbits_per_second = stats.mean(bits_per_second_results)/1000000
+        return mean_bw_mbits_per_second
     else:
         return "Not found"
 

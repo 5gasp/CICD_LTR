@@ -1,6 +1,6 @@
 '''
 5GASP - NetApp Surrogates - Transmission Speed KPI Test
-@author: Daniel Ruiz Villa <daniel.ruiz7@um.es>
+@author: Rafael Direito <rdireito@av.it.pt> & Daniel Ruiz Villa <daniel.ruiz7@um.es> 
 '''
 
 import paramiko, re
@@ -30,17 +30,13 @@ def transmission_speed():
     print(pingResult)
 
     if result:
-        
         avgTimeTransmission = float(result.group(3))
         print('AVG:', avgTimeTransmission)
 
-        if avgTimeTransmission < 500:
-            return "Less than 500 milliseconds"
-        else:
-            return "More than 500 milliseconds"
+        return avgTimeTransmission
 
     else:
-        return "Not found"
+        return -1
 
 
 if __name__ == '__main__':
