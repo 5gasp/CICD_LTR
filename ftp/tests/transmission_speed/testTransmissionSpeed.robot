@@ -3,10 +3,10 @@ Library        TransmissionSpeed.py
 
 *** Test Cases ***
 Testing the transmission speed
-    ${COMPARATOR}=       Run Keyword If      '%{transmission_speed_comparator}' == 'more than'        Set Variable    >
-    ...    ELSE IF    '%{transmission_speed_comparator}' == 'more or equal than'        Set Variable    >=
-    ...    ELSE IF    '%{transmission_speed_comparator}' == 'less than'        Set Variable    <
-    ...    ELSE IF    '%{transmission_speed_comparator}' == 'less or equal than'        Set Variable    <=
+    ${COMPARATOR}=       Run Keyword If      '%{transmission_speed_comparator}' == 'more_than'        Set Variable    >
+    ...    ELSE IF    '%{transmission_speed_comparator}' == 'more_or_equal_than'        Set Variable    >=
+    ...    ELSE IF    '%{transmission_speed_comparator}' == 'less_than'        Set Variable    <
+    ...    ELSE IF    '%{transmission_speed_comparator}' == 'less_or_equal_than'        Set Variable    <=
     ...    ELSE     Fail  \nComparator has not been defined
 
 

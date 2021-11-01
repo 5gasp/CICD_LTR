@@ -1,0 +1,11 @@
+[Unit]
+Description=example systemd service unit file.
+
+[Service]
+#Environment=INFLUX_DB_URL=http://10.0.12.220:8086
+#Environment=INFLUX_DB_NAME=telegraf
+#Environment=HOST=telegraf
+ExecStart=/usr/bin/telegraf --config /home/ubuntu/telegraf.conf
+
+[Install]
+WantedBy=multi-user.target

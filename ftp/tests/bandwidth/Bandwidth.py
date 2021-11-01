@@ -35,6 +35,7 @@ def bandwidth():
     iperfResult = stdout.read().decode()
     bits_per_second_results = []
     obj = json.loads(iperfResult)
+    machine1.exec_command('pkill iperf3')
     for iteration_data in (obj['intervals']):
         bits_per_second_results.append(iteration_data["sum"]["bits_per_second"])
     
