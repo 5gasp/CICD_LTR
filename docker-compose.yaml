@@ -11,4 +11,4 @@ services:
             environment:
                     - FTP_USER=ftp-user
                     - FTP_PASS=ftp-password
-                    - PASV_ADDRESS=10.0.13.27
+                    - PASV_ADDRESS=<ftp_server_ip>
