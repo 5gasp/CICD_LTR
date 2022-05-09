@@ -31,7 +31,7 @@ def bandwidth():
 
     # Executing iPerf commands
     print(machine1.exec_command("iperf3 -s -1"))
-    stdin, stdout, stderr = machine2.exec_command(f"iperf3 -c {host1} -u --json -t 5")
+    stdin, stdout, stderr = machine2.exec_command(f"iperf3 -c {host1} --json -t 5")
     iperfResult = stdout.read().decode()
     bits_per_second_results = []
     obj = json.loads(iperfResult)
