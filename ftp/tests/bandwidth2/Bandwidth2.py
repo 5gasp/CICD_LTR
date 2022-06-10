@@ -66,6 +66,8 @@ def bandwidth2():
     if not install_dependencies(machine1): return False
     if not install_dependencies(machine2): return False
     
+    print("host1_ip", host1_ip)
+    print("host2_ip", host2_ip)
     # Executing iPerf commands
     machine1.exec_command("iperf3 -s -1")
     stdin, stdout, stderr = machine2.exec_command(f"iperf3 -c {host1_ip} --json -t 5")
