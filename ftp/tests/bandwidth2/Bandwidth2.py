@@ -69,7 +69,9 @@ def bandwidth2():
     print("host1_ip", host1_ip)
     print("host2_ip", host2_ip)
     # Executing iPerf commands
-    machine1.exec_command("iperf3 -s -1")
+    stdin, stdout, stderr =  machine1.exec_command("iperf3 -s")
+    print("stdout",stdout.read().decode())
+    print("stderr",stderr.read().decode())
     stdin, stdout, stderr = machine2.exec_command(f"iperf3 -c {host1_ip} --json -t 5")
     iperfResult = stdout.read().decode()
     print("iperfResult", iperfResult)
