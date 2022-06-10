@@ -9,15 +9,15 @@ import json
 import os
 from aux.nods_information_parser import NetworkInformationParser 
 
-network_info = os.getenv('bandwidth_network_info')
+network_info = os.getenv('bandwidth2_network_info')
 
-host1 = os.getenv('bandwidth_host1_ip')
-username1 = os.getenv('bandwidth_host1_username')
-password1 = os.getenv('bandwidth_host1_password')
+host1 = os.getenv('bandwidth2_host1_ip')
+username1 = os.getenv('bandwidth2_host1_username')
+password1 = os.getenv('bandwidth2_host1_password')
 
-host2 = os.getenv('bandwidth_host2_ip')
-username2 = os.getenv('bandwidth_host2_username')
-password2 = os.getenv('bandwidth_host2_password')
+host2 = os.getenv('bandwidth2_host2_ip')
+username2 = os.getenv('bandwidth2_host2_username')
+password2 = os.getenv('bandwidth2_host2_password')
 
 net_information_parser = NetworkInformationParser(network_info)
 host1_ip = net_information_parser.get_field_info(host1)
