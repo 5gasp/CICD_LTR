@@ -7,6 +7,7 @@ import paramiko, re
 import statistics as stats
 import json
 import os
+import time
 from aux.nods_information_parser import NetworkInformationParser 
 
 network_info = os.getenv('bandwidth2_network_info')
@@ -69,9 +70,10 @@ def bandwidth2():
     print("host1_ip", host1_ip)
     print("host2_ip", host2_ip)
     # Executing iPerf commands
-    stdin, stdout, stderr =  machine1.exec_command("iperf3 -s")
-    print("stdout",stdout.read().decode())
-    print("stderr",stderr.read().decode())
+    machine1.get_transport().open_session().exec_command("sudo iperf3 -s -&>/dev/null &")
+    print("Running iPerf3 server on host1")
+    time.sleep(5)
+    
     stdin, stdout, stderr = machine2.exec_command(f"iperf3 -c {host1_ip} --json -t 5")
     iperfResult = stdout.read().decode()
     print("iperfResult", iperfResult)
