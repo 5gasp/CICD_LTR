@@ -70,6 +70,7 @@ def bandwidth2():
     machine1.exec_command("iperf3 -s -1")
     stdin, stdout, stderr = machine2.exec_command(f"iperf3 -c {host1_ip} --json -t 5")
     iperfResult = stdout.read().decode()
+    print("iperfResult", iperfResult)
     bits_per_second_results = []
     obj = json.loads(iperfResult)
     machine1.exec_command('pkill iperf3')
