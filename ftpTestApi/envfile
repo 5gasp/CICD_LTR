@@ -1,0 +1,5 @@
+FTPIP=10.0.12.114
+FTPUser=ftp-user
+FTPPassword=ftp-password
+FTPDir=tests
+ManagerIP=10.0.12.114:80
