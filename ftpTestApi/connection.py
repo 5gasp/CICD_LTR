@@ -7,14 +7,14 @@ from textwrap import indent
 import requests
 import os
 
-#FTP File Reading Class
+# FTP File Reading Class
 
-# class Reader:
-#     def __init__(self):
-#         self.data = ""
+class Reader:
+    def __init__(self):
+        self.data = ""
 
-#     def __call__(self, s):
-#         self.data += str(s)
+    def __call__(self, s):
+        self.data += str(s)
 
 
 #Reading Environment Variables
@@ -24,7 +24,10 @@ ftpUser = os.environ["FTPUser"]
 ftpPassword = os.environ["FTPPassword"]
 ftpDir = os.environ["FTPDir"]
 
-managerIP = os.environ["ManagerIP"]
+cicdManagerIP = os.environ["CI_CD_Manager_IP"]
+cicdManagerUser = os.environ["CI_CD_Manager_User"]
+cicdManagerPassword = os.environ["CI_CD_Manager_Password"]
+
 
 
 #Establish Connection to server
@@ -43,14 +46,32 @@ for dir in ftp.nlst():
     if 'test_description.yaml' in ftp.nlst():
         count += 1
 
-        # r = Reader()
-        # ftp.retrbinary('RETR test_description.yaml', r)
-        result[dir] = 'Test found for '+dir
+        r = Reader()
+        ftp.retrbinary('RETR test_description.yaml', r)
+        result[dir] = r.data
 
     ftp.cwd('..')
 
 result["Total Tests"] = count
 
-x = requests.post('http://'+managerIP, result)
+try:
+    headers = {
+        'accept': 'application/json',
+    }
 
-print(json.dumps(result, indent=2))
+    json_data = {
+        'username': cicdManagerUser,
+        'password': cicdManagerPassword,
+    }
+
+    response = requests.post('http://'+cicdManagerIP+'/users/login', headers=headers, json=json_data)
+
+    if response.status_code == 200:
+        
+        # Endpoint to later send the 
+        # x = requests.post('http://'+cicdManagerIP +'/...', result)
+        print("Total Tests: "+ json.dumps(result["Total Tests"], indent=1))
+
+
+except ValueError:
+    print(ValueError)
