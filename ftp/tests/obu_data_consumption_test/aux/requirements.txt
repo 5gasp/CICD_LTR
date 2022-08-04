@@ -1,0 +1,7 @@
+gpsd-py3==0.3.0
+cassandra-driver==3.25.0
+configparser==5.2.0
+bson==0.5.10
+HTTPServer==1.1.0
+requests==2.28.1
+CoAPthon3==1.0.2
