@@ -32,6 +32,7 @@ def bandwidth():
         try:
             machine1.connect(hostname=host1, username=username1, password=password1)
             machine2.connect(hostname=host2, username=username2, password=password2)
+            break
         except:
             print("[!] Cannot connect to the SSH Server")
         retry += 1

@@ -22,6 +22,7 @@ def transmission_speed():
     while retry < MAX_RETRIES:
         try:
             client.connect(hostname=host1, username=username1, password=password1)
+            break
         except:
             print("[!] Cannot connect to the SSH Server")
         retry += 1
