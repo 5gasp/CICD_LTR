@@ -7,6 +7,7 @@ import paramiko, re
 import statistics as stats
 import json
 import os
+import time
 
 host1 = os.getenv('bandwidth_host1_ip')
 username1 = os.getenv('bandwidth_host1_username')
@@ -16,18 +17,29 @@ host2 = os.getenv('bandwidth_host2_ip')
 username2 = os.getenv('bandwidth_host2_username')
 password2 = os.getenv('bandwidth_host2_password')
 
+
+
 #test
 def bandwidth():
     machine1 = paramiko.SSHClient()
     machine1.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     machine2 = paramiko.SSHClient()
     machine2.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    try:
-        machine1.connect(hostname=host1, username=username1, password=password1)
-        machine2.connect(hostname=host2, username=username2, password=password2)
-    except:
-        print("[!] Cannot connect to the SSH Server")
-        exit()
+    
+    MAX_RETRIES = 120
+    retry = 0
+    while retry < MAX_RETRIES:
+        try:
+            machine1.connect(hostname=host1, username=username1, password=password1)
+            machine2.connect(hostname=host2, username=username2, password=password2)
+        except:
+            print("[!] Cannot connect to the SSH Server")
+        retry += 1
+        time.sleep(1)
+        
+    if retry == MAX_RETRIES:
+        print("Could not establish SSH connection to the servers")
+        return "Could not establish SSH connection to the servers"
 
     # Executing iPerf commands
     print(machine1.exec_command("iperf3 -s -1"))

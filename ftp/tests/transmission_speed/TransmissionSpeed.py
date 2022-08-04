@@ -5,6 +5,7 @@
 
 import paramiko, re
 import os
+import time
 
 host1 = os.getenv('transmission_speed_host1_ip')
 username1 = os.getenv('transmission_speed_host1_username')
@@ -15,11 +16,20 @@ host2 = os.getenv('transmission_speed_host2_ip')
 def transmission_speed():
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    try:
-        client.connect(hostname=host1, username=username1, password=password1)
-    except:
-        print("[!] Cannot connect to the SSH Server")
-        exit()
+      
+    MAX_RETRIES = 120
+    retry = 0
+    while retry < MAX_RETRIES:
+        try:
+            client.connect(hostname=host1, username=username1, password=password1)
+        except:
+            print("[!] Cannot connect to the SSH Server")
+        retry += 1
+        time.sleep(1)
+        
+    if retry == MAX_RETRIES:
+        print("Could not establish SSH connection to the servers")
+        return "Could not establish SSH connection to the servers"
     
     stdin, stdout, stderr = client.exec_command(f"ping -c 5 {host2}")
     

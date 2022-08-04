@@ -2,7 +2,7 @@
 # @Author: Rafael Direito
 # @Date:   2022-08-02 16:19:02
 # @Last Modified by:   Rafael Direito
-# @Last Modified time: 2022-08-04 10:26:12
+# @Last Modified time: 2022-08-04 12:49:59
 
 import subprocess
 import os
@@ -286,24 +286,41 @@ def info_sending_task():
     while not send_vobu_request() and not _FINISH:
         print("Requesting vOBU...")
         time.sleep(2)
-
+        
+    
+    time.sleep(30)
+    MAX_RETRIES = 120
+    retry = 0 
+    pointer = None
     print("Sending info to vOBU with IP: " + vobu_ip)
     
     while(not _FINISH):
         try: 
+            pointer = dummy_data_file.tell()
             line = dummy_data_file.readline().strip()
             line = line.replace("<TEST_CAR_PLATE>", obu_plate)
-            print(line)
+            
             if len(line) == 0:
                 break
             if line.startswith('EOF') or line.startswith('{') or line.startswith('}'):
                 continue
             else:
+                print(f"Sending Line: {line}")
                 send_post(line)
+                print(f"Consumed Line: {line}")
+            
+        except Exception as e:
+            print("Error: " + str(e))
+
+            retry +=1 
+            dummy_data_file.seek(pointer)
+            time.sleep(1)
+            
+            if retry == MAX_RETRIES:
+                break
                 
             
-        except (IOError, BrokenPipeError, EOFError) as e:
-            pass
+        
         
     print("Bye bye")
     _FINISH = True
@@ -464,7 +481,6 @@ def simulate_obu_data(my_manager_ip):
 def get_obu_attributes( host_ip, port):
     global TEST_CAR_PLATE
 
-    time.sleep(30)
     print(f"Checking if the OBU with the plate '{TEST_CAR_PLATE}' has data...")
 
     requestURL = f"http://{host_ip}:{port}/availableAttributes?vehicle={TEST_CAR_PLATE}"
