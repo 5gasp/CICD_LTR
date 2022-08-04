@@ -2,7 +2,7 @@
 # @Author: Rafael Direito
 # @Date:   2022-08-02 16:19:02
 # @Last Modified by:   Rafael Direito
-# @Last Modified time: 2022-08-04 12:49:59
+# @Last Modified time: 2022-08-04 13:11:50
 
 import subprocess
 import os
@@ -483,7 +483,7 @@ def get_obu_attributes( host_ip, port):
 
     print(f"Checking if the OBU with the plate '{TEST_CAR_PLATE}' has data...")
 
-    requestURL = f"http://{host_ip}:{port}/availableAttributes?vehicle={TEST_CAR_PLATE}"
+    requestURL = f"http://{host_ip}:{port}/lastAttributeValue?vehicle={TEST_CAR_PLATE}&attribute=ENGINE_LOAD,percent"
 
     run = 0
     while run < MAX_TRIES:
@@ -501,9 +501,9 @@ def get_obu_attributes( host_ip, port):
                 return "Error: The response is empty"
 
             if response_data['status'] == "OK":
-                attributes = response_data["value"]
-                if len(attributes) > 0:
-                    return "Success: OBU has several attributes"
+                name = response_data["name"]
+                if name == "ENGINE_LOAD,percent":
+                    return "Success: OBU's data can be consumed"
                 else:
                     if run == MAX_TRIES - 1:
                         return "Error: OBU has no attributes"
