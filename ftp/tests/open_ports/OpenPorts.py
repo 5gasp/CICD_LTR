@@ -2,7 +2,7 @@
 # @Author: Rafael Direito
 # @Date:   2022-08-04 11:24:30
 # @Last Modified by:   Rafael Direito
-# @Last Modified time: 2022-08-08 10:54:24
+# @Last Modified time: 2022-08-08 12:21:30
 
 
 import os
@@ -27,7 +27,7 @@ def test_open_ports(host, expected_open_ports):
         print(f"Expected open ports: {expected_open_ports_set}")
         # Open ports scan
         nmap = nmap3.NmapScanTechniques()
-        results = nmap.nmap_syn_scan(host, args="-p-")
+        results = nmap.nmap_tcp_scan(host, args="-Pn -p-")
         open_ports = set()
         for port in results[host]["ports"]:
             if port["state"] == "open":
