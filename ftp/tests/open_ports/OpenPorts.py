@@ -1,14 +1,13 @@
-'''
-5GASP - NetApp Surrogates - Open Ports
-@author: Rafael Direito <rdireito@av.it.pt>
-'''
+# -*- coding: utf-8 -*-
+# @Author: Rafael Direito
+# @Date:   2022-08-04 11:24:30
+# @Last Modified by:   Rafael Direito
+# @Last Modified time: 2022-08-08 10:54:24
+
 
 import os
 import nmap3
 
-target = os.getenv('open_ports_host')
-open_port = os.getenv('open_ports_expected_open_port')
-protocol = os.getenv('open_ports_expected_protocol')
 # Return Codes:
 # 0 - OK
 # 1 - Bad inputs
@@ -16,28 +15,37 @@ protocol = os.getenv('open_ports_expected_protocol')
 # 3 - The open ports are not the ones expected
 
 
-def open_ports():
-    if not open_port or not protocol or not target:
-        return 1
+def test_open_ports(host, expected_open_ports):
     try:
+        # Parse the expected_open_ports string
+        # expected_open_ports = "80/tcp,443/tcp,...."
+        expected_open_ports_set = {
+            tuple(tup.split("/"))
+            for tup
+            in expected_open_ports.split(',')
+        }
+        print(f"Expected open ports: {expected_open_ports_set}")
+        # Open ports scan
         nmap = nmap3.NmapScanTechniques()
-        results = nmap.scan_top_ports(target, args="-Pn")
+        results = nmap.nmap_syn_scan(host, args="-p-")
         open_ports = set()
-        for port in results[target]["ports"]:
+        for port in results[host]["ports"]:
             if port["state"] == "open":
                 print("[Open Port]")
                 print(f"Port: {port['portid']}")
                 print(f"Protocol: {port['protocol']}")
-                print(f"Service: {port['service']['name']}")
                 open_ports.add((port['portid'], port['protocol']))
-        print(open_ports)
+        print(f"Open ports: {open_ports}")
         # check if the ports are the same
-        if open_ports == {(str(open_port), protocol)}:
+        if expected_open_ports_set == open_ports:
+            print("Success! The open ports are the ones expected.")
             return 0
         else:
             return 3
-    except:
+    except Exception as e:
+        print("Error", e)
         return 2
 
-if __name__ == '__main__':
-    open_ports()
+#if __name__ == '__main__':
+#    #open_ports("10.0.13.21", "22/tcp,9042/tcp,9160/tcp,12341/tcp")
+#    open_ports("10.0.13.21", "22/tcp")

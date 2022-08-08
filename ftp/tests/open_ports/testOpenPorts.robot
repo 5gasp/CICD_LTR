@@ -1,10 +1,10 @@
 *** Settings ***
 Library        OpenPorts.py
+Test Timeout  15 minutes
 
 *** Test Cases ***
 Testing the open ports
-
-    ${open_ports_status}=    Open Ports
+    ${open_ports_status}=    Test Open Ports    %{open_ports_host}    %{open_ports_expected_open_ports}
 
     IF  '${open_ports_status}' == '0'
         Pass Execution  \nSuccess
