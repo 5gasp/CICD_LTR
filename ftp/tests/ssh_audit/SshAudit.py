@@ -9,19 +9,17 @@ import os
 
 
 def check_errors(result_audit: dict):
-    print(result_audit)
+    
     for key, value in result_audit.items():
         if key == "fail":
             if any(result_audit[key]):
-                print("Fails were found in the audit")
-                return 3
+                return 3, f"The audit has failed {result_audit[key]}"
         if any(result_audit[key]):
-            print("Warnings were found in the audit")
-            return 2
-    return 0
+            return 2, f"The audit has presented warnings {result_audit[key]}"
+    return 0, "Success"
 
 # Run ssh-audit and capture its output
-def perform(ssh_host, ssh_port=22):
+def test_ssh_audit(ssh_host, ssh_port=22):
     ansi_escape = re.compile(
         r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
     try:
@@ -50,5 +48,5 @@ def perform(ssh_host, ssh_port=22):
                     res['fail'][key] = value
         return check_errors(res)
     except Exception as e:
-        return 4
+        return 4, "Host not acessible"
     

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.11.2 on darwin)" generated="20230306 22:19:06.101" rpa="false" schemaversion="3">
+<suite id="s1" name="testSshAudit" source="/Users/dagomes/IT/5gasp/CICD_LTR/ftp/tests/ssh-audit/testSshAudit.robot">
+<test id="s1-t1" name="Performing ssh audit" line="5">
+<kw name="Test Ssh Audit" library="SshAudit">
+<var>${ssh_audit_status}</var>
+<arg>%{ssh_audit_ssh_host}</arg>
+<arg>%{ssh_audit_ssh_port}</arg>
+<msg timestamp="20230306 22:19:06.710" level="INFO">${ssh_audit_status} = (3, "The audit has failed {'(kex) ecdh-sha2-nistp256': '[fail] using weak elliptic curves', '(kex) ecdh-sha2-nistp384': '[fail] using weak elliptic curves', '(kex) ecdh-sha2-nistp521': '[fail] using w...</msg>
+<status status="PASS" starttime="20230306 22:19:06.113" endtime="20230306 22:19:06.710"/>
+</kw>
+<if>
+<branch type="IF" condition="'${ssh_audit_status[0]}' == '0'">
+<kw name="Pass Execution" library="BuiltIn">
+<arg>\nSuccess</arg>
+<doc>Skips rest of the current test, setup, or teardown with PASS status.</doc>
+<status status="NOT RUN" starttime="20230306 22:19:06.711" endtime="20230306 22:19:06.711"/>
+</kw>
+<status status="NOT RUN" starttime="20230306 22:19:06.710" endtime="20230306 22:19:06.711"/>
+</branch>
+<branch type="ELSE IF" condition="'${ssh_audit_status[0]}' in ['1', '2', '3', '4']">
+<kw name="Fail" library="BuiltIn">
+<arg>\n${ssh_audit_status[1]}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<msg timestamp="20230306 22:19:06.712" level="FAIL">
+The audit has failed {'(kex) ecdh-sha2-nistp256': '[fail] using weak elliptic curves', '(kex) ecdh-sha2-nistp384': '[fail] using weak elliptic curves', '(kex) ecdh-sha2-nistp521': '[fail] using weak elliptic curves', '(key) ssh-rsa (3072-bit)': '[fail] using weak hashing algorithm', '(key) ecdsa-sha2-nistp256 ': '[fail] using weak elliptic curves'}</msg>
+<status status="FAIL" starttime="20230306 22:19:06.711" endtime="20230306 22:19:06.712"/>
+</kw>
+<status status="FAIL" starttime="20230306 22:19:06.711" endtime="20230306 22:19:06.712"/>
+</branch>
+<branch type="ELSE">
+<kw name="Fail" library="BuiltIn">
+<arg>\nUnknown Error</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20230306 22:19:06.712" endtime="20230306 22:19:06.712"/>
+</kw>
+<status status="NOT RUN" starttime="20230306 22:19:06.712" endtime="20230306 22:19:06.712"/>
+</branch>
+<status status="FAIL" starttime="20230306 22:19:06.710" endtime="20230306 22:19:06.712"/>
+</if>
+<status status="FAIL" starttime="20230306 22:19:06.113" endtime="20230306 22:19:06.712">
+The audit has failed {'(kex) ecdh-sha2-nistp256': '[fail] using weak elliptic curves', '(kex) ecdh-sha2-nistp384': '[fail] using weak elliptic curves', '(kex) ecdh-sha2-nistp521': '[fail] using weak elliptic curves', '(key) ssh-rsa (3072-bit)': '[fail] using weak hashing algorithm', '(key) ecdsa-sha2-nistp256 ': '[fail] using weak elliptic curves'}</status>
+</test>
+<status status="FAIL" starttime="20230306 22:19:06.102" endtime="20230306 22:19:06.712"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="testSshAudit">testSshAudit</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
