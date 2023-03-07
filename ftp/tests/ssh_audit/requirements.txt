@@ -1,0 +1,2 @@
+robotframework==6.0.2
+ssh-audit==2.5.0

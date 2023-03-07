@@ -1,22 +1,38 @@
+# -*- coding: utf-8 -*-
+# @Author: Rafael Direito
+# @Date:   2023-03-07 11:03:24
+# @Last Modified by:   Rafael Direito
+# @Last Modified time: 2023-03-07 12:03:44
 
-
-
+# Return Codes:
+# 0 - Success (PASS)
+# 1 - The audit has presented warnings (PASS)
+# 2 - The audit has failed (FAIL)
+# 3 - Host not acessible (FAIL)
 
 import subprocess
-import json
 import re
-import os
 
 
 def check_errors(result_audit: dict):
-    
+    report_str = "SSH's Algorithms/Keys Validation Report:"
+    print(report_str)
     for key, value in result_audit.items():
+        for algorithm, validation in value.items():
+            report_str += f"\n{validation} -> {algorithm}"
         if key == "fail":
             if any(result_audit[key]):
-                return 3, f"The audit has failed {result_audit[key]}"
+                print(report_str)
+                return 2, f"The audit has failed:\n{report_str}\n"\
+                    "If you wish to SOLVE THE ENCOUNTERED ISSUES, please "\
+                    "visit: https://www.ssh-audit.com/hardening_guides.html"
         if any(result_audit[key]):
-            return 2, f"The audit has presented warnings {result_audit[key]}"
+            print(report_str)
+            return 1, f"The audit has presented warnings\n{report_str}\n"\
+                "If you wish to SOLVE THE ENCOUNTERED ISSUES, please "\
+                "visit: https://www.ssh-audit.com/hardening_guides.html"
     return 0, "Success"
+
 
 # Run ssh-audit and capture its output
 def test_ssh_audit(ssh_host, ssh_port=22):
@@ -48,5 +64,4 @@ def test_ssh_audit(ssh_host, ssh_port=22):
                     res['fail'][key] = value
         return check_errors(res)
     except Exception as e:
-        return 4, "Host not acessible"
-    
+        return 3, f"Host not acessible. Exception: {e}"

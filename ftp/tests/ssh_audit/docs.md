@@ -10,7 +10,12 @@ This test only requires the VNF's host and port where the SSH Server is located.
 
 ## 3. Inputs
 
-The Ssh Port Security Test takes as an input the host and port where the SSH Server is located
+The Ssh Port Security Test takes as an input the host and, optionally, the port where the SSH Server is located.
+If no SSH Port is specified, the default 22 SSH Port is used.
+
+Environment Variables that must be specified:
+- ssh_audit_ssh_host
+- ssh_audit_ssh_port (optional)
 
 ## 4. Outputs
 
@@ -19,17 +24,24 @@ The Ssh Port Security Test takes as an input the host and port where the SSH Ser
 ``` 
 → python3 -m robot testSshAudit.robot
 ==============================================================================
-testSshAudit                                                                  
+testSshAudit
 ==============================================================================
 Performing ssh audit                                                  | FAIL |
-The audit has failed {'(kex) ecdh-sha2-nistp256': '[fail] using weak elliptic curves', '(kex) ecdh-sha2-nistp384': '[fail] using weak elliptic curves', '(kex) ecdh-sha2-nistp521': '[fail] using weak elliptic curves', '(key) ssh-rsa (3072-bit)': '[fail] using weak hashing algorithm', '(key) ecdsa-sha2-nistp256 ': '[fail] using weak elliptic curves'}
+The audit has failed:
+SSH's Algorithms/Keys Validation Report:
+[fail] using weak elliptic curves -> (kex) ecdh-sha2-nistp256
+[fail] using weak elliptic curves -> (kex) ecdh-sha2-nistp384
+[fail] using weak elliptic curves -> (kex) ecdh-sha2-nistp521
+[fail] using weak hashing algorithm -> (key) ssh-rsa (3072-bit)
+[fail] using weak elliptic curves -> (key) ecdsa-sha2-nistp256
+If you wish to SOLVE THE ENCOUNTERED ISSUES, please visit: https://www.ssh-audit.com/hardening_guides.html
 ------------------------------------------------------------------------------
 testSshAudit                                                          | FAIL |
 1 test, 0 passed, 1 failed
 ==============================================================================
-Output:  /Users/dagomes/IT/5gasp/CICD_LTR/ftp/tests/ssh-audit/output.xml
-Log:     /Users/dagomes/IT/5gasp/CICD_LTR/ftp/tests/ssh-audit/log.html
-Report:  /Users/dagomes/IT/5gasp/CICD_LTR/ftp/tests/ssh-audit/report.html
+Output:  /Users/rdireito/Desktop/UA/5GASP/Code/CICD_LTR/ftp/tests/ssh_audit/output.xml
+Log:     /Users/rdireito/Desktop/UA/5GASP/Code/CICD_LTR/ftp/tests/ssh_audit/log.html
+Report:  /Users/rdireito/Desktop/UA/5GASP/Code/CICD_LTR/ftp/tests/ssh_audit/report.html
 ```
 
 ### 4.2. Example - Test Succeeded
@@ -37,7 +49,7 @@ Report:  /Users/dagomes/IT/5gasp/CICD_LTR/ftp/tests/ssh-audit/report.html
 ``` 
 → python3 -m robot testSshAudit.robot
 ==============================================================================
-testSshAudit                                                                  
+testSshAudit
 ==============================================================================
 Performing ssh audit                                                  | PASS |
 Success
@@ -45,9 +57,9 @@ Success
 testSshAudit                                                          | PASS |
 1 test, 1 passed, 0 failed
 ==============================================================================
-Output:  /Users/dagomes/IT/5gasp/CICD_LTR/ftp/tests/ssh-audit/output.xml
-Log:     /Users/dagomes/IT/5gasp/CICD_LTR/ftp/tests/ssh-audit/log.html
-Report:  /Users/dagomes/IT/5gasp/CICD_LTR/ftp/tests/ssh-audit/report.html
+Output:  /Users/rdireito/Desktop/UA/5GASP/Code/CICD_LTR/ftp/tests/ssh_audit/output.xml
+Log:     /Users/rdireito/Desktop/UA/5GASP/Code/CICD_LTR/ftp/tests/ssh_audit/log.html
+Report:  /Users/rdireito/Desktop/UA/5GASP/Code/CICD_LTR/ftp/tests/ssh_audit/report.html
 ```
 
 ## 5. Requirements
