@@ -1,0 +1,2 @@
+robotframework==6.0.2
+sslyze==5.1.1
