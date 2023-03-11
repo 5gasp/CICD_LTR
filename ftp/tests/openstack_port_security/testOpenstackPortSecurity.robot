@@ -4,7 +4,7 @@ Test Timeout  15 minutes
 
 *** Test Cases ***
 Testing the port security of VNF interfaces
-    ${openstack_port_security_status}=    Test Openstack Port Security    %{openstack_port_security_deployment_info_file_path}    
+    ${openstack_port_security_status}=    Test Openstack Port Security    %{openstack_port_security_deployment_info_file_path=NONE}
 
     IF  '${openstack_port_security_status[0]}' == '0'
         Pass Execution  \nSuccess
