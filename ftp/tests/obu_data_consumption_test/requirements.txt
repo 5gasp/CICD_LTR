@@ -1,3 +1,4 @@
+robotframework==6.0.2
 gpsd-py3==0.3.0
 cassandra-driver==3.25.0
 configparser==5.2.0

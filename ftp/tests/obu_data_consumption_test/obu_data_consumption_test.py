@@ -6,41 +6,12 @@
 
 import subprocess
 import os
-
-TEST_CAR_PLATE = None
-
-
-def process_command(command):
-    result = subprocess.call(command, shell=True)
-    return result
-
-
-# --------------------------- INSTALL REQUIREMENTS -------------------------- #
-def install_requirements():
-    curr_dir = os.path.dirname(os.path.realpath(__file__))
-
-    # Install requirements
-    requirements_file_path = os.path.join(curr_dir, "aux", "requirements.txt")
-    ret_code = process_command(
-        f"python3 -m pip install -r {requirements_file_path}"
-    )
-    if ret_code != 0:
-        return "Error: Couldn't install the requirements"
-    print("Requirements installed")
-
-    return "Success: Requirements installed"
-
-
-install_requirements()
-# ----------------------- END OF INSTALL REQUIREMENTS ----------------------- #
-
-
-
-# ----------------------- GET AVAILABLE TEST CAR PLATE ---------------------- #
 import requests
 import time
 import subprocess
 import os
+
+TEST_CAR_PLATE = None
 
 MAX_TRIES = 120
 
@@ -519,22 +490,3 @@ def get_obu_attributes( host_ip, port):
 
     return "Error: Couldn't perform any request to the Aggreagator's API"
 # --------------------------- END CONSUME OBU DATA -------------------------- #
-
-
-
-# -------------------------- UNINSTALL REQUIREMENTS ------------------------- #
-def uninstall_requirements():
-    curr_dir = os.path.dirname(os.path.realpath(__file__))
-
-    # Install requirements
-    requirements_file_path = os.path.join(curr_dir, "aux", "requirements.txt")
-    ret_code = process_command(
-        f"python3 -m pip uninstall -r {requirements_file_path} -y"
-    )
-    if ret_code != 0:
-        return "Error: Couldn't uninstall the requirements"
-    print("Requirements uninstalled")
-
-    return "Success: Requirements uninstalled"
-
-# ---------------------- END OF UNINSTALL REQUIREMENTS ---------------------- #
