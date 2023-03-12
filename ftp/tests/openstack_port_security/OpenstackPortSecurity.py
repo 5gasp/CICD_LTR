@@ -2,7 +2,7 @@
 # @Author: Rafael Direito
 # @Date:   2023-03-06 10:01:53
 # @Last Modified by:   Rafael Direito
-# @Last Modified time: 2023-03-06 15:07:49
+# @Last Modified time: 2023-03-12 18:20:26
 
 
 # Return Codes:
@@ -19,13 +19,14 @@ import re
 
 def test_openstack_port_security(deployment_info_file_path):
 
-    
     if deployment_info_file_path == "NONE":
-        deployment_info_file_path = os.path.join("/var", "lib", "jenkins", 
-            "test_artifacts", os.getenv("JOB_NAME"), "deployment-info.json")
-        
+        deployment_info_file_path = os.path.join(
+            "/var", "lib", "jenkins", "test_artifacts", os.getenv("JOB_NAME"),
+            "deployment-info.json"
+        )
+
     deployment_info = None
-    
+
     # Load deployment info file
     try:
         f = open(deployment_info_file_path)
@@ -116,8 +117,3 @@ def test_openstack_port_security(deployment_info_file_path):
           f"Ports: {insecure_ports}")
     return 1, "NOT all ports have port security enabled! "\
         f"Ports: {insecure_ports}"
-
-
-if __name__ == '__main__':
-    # open_ports("10.0.13.21", "22/tcp,9042/tcp,9160/tcp,12341/tcp")
-    test_openstack_port_security()
