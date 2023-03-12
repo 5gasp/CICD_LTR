@@ -16,11 +16,11 @@ Due to resource restrictions, only 1500 credentials can be be tested
 ## 3. Inputs
 
 The Openstack Port Security Test takes as an input:
-- The username of the VNF (optional) - Env: `ssh_brute_force_username`
-- The maximum number of usernames to be tested (when the VNF's username is not provided - mandatory) - Env: `ssh_brute_force_max_usernames_to_test`
-- The maximum number of passwords to be tested (mandatory) - Env: `ssh_brute_force_max_password_to_test`
-- The IP of the targe VNF (mandatory) - Env: `ssh_brute_force_target_ip`
-- The Port of the targe VNF where the SSH Server is Running (optional, defautl=22) - Env: `ssh_brute_force_target_port`
+- The username of the VNF (optional) - Env: `ssh_brute_force_username`, defined in the Testing Descriptor as `username`
+- The maximum number of usernames to be tested (when the VNF's username is not provided - mandatory) - Env: `ssh_brute_force_max_usernames_to_test`, defined in the Testing Descriptor as `max_usernames_to_test`
+- The maximum number of passwords to be tested (mandatory) - Env: `ssh_brute_force_max_password_to_test`, defined in the Testing Descriptor as `max_password_to_test`
+- The IP of the targe VNF (mandatory) - Env: `ssh_brute_force_target_ip`, defined in the Testing Descriptor as `target_ip`
+- The Port of the targe VNF where the SSH Server is Running (optional, defautl=22) - Env: `ssh_brute_force_target_port`, defined in the Testing Descriptor as `target_port`
 
 ### 3.1 When testing locally...
 
