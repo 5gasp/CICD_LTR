@@ -2,7 +2,7 @@
 # @Author: Rafael Direito
 # @Date:   2023-03-11 19:24:03
 # @Last Modified by:   Rafael Direito
-# @Last Modified time: 2023-03-12 19:09:56
+# @Last Modified time: 2023-03-12 19:25:24
 
 import paramiko
 import os
@@ -109,12 +109,6 @@ def ssh_brute_force_test(username, max_pws_to_test, max_users_to_test,
             usernames = [username]
         # Else, the test shall rely on a list of the most used usernames
         else:
-            # Verify how many different users shall be used during the test
-            if max_users_to_test == "NONE":
-                max_users_to_test = -1
-            else:
-                max_users_to_test = int(max_users_to_test)
-
             # Load usernames from file
             usernames_list_file_path = None
             if os.getenv("usernames_list_file_path") is not None:
@@ -129,24 +123,20 @@ def ssh_brute_force_test(username, max_pws_to_test, max_users_to_test,
 
             # Gather the usernames
             f = open(usernames_list_file_path, 'r')
-            line_counter = 0
-            for line in f:
-                usernames.append(line.strip())
-                line_counter += 1
-                if line_counter == max_users_to_test:
-                    break
+            if max_users_to_test == "NONE":
+                usernames = [line.strip() for line in f]
+            else:
+                usernames = [
+                    next(f).strip()
+                    for _ in range(int(max_users_to_test))
+                ]
             f.close()
+
     except Exception as e:
         return 2, "Impossible to gather the usernames to use in this test. "\
             f"Exception {e}!"
 
     try:
-        # How many different passwords shall be used during the test?
-        if max_pws_to_test == "NONE":
-            max_pws_to_test = -1
-        else:
-            max_pws_to_test = int(max_pws_to_test)
-
         # Load password from file
         passwords_list_file_path = None
         if os.getenv("passwords_list_file_path") is not None:
@@ -158,15 +148,13 @@ def ssh_brute_force_test(username, max_pws_to_test, max_users_to_test,
             )
 
         # Gather passwords
-        passwords = []
         f = open(passwords_list_file_path, 'r')
-        line_counter = 0
-        for line in f:
-            passwords.append(line.strip())
-            line_counter += 1
-            if line_counter == max_pws_to_test:
-                break
+        if max_pws_to_test == "NONE":
+            passwords = [line.strip() for line in f]
+        else:
+            passwords = [next(f).strip() for _ in range(int(max_pws_to_test))]
         f.close()
+
     except Exception as e:
         return 3, "Impossible to gather the password to use in this test. "\
             f"Exception {e}!"
