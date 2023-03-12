@@ -2,7 +2,7 @@
 # @Author: Rafael Direito
 # @Date:   2023-03-11 19:24:03
 # @Last Modified by:   Rafael Direito
-# @Last Modified time: 2023-03-12 19:02:12
+# @Last Modified time: 2023-03-12 19:09:56
 
 import paramiko
 import os
@@ -211,7 +211,3 @@ def ssh_brute_force_test(username, max_pws_to_test, max_users_to_test,
     except Exception as e:
         return 4, "Impossible to perform the SSH Bruteforce test. "\
             f"Exception: {e}!"
-
-
-if __name__ == "__main__":
-    print(ssh_brute_force_test("NONE", 60, 10, "10.0.30.148", 22))
