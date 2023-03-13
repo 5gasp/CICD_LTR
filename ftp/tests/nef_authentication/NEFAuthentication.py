@@ -2,7 +2,7 @@
 # @Author: Rafael Direito
 # @Date:   2023-03-13 15:34:19
 # @Last Modified by:   Rafael Direito
-# @Last Modified time: 2023-03-13 18:12:02
+# @Last Modified time: 2023-03-13 19:40:16
 
 # Return Codes:
 # 0 - Success (PASS)
@@ -143,13 +143,3 @@ def test_nef_authentication(vnf_base_api_location,
     except Exception as e:
         return 2, f"Test failed due to an exception. Exception: {e}"
 
-
-if __name__ == "__main__":
-    test_nef_authentication(
-        vnf_base_api_location="http://10.0.30.166:8080",
-        nef_reporting_base_api_location="http://10.0.30.122:8000",
-        nef_ip="10.0.30.122",
-        nef_port="8888",
-        nef_username="admin@my-email.com",
-        nef_password="pass"
-    )
