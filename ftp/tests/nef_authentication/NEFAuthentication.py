@@ -2,7 +2,7 @@
 # @Author: Rafael Direito
 # @Date:   2023-03-13 15:34:19
 # @Last Modified by:   Rafael Direito
-# @Last Modified time: 2023-03-13 17:10:10
+# @Last Modified time: 2023-03-13 18:12:02
 
 # Return Codes:
 # 0 - Success (PASS)
@@ -56,8 +56,8 @@ def test_nef_authentication(vnf_base_api_location,
         if response.status_code != 200:
             print("Impossible to delete previous reports from NEF's " +
                   "Reporting API")
-            return 2, "Impossible to delete previous reports from NEF's "\
-                "Reporting API"
+            raise Exception("Impossible to delete previous reports from " +
+                            "NEF's Reporting API")
 
         # 2. Then, create a new report
         url = f"{nef_reporting_base_api_location}"\
@@ -83,7 +83,7 @@ def test_nef_authentication(vnf_base_api_location,
         headers = {'Content-Type': 'application/json'}
 
         response = requests.request("POST", url, headers=headers, data=payload)
-
+        print("----", response.text)
         print("VNF's Response to the request of establishing connectivity " +
               f"with the NEF: {response.text}")
         if response.status_code != 200:
@@ -108,10 +108,11 @@ def test_nef_authentication(vnf_base_api_location,
 
         print("VNF's Response to the request of authenticating itself in " +
               f"the NEF: {response.text}")
-        if response.status_code != 200 and response.status_code != 201:
-            print("Impossible for the VNF under test to loggin in to the NEF")
+        if response.status_code != 200:
+            print("Impossible for the VNF under test to authenticate in " +
+                  "the NEF")
             raise Exception(
-                "Impossible for the VNF under test to loggin in to the NEF"
+                "Impossible for the VNF under test to authenticate in the NEF"
             )
 
         # 5. Get NEF's Report
