@@ -62,7 +62,8 @@ def is_ssh_open(thread_id, hostname, port, credentials, results):
                         port=port,
                         timeout=2,
                     )
-                except socket.timeout:
+                except (socket.timeout,
+                        paramiko.ssh_exception.NoValidConnectionsError):
                     # when host is unreachable
                     print(f"[!] Host: {hostname} is unreachable, timed out.")
                     client.close()
@@ -86,7 +87,8 @@ def is_ssh_open(thread_id, hostname, port, credentials, results):
                           "seconds...")
                     # sleep for a minute
                     time.sleep(10)
-                    return is_ssh_open(thread_id, hostname, port)
+                    return is_ssh_open(thread_id, hostname, port, credentials,
+                                       results)
                 else:
                     client.close()
                     # connection was established successfully
