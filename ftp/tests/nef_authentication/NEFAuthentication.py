@@ -2,7 +2,7 @@
 # @Author: Rafael Direito
 # @Date:   2023-03-13 15:34:19
 # @Last Modified by:   Rafael Direito
-# @Last Modified time: 2023-03-13 19:40:16
+# @Last Modified time: 2023-03-14 09:36:31
 
 # Return Codes:
 # 0 - Success (PASS)
@@ -137,9 +137,20 @@ def test_nef_authentication(vnf_base_api_location,
             print(f"Test Failed due to the following errors: {errors_str}")
             return 1, f"Test Failed due to the following errors: {errors_str}"
 
-        print("Test Successfull! NetApp was able to authenticate with the NEF")
-        return 0, "Test Successfull! NetApp was able to authenticate with "\
+        print("Test Successful! NetApp was able to authenticate with the NEF")
+        return 0, "Test Successful! NetApp was able to authenticate with "\
             "the NEF"
     except Exception as e:
         return 2, f"Test failed due to an exception. Exception: {e}"
 
+
+# if __name__ == "__main__":
+#    test_nef_authentication(
+#        vnf_base_api_location="http://x.x.x.x:8080",
+#        nef_reporting_base_api_location="http://x.x.x.x:8000",
+#        nef_ip="x.x.x.x",
+#        nef_port="8888",
+#        nef_username="<username>",
+#        nef_password="<password>",
+#    )
+#

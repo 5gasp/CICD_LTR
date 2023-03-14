@@ -46,7 +46,7 @@ The NEF Authentication takes as an input:
 
 ## 4. Outputs
 
-### 4.1. Example - Test was Successull
+### 4.1. Example - Test was Successful
 
 ``` 
 → python -m robot ./
@@ -56,7 +56,7 @@ Nef Authentication
 Nef Authentication.testNEFAuthentication
 ==============================================================================
 Validate if NetApp is able to authenticate with the NEF               | PASS |
-Test Successfull! NetApp was able to authenticate with the NEF
+Test Successful! NetApp was able to authenticate with the NEF
 ------------------------------------------------------------------------------
 Nef Authentication.testNEFAuthentication                              | PASS |
 1 test, 1 passed, 0 failed
