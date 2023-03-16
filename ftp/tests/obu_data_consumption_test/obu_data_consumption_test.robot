@@ -13,6 +13,3 @@ Validate OBU Data Consumption
 
     ${output}=    Get Obu Attributes    %{obu_data_consumption_test_aggregator_host}  %{obu_data_consumption_test_aggregator_port} 
     Should Contain    ${output}    Success
-
-    ${output}=  Uninstall Requirements
-    Should Contain    ${output}    Success
