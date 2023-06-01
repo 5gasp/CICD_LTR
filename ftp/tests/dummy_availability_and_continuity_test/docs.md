@@ -1,4 +1,4 @@
-# dummy_test_5g_readiness
+# dummy_availability_and_continuity_test
 
 
 
