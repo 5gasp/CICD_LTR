@@ -18,7 +18,7 @@ def validate_report(report, supi):
     errors = []
     for i in range(len(report)-1, -1, -1):
         request = report[i]
-        if request["endpoint"] == f"/api/v1/UEs/{supi}/path_losses" and request["method"] == "GET":
+        if request["endpoint"] == f"/test//api/v1/UEs/{supi}/path_losses" and request["method"] == "GET":
             print("Request: ", request)
             if request["nef_response_code"] not in [200, 409]:
                 errors.append("Invalid Login")
