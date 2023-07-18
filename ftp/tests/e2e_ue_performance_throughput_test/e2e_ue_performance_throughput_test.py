@@ -15,26 +15,26 @@ import json
 from time import sleep
 import statistics as stats
 
-MINIMAL_BW_VALUE = 100000
 
-def validate_report(results):
+def validate_report(results, minimal_threshold):
     errors = []
-    bits_per_second_results = []
-    for iteration_data in (results['intervals']):
-        bits_per_second_results.append(iteration_data["sum"]["bits_per_second"])
     
-    if len(bits_per_second_results) > 0: 
-        # Calculating the packet loss mean between Sender and Receiver
-        mean_bw_mbits_per_second = stats.mean(bits_per_second_results)/1000000
-        if mean_bw_mbits_per_second < MINIMAL_BW_VALUE:
-            errors.append("Minimal Bandwidth Mbps per seconds has not been reached")
-    else:
-        errors.append("No Results Found")
+    
+    total_bytes_transferred = results['end']['sum_sent']['bytes']
+
+    total_duration = results['start']['test_start']['duration']
+    average_throughput = total_bytes_transferred / total_duration
+    average_throughput_mbps = (average_throughput / 1e6) * 8
+    if average_throughput_mbps < float(minimal_threshold):
+         errors.append("Minimal  Required Throughput has not been reached")
+    # # Print the results
+
     return errors
 
 
 def test_e2e_ue_performance(mini_api_endpoint_to_invoke_server, mini_api_endpoint_to_invoke_client,
-                                 mini_api_endpoint_to_invoke_results, e2e_ue_performance_test_mini_api_endpoint_to_invoke_results):
+                            mini_api_endpoint_to_invoke_results, mini_api_endpoint_to_invoke_cleanup,
+                            e2e_ue_performance_test_threshold):
 
    
     response = None
@@ -68,15 +68,16 @@ def test_e2e_ue_performance(mini_api_endpoint_to_invoke_server, mini_api_endpoin
         print(json.dumps(report_json, indent=4))
         
         # 3. Validate Report
-        errors = validate_report(report_json)
+        errors = validate_report(report_json, e2e_ue_performance_test_threshold)
 
         if len(errors) != 0:
             errors_str = '\n\t- '.join(errors)
             print(f"Test Failed due to the following errors: {errors_str}")
             return 1, f"Test Failed due to the following errors: {errors_str}"
         
+        # 
         # 4 Clean Testing Environment
-        response =  requests.post(e2e_ue_performance_test_mini_api_endpoint_to_invoke_results)
+        response =  requests.post(mini_api_endpoint_to_invoke_cleanup)
     
         if response.status_code not in [200, 409]:
             response.raise_for_status()    
@@ -87,8 +88,8 @@ def test_e2e_ue_performance(mini_api_endpoint_to_invoke_server, mini_api_endpoin
         return 2, error
 
 
-    print("Test Successful! The E2E Performance between the NApp's UEs has"\
-        "been validated")
-    return 0, "Test Successful! The E2E Performance between the NApp's UEs has"\
-        "been validated"
+    print("Test Successful! The E2E Performance Throughput between the NApp's UEs has"\
+        " been validated")
+    return 0, "Test Successful! The E2E Performance Throughput between the NApp's UEs has"\
+        " been validated"
 

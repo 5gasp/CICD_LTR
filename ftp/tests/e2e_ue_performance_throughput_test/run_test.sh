@@ -8,4 +8,5 @@ export e2e_ue_performance_test_mini_api_endpoint_to_invoke_server=http://127.0.0
 export e2e_ue_performance_test_mini_api_endpoint_to_invoke_client=http://127.0.0.1:8000/start/7?server_ip=127.0.0.1
 export e2e_ue_performance_test_mini_api_endpoint_to_invoke_results=http://127.0.0.1:8080/results/7
 export e2e_ue_performance_test_mini_api_endpoint_to_invoke_cleanup=http://127.0.0.1:8080/stop/7
+export e2e_ue_performance_test_threshold=100000
 python3 -m robot .

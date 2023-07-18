@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.11.4 on darwin)" generated="20230718 09:26:03.501" rpa="false" schemaversion="3">
+<suite id="s1" name="E2E Ue Performance Throughput Test" source="/Users/dagomes/IT/5gasp/CICD_LTR/ftp/tests/e2e_ue_performance_throughput_test">
+<suite id="s1-s1" name="E2E Ue Performance Throughput Test" source="/Users/dagomes/IT/5gasp/CICD_LTR/ftp/tests/e2e_ue_performance_throughput_test/e2e_ue_performance_throughput_test.robot">
+<test id="s1-s1-t1" name="E2E UE Performance Test" line="6">
+<kw name="Test E2e Ue Performance" library="e2e_ue_performance_throughput_test">
+<var>${e2e_ue_performance_test_status}</var>
+<arg>%{e2e_ue_performance_test_mini_api_endpoint_to_invoke_server}</arg>
+<arg>%{e2e_ue_performance_test_mini_api_endpoint_to_invoke_client}</arg>
+<arg>%{e2e_ue_performance_test_mini_api_endpoint_to_invoke_results}</arg>
+<arg>%{e2e_ue_performance_test_mini_api_endpoint_to_invoke_cleanup}</arg>
+<arg>%{e2e_ue_performance_test_threshold}</arg>
+<msg timestamp="20230718 09:26:08.576" level="INFO">Response: "Started E2E UE Performance Test, as  Server Side"
+...
+200
+Response: {'start': {'connected': [{'socket': 5, 'local_host': '127.0.0.1', 'local_port': 62384, 'remote_host': '127.0.0.1', 'remote_port': 5201}], 'version': 'iperf 3.14', 'system_info': 'Darwin Daniels-MBP.lan 21.6.0 Darwin Kernel Version 21.6.0: Sat Jun 18 17:07:22 PDT 2022; root:xnu-8020.140.41~1/RELEASE_ARM64_T6000 arm64', 'timestamp': {'time': 'Tue, 18 Jul 2023 08:26:03 UTC', 'timesecs': 1689668763}, 'connecting_to': {'host': '127.0.0.1', 'port': 5201}, 'cookie': 'i2ih2h7xxhoj5t55d7dwhmgvjleujh7i73ig', 'tcp_mss_default': 16332, 'target_bitrate': 0, 'fq_rate': 0, 'sock_bufsize': 0, 'sndbuf_actual': 131072, 'rcvbuf_actual': 131072, 'test_start': {'protocol': 'TCP', 'num_streams': 1, 'blksize': 131072, 'omit': 0, 'duration': 5, 'bytes': 0, 'blocks': 0, 'reverse': 0, 'tos': 0, 'target_bitrate': 0, 'bidir': 0, 'fqrate': 0}}, 'intervals': [{'streams': [{'socket': 5, 'start': 0, 'end': 1.000077, 'seconds': 1.00007700920105, 'bytes': 12429295616, 'bits_per_second': 99426708156.64185, 'omitted': False, 'sender': True}], 'sum': {'start': 0, 'end': 1.000077, 'seconds': 1.00007700920105, 'bytes': 12429295616, 'bits_per_second': 99426708156.64185, 'omitted': False, 'sender': True}}, {'streams': [{'socket': 5, 'start': 1.000077, 'end': 2.000006, 'seconds': 0.9999290108680725, 'bytes': 15191244800, 'bits_per_second': 121538586318.73846, 'omitted': False, 'sender': True}], 'sum': {'start': 1.000077, 'end': 2.000006, 'seconds': 0.9999290108680725, 'bytes': 15191244800, 'bits_per_second': 121538586318.73846, 'omitted': False, 'sender': True}}, {'streams': [{'socket': 5, 'start': 2.000006, 'end': 3.000063, 'seconds': 1.0000569820404053, 'bytes': 15511453696, 'bits_per_second': 124084558976.64673, 'omitted': False, 'sender': True}], 'sum': {'start': 2.000006, 'end': 3.000063, 'seconds': 1.0000569820404053, 'bytes': 15511453696, 'bits_per_second': 124084558976.64673, 'omitted': False, 'sender': True}}, {'streams': [{'socket': 5, 'start': 3.000063, 'end': 4.000078, 'seconds': 1.0000150203704834, 'bytes': 15289548800, 'bits_per_second': 122314553190.09557, 'omitted': False, 'sender': True}], 'sum': {'start': 3.000063, 'end': 4.000078, 'seconds': 1.0000150203704834, 'bytes': 15289548800, 'bits_per_second': 122314553190.09557, 'omitted': False, 'sender': True}}, {'streams': [{'socket': 5, 'start': 4.000078, 'end': 5.000147, 'seconds': 1.00006902217865, 'bytes': 15617228800, 'bits_per_second': 124929207513.92038, 'omitted': False, 'sender': True}], 'sum': {'start': 4.000078, 'end': 5.000147, 'seconds': 1.00006902217865, 'bytes': 15617228800, 'bits_per_second': 124929207513.92038, 'omitted': False, 'sender': True}}], 'end': {'streams': [{'sender': {'socket': 5, 'start': 0, 'end': 5.000147, 'seconds': 5.000147, 'bytes': 74038771712, 'bits_per_second': 118458552057.7695, 'sender': True}, 'receiver': {'socket': 5, 'start': 0, 'end': 5.000252, 'seconds': 5.000147, 'bytes': 74038640640, 'bits_per_second': 118455854848.91562, 'sender': True}}], 'sum_sent': {'start': 0, 'end': 5.000147, 'seconds': 5.000147, 'bytes': 74038771712, 'bits_per_second': 118458552057.7695, 'sender': True}, 'sum_received': {'start': 0, 'end': 5.000252, 'seconds': 5.000252, 'bytes': 74038640640, 'bits_per_second': 118455854848.91562, 'sender': True}, 'cpu_utilization_percent': {'host_total': 95.5964231348099, 'host_user': 1.8970078616091255, 'host_system': 93.6994352686458, 'remote_total': 71.7597997864912, 'remote_user': 4.462186181444093, 'remote_system': 67.29755360819092}}}
+Performance Test Result: 
+{
+    "start": {
+        "connected": [
+            {
+                "socket": 5,
+                "local_host": "127.0.0.1",
+                "local_port": 62384,
+                "remote_host": "127.0.0.1",
+                "remote_port": 5201
+            }
+        ],
+        "version": "iperf 3.14",
+        "system_info": "Darwin Daniels-MBP.lan 21.6.0 Darwin Kernel Version 21.6.0: Sat Jun 18 17:07:22 PDT 2022; root:xnu-8020.140.41~1/RELEASE_ARM64_T6000 arm64",
+        "timestamp": {
+            "time": "Tue, 18 Jul 2023 08:26:03 UTC",
+            "timesecs": 1689668763
+        },
+        "connecting_to": {
+            "host": "127.0.0.1",
+            "port": 5201
+        },
+        "cookie": "i2ih2h7xxhoj5t55d7dwhmgvjleujh7i73ig",
+        "tcp_mss_default": 16332,
+        "target_bitrate": 0,
+        "fq_rate": 0,
+        "sock_bufsize": 0,
+        "sndbuf_actual": 131072,
+        "rcvbuf_actual": 131072,
+        "test_start": {
+            "protocol": "TCP",
+            "num_streams": 1,
+            "blksize": 131072,
+            "omit": 0,
+            "duration": 5,
+            "bytes": 0,
+            "blocks": 0,
+            "reverse": 0,
+            "tos": 0,
+            "target_bitrate": 0,
+            "bidir": 0,
+            "fqrate": 0
+        }
+    },
+    "intervals": [
+        {
+            "streams": [
+                {
+                    "socket": 5,
+                    "start": 0,
+                    "end": 1.000077,
+                    "seconds": 1.00007700920105,
+                    "bytes": 12429295616,
+                    "bits_per_second": 99426708156.64185,
+                    "omitted": false,
+                    "sender": true
+                }
+            ],
+            "sum": {
+                "start": 0,
+                "end": 1.000077,
+                "seconds": 1.00007700920105,
+                "bytes": 12429295616,
+                "bits_per_second": 99426708156.64185,
+                "omitted": false,
+                "sender": true
+            }
+        },
+        {
+            "streams": [
+                {
+                    "socket": 5,
+                    "start": 1.000077,
+                    "end": 2.000006,
+                    "seconds": 0.9999290108680725,
+                    "bytes": 15191244800,
+                    "bits_per_second": 121538586318.73846,
+                    "omitted": false,
+                    "sender": true
+                }
+            ],
+            "sum": {
+                "start": 1.000077,
+                "end": 2.000006,
+                "seconds": 0.9999290108680725,
+                "bytes": 15191244800,
+                "bits_per_second": 121538586318.73846,
+                "omitted": false,
+                "sender": true
+            }
+        },
+        {
+            "streams": [
+                {
+                    "socket": 5,
+                    "start": 2.000006,
+                    "end": 3.000063,
+                    "seconds": 1.0000569820404053,
+                    "bytes": 15511453696,
+                    "bits_per_second": 124084558976.64673,
+                    "omitted": false,
+                    "sender": true
+                }
+            ],
+            "sum": {
+                "start": 2.000006,
+                "end": 3.000063,
+                "seconds": 1.0000569820404053,
+                "bytes": 15511453696,
+                "bits_per_second": 124084558976.64673,
+                "omitted": false,
+                "sender": true
+            }
+        },
+        {
+            "streams": [
+                {
+                    "socket": 5,
+                    "start": 3.000063,
+                    "end": 4.000078,
+                    "seconds": 1.0000150203704834,
+                    "bytes": 15289548800,
+                    "bits_per_second": 122314553190.09557,
+                    "omitted": false,
+                    "sender": true
+                }
+            ],
+            "sum": {
+                "start": 3.000063,
+                "end": 4.000078,
+                "seconds": 1.0000150203704834,
+                "bytes": 15289548800,
+                "bits_per_second": 122314553190.09557,
+                "omitted": false,
+                "sender": true
+            }
+        },
+        {
+            "streams": [
+                {
+                    "socket": 5,
+                    "start": 4.000078,
+                    "end": 5.000147,
+                    "seconds": 1.00006902217865,
+                    "bytes": 15617228800,
+                    "bits_per_second": 124929207513.92038,
+                    "omitted": false,
+                    "sender": true
+                }
+            ],
+            "sum": {
+                "start": 4.000078,
+                "end": 5.000147,
+                "seconds": 1.00006902217865,
+                "bytes": 15617228800,
+                "bits_per_second": 124929207513.92038,
+                "omitted": false,
+                "sender": true
+            }
+        }
+    ],
+    "end": {
+        "streams": [
+            {
+                "sender": {
+                    "socket": 5,
+                    "start": 0,
+                    "end": 5.000147,
+                    "seconds": 5.000147,
+                    "bytes": 74038771712,
+                    "bits_per_second": 118458552057.7695,
+                    "sender": true
+                },
+                "receiver": {
+                    "socket": 5,
+                    "start": 0,
+                    "end": 5.000252,
+                    "seconds": 5.000147,
+                    "bytes": 74038640640,
+                    "bits_per_second": 118455854848.91562,
+                    "sender": true
+                }
+            }
+        ],
+        "sum_sent": {
+            "start": 0,
+            "end": 5.000147,
+            "seconds": 5.000147,
+            "bytes": 74038771712,
+            "bits_per_second": 118458552057.7695,
+            "sender": true
+        },
+        "sum_received": {
+            "start": 0,
+            "end": 5.000252,
+            "seconds": 5.000252,
+            "bytes": 74038640640,
+            "bits_per_second": 118455854848.91562,
+            "sender": true
+        },
+        "cpu_utilization_percent": {
+            "host_total": 95.5964231348099,
+            "host_user": 1.8970078616091255,
+            "host_system": 93.6994352686458,
+            "remote_total": 71.7597997864912,
+            "remote_user": 4.462186181444093,
+            "remote_system": 67.29755360819092
+        }
+    }
+}
+Response: "Sucessfully Cleaned Up test environment"
+Test Successful! The E2E Performance Throughput between the NApp's UEs hasbeen validated</msg>
+<msg timestamp="20230718 09:26:08.576" level="INFO">${e2e_ue_performance_test_status} = (0, "Test Successful! The E2E Performance Throughput between the NApp's UEs hasbeen validated")</msg>
+<status status="PASS" starttime="20230718 09:26:03.549" endtime="20230718 09:26:08.576"/>
+</kw>
+<if>
+<branch type="IF" condition="'${e2e_ue_performance_test_status[0]}' in ['0']">
+<kw name="Pass Execution" library="BuiltIn">
+<arg>\n${e2e_ue_performance_test_status[1]}</arg>
+<doc>Skips rest of the current test, setup, or teardown with PASS status.</doc>
+<msg timestamp="20230718 09:26:08.577" level="INFO">Execution passed with message:
+Test Successful! The E2E Performance Throughput between the NApp's UEs hasbeen validated</msg>
+<status status="PASS" starttime="20230718 09:26:08.577" endtime="20230718 09:26:08.577"/>
+</kw>
+<status status="PASS" starttime="20230718 09:26:08.576" endtime="20230718 09:26:08.577"/>
+</branch>
+<branch type="ELSE IF" condition="'${e2e_ue_performance_test_status[0]}' in ['1', '2']">
+<kw name="Fail" library="BuiltIn">
+<arg>\n${e2e_ue_performance_test_status[1]}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20230718 09:26:08.577" endtime="20230718 09:26:08.577"/>
+</kw>
+<status status="NOT RUN" starttime="20230718 09:26:08.577" endtime="20230718 09:26:08.577"/>
+</branch>
+<branch type="ELSE">
+<kw name="Fail" library="BuiltIn">
+<arg>\nUnknown Error</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20230718 09:26:08.577" endtime="20230718 09:26:08.577"/>
+</kw>
+<status status="NOT RUN" starttime="20230718 09:26:08.577" endtime="20230718 09:26:08.577"/>
+</branch>
+<status status="PASS" starttime="20230718 09:26:08.576" endtime="20230718 09:26:08.577"/>
+</if>
+<status status="PASS" starttime="20230718 09:26:03.549" endtime="20230718 09:26:08.577">Test Successful! The E2E Performance Throughput between the NApp's UEs hasbeen validated</status>
+</test>
+<status status="PASS" starttime="20230718 09:26:03.508" endtime="20230718 09:26:08.578"/>
+</suite>
+<status status="PASS" starttime="20230718 09:26:03.501" endtime="20230718 09:26:08.578"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="E2E Ue Performance Throughput Test">E2E Ue Performance Throughput Test</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="E2E Ue Performance Throughput Test">E2E Ue Performance Throughput Test.E2E Ue Performance Throughput Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
