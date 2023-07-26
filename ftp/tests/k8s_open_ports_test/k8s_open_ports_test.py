@@ -1,21 +1,10 @@
-# -*- coding: utf-8 -*-
-# @Author: Rafael Direito
-# @Date:   2023-03-06 10:01:53
-# @Last Modified by:   Rafael Direito
-# @Last Modified time: 2023-03-12 18:20:26
-
-
 # Return Codes:
 # 0 - OK
-# 1 - Tests Failed - Some Ports Are Not Secure!
-# 2 - Impossible to load deployment info
-# 3 - Impossible to load all deployed NFs
-# 4 - Impossible to get the information of all network interfaces.
+# 1 - Tests Failed - The open ports are not the ones expected
+# 2 - Impossible to load deployment info.
 
 import os
 import json
-import re
-import yaml
 import ast
 
 def test_k8s_open_ports(deployment_info_file_path, ports_list):
