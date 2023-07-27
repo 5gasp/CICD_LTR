@@ -39,6 +39,9 @@ def test_k8s_open_ports(deployment_info_file_path, ports_list):
         for item in manifest:
             if "ports" in item.get("spec", {}):
                 k8s_ports_info.extend(item["spec"]["ports"])
+    print(k8s_ports_info)
+    if len(ports_list) != len(k8s_ports_info):
+        return "1", "The open ports are not the ones expected"
     for input_port in ports_list:
         # We should not only validate NodePorts since there can
         # be other types of services. Thus, we should validate the port
