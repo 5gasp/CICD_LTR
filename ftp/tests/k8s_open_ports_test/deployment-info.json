@@ -1,0 +1,162 @@
+{
+	"_id": "e8cd8979-f1b6-4923-87f9-d88852dafd7f",
+	"name": "test2_knf",
+	"name-ref": "test2_knf",
+	"short-name": "test2_knf",
+	"admin-status": "ENABLED",
+	"nsState": "READY",
+	"currentOperation": "IDLE",
+	"currentOperationID": null,
+	"errorDescription": null,
+	"errorDetail": null,
+	"deploymentStatus": null,
+	"configurationStatus": [],
+	"vcaStatus": null,
+	"nsd": {
+		"_id": "60a11bc8-3e50-440e-835b-b6b2e36f3886",
+		"id": "test2_nsd",
+		"designer": "TestBed2",
+		"version": "1.0",
+		"name": "test2_nsd",
+		"vnfd-id": [
+			"test2_knf"
+		],
+		"virtual-link-desc": [
+			{
+				"id": "mgmtnet",
+				"mgmt-network": true,
+				"vim-network-name": "sample-network"
+			}
+		],
+		"df": [
+			{
+				"id": "default-df",
+				"vnf-profile": [
+					{
+						"id": "test2",
+						"virtual-link-connectivity": [
+							{
+								"constituent-cpd-id": [
+									{
+										"constituent-base-element-id": "test2",
+										"constituent-cpd-id": "mgmt-ext"
+									}
+								],
+								"virtual-link-profile-id": "mgmtnet"
+							}
+						],
+						"vnfd-id": "test2_knf"
+					}
+				]
+			}
+		],
+		"description": "Dummy Application",
+		"_admin": {
+			"userDefinedData": {},
+			"created": 1685956330.298877,
+			"modified": 1685956330.3695707,
+			"projects_read": [
+				"f926f053-436f-46da-a096-aa19dc98d69a"
+			],
+			"projects_write": [
+				"f926f053-436f-46da-a096-aa19dc98d69a"
+			],
+			"onboardingState": "ONBOARDED",
+			"operationalState": "ENABLED",
+			"usageState": "NOT_IN_USE",
+			"storage": {
+				"fs": "mongo",
+				"path": "/app/storage/",
+				"folder": "60a11bc8-3e50-440e-835b-b6b2e36f3886",
+				"pkg-dir": "5gasp_test2_ns",
+				"descriptor": "5gasp_test2_ns/test2_nsd.yaml",
+				"zipfile": "5gasp_test2_ns.tar.gz"
+			}
+		}
+	},
+	"datacenter": "e51f7512-e6c5-4362-aefb-f6a120e7a5cf",
+	"resource-orchestrator": "osmopenmano",
+	"description": "sadas",
+	"constituent-vnfr-ref": [
+		"4e69ea70-23cb-4198-9d16-236a6330be23"
+	],
+	"operational-status": "running",
+	"config-status": "configured",
+	"detailed-status": "Done",
+	"orchestration-progress": {},
+	"create-time": 1690298961.4909697,
+	"nsd-name-ref": "test2_nsd",
+	"operational-events": [],
+	"nsd-ref": "test2_nsd",
+	"nsd-id": "60a11bc8-3e50-440e-835b-b6b2e36f3886",
+	"vnfd-id": [
+		"964d4149-a3e2-4f7f-8394-337e9c305926"
+	],
+	"instantiate_params": {
+		"nsName": "test2_knf",
+		"nsDescription": "sadas",
+		"nsdId": "60a11bc8-3e50-440e-835b-b6b2e36f3886",
+		"vimAccountId": "e51f7512-e6c5-4362-aefb-f6a120e7a5cf"
+	},
+	"additionalParamsForNs": null,
+	"ns-instance-config-ref": "e8cd8979-f1b6-4923-87f9-d88852dafd7f",
+	"id": "e8cd8979-f1b6-4923-87f9-d88852dafd7f",
+	"ssh-authorized-key": null,
+	"flavor": [],
+	"image": [],
+	"affinity-or-anti-affinity-group": [],
+	"vld": [
+		{
+			"id": "mgmtnet",
+			"mgmt-network": true,
+			"name": "xxxxxxxx",
+			"type": null,
+			"vim_info": {
+				"vim:e51f7512-e6c5-4362-aefb-f6a120e7a5cf": {
+					"vim_account_id": "xxxxxxx",
+					"vim_network_name": "yyyyyyyyy",
+					"vim_details": "",
+					"vim_id": "xxxxxxxx",
+					"vim_status": "ACTIVE"
+				}
+			}
+		}
+	],
+	"_admin": {
+		"created": 1690298961.4988723,
+		"modified": 1690299027.7070167,
+		"projects_read": [
+			"f926f053-436f-46da-a096-aa19dc98d69a"
+		],
+		"projects_write": [
+			"f926f053-436f-46da-a096-aa19dc98d69a"
+		],
+		"nsState": "INSTANTIATED",
+		"current-operation": null,
+		"nslcmop": null,
+		"operation-type": null,
+		"deployed": {
+			"RO": {
+				"vnfd": [],
+				"operational-status": "running"
+			},
+			"VCA": [],
+			"K8s": [
+				{
+					"kdu-instance": "a5gasp-test2-helm-0063914884",
+					"k8scluster-uuid": "kube-system:bf24331b-bb38-4bed-93ff-9285f02c7db7",
+					"k8scluster-type": "helm-chart-v3",
+					"member-vnf-index": "test2",
+					"kdu-name": "test2",
+					"kdu-model": "5gasp/test2-helm",
+					"namespace": "f926f053-436f-46da-a096-aa19dc98d69a",
+					"kdu-deployment-name": "",
+					"detailed-status": "{'hooks': [{'events': ['test'], 'kind': 'Pod', 'last_run': {'completed_at': '', 'phase': '', 'started_at': ''}, 'manifest': 'apiVersion: v1\\nkind: Pod\\nmetadata:\\n  name: \"a5gasp-test2-helm-0063914884-test-connection\"\\n  labels:\\n    helm.sh/chart: test2-helm-0.1.2\\n    app.kubernetes.io/name: test2-helm\\n    app.kubernetes.io/instance: a5gasp-test2-helm-0063914884\\n    app.kubernetes.io/version: \"1.16.0\"\\n    app.kubernetes.io/managed-by: Helm\\n  annotations:\\n    \"helm.sh/hook\": test\\nspec:\\n  containers:\\n    - name: wget\\n      image: busybox\\n      command: [\\'wget\\']\\n      args: [\\'a5gasp-test2-helm-0063914884:\\']\\n  restartPolicy: Never', 'name': 'a5gasp-test2-helm-0063914884-test-connection', 'path': 'test2-helm/templates/tests/test-connection.yaml'}], 'info': {'deleted': '', 'description': 'Install complete', 'first_deployed': '2023-07-25T15:29:24.300455837Z', 'last_deployed': '2023-07-25T15:29:24.300455837Z', 'status': 'deployed'}, 'manifest': [{'apiVersion': 'v1', 'kind': 'ServiceAccount', 'metadata': {'name': 'a5gasp-test2-helm-0063914884', 'labels': {'helm.sh/chart': 'test2-helm-0.1.2', 'app.kubernetes.io/name': 'test2-helm', 'app.kubernetes.io/instance': 'a5gasp-test2-helm-0063914884', 'app.kubernetes.io/version': '1.16.0', 'app.kubernetes.io/managed-by': 'Helm'}}}, {'apiVersion': 'v1', 'kind': 'Service', 'metadata': {'name': 'a5gasp-test2-helm-0063914884', 'labels': {'helm.sh/chart': 'test2-helm-0.1.2', 'app.kubernetes.io/name': 'test2-helm', 'app.kubernetes.io/instance': 'a5gasp-test2-helm-0063914884', 'app.kubernetes.io/version': '1.16.0', 'app.kubernetes.io/managed-by': 'Helm'}}, 'spec': {'type': 'NodePort', 'ports': [{'port': 30101, 'targetPort': 5999, 'nodePort': 30101, 'protocol': 'TCP', 'name': 'http'}], 'selector': {'app.kubernetes.io/name': 'test2-helm', 'app.kubernetes.io/instance': 'a5gasp-test2-helm-0063914884'}}}, {'apiVersion': 'apps/v1', 'kind': 'Deployment', 'metadata': {'name': 'a5gasp-test2-helm-0063914884', 'labels': {'helm.sh/chart': 'test2-helm-0.1.2', 'app.kubernetes.io/name': 'test2-helm', 'app.kubernetes.io/instance': 'a5gasp-test2-helm-0063914884', 'app.kubernetes.io/version': '1.16.0', 'app.kubernetes.io/managed-by': 'Helm'}}, 'spec': {'replicas': 1, 'selector': {'matchLabels': {'app.kubernetes.io/name': 'test2-helm', 'app.kubernetes.io/instance': 'a5gasp-test2-helm-0063914884'}}, 'template': {'metadata': {'labels': {'app.kubernetes.io/name': 'test2-helm', 'app.kubernetes.io/instance': 'a5gasp-test2-helm-0063914884'}}, 'spec': {'imagePullSecrets': [{'name': 'xxxxxxxx'}], 'serviceAccountName': 'a5gasp-test2-helm-0063914884', 'securityContext': {}, 'containers': [{'name': 'test2-helm', 'securityContext': {}, 'image': 'xxxxyyyyyyzzzz/test2:latest', 'imagePullPolicy': 'Always', 'ports': [{'name': 'http', 'containerPort': 5999, 'protocol': 'TCP'}], 'livenessProbe': {'initialDelaySeconds': 30, 'timeoutSeconds': 5, 'periodSeconds': 30, 'httpGet': {'path': '/', 'port': 'http'}}, 'readinessProbe': {'initialDelaySeconds': 30, 'timeoutSeconds': 5, 'periodSeconds': 30, 'httpGet': {'path': '/', 'port': 'http'}}, 'resources': {}}]}}}}], 'name': 'a5gasp-test2-helm-0063914884', 'namespace': 'f926f053-436f-46da-a096-aa19dc98d69a', 'version': 1}",
+					"operation": "install",
+					"status": "Install complete",
+					"status-time": "1690299026.788849"
+				}
+			]
+		}
+	}
+}
