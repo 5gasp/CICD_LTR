@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.11.5 on darwin)" generated="20230926 11:31:03.065" rpa="false" schemaversion="3">
+<suite id="s1" name="E2E Ue Performance Rtt Test Cnf" source="/Users/dagomes/IT/5gasp/CICD_LTR/ftp/tests/e2e_ue_performance_rtt_test_cnf">
+<suite id="s1-s1" name="E2E Ue Performance Rtt Test" source="/Users/dagomes/IT/5gasp/CICD_LTR/ftp/tests/e2e_ue_performance_rtt_test_cnf/e2e_ue_performance_rtt_test.robot">
+<test id="s1-s1-t1" name="E2E UE Performance Test" line="6">
+<kw name="Test E2e Ue Performance" library="e2e_ue_performance_rtt_test">
+<var>${e2e_ue_performance_rtt_test_status}</var>
+<arg>%{e2e_ue_performance_rtt_test_mini_api_endpoint_to_invoke}</arg>
+<arg>%{e2e_ue_performance_rtt_test_mini_api_endpoint_to_invoke_results}</arg>
+<arg>%{e2e_ue_performance_rtt_test_mini_api_endpoint_to_invoke_cleanup}</arg>
+<arg>%{e2e_ue_performance_rtt_test_threshold}</arg>
+<msg timestamp="20230926 11:31:03.132" level="INFO">Error: None - HTTPConnectionPool(host='localhost', port=31001): Max retries exceeded with url: /start/8?server_ip=k8s_service_miniapi:30102&amp;is_cnf=true (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x105efbdd0&gt;: Failed to establish a new connection: [Errno 61] Connection refused'))</msg>
+<msg timestamp="20230926 11:31:03.132" level="INFO">${e2e_ue_performance_rtt_test_status} = (2, None)</msg>
+<status status="PASS" starttime="20230926 11:31:03.127" endtime="20230926 11:31:03.132"/>
+</kw>
+<if>
+<branch type="IF" condition="'${e2e_ue_performance_rtt_test_status[0]}' in ['0']">
+<kw name="Pass Execution" library="BuiltIn">
+<arg>\n${e2e_ue_performance_rtt_test_status[1]}</arg>
+<doc>Skips rest of the current test, setup, or teardown with PASS status.</doc>
+<status status="NOT RUN" starttime="20230926 11:31:03.133" endtime="20230926 11:31:03.133"/>
+</kw>
+<status status="NOT RUN" starttime="20230926 11:31:03.132" endtime="20230926 11:31:03.133"/>
+</branch>
+<branch type="ELSE IF" condition="'${e2e_ue_performance_rtt_test_status[0]}' in ['1', '2']">
+<kw name="Fail" library="BuiltIn">
+<arg>\n${e2e_ue_performance_rtt_test_status[1]}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<msg timestamp="20230926 11:31:03.133" level="FAIL">
+None</msg>
+<status status="FAIL" starttime="20230926 11:31:03.133" endtime="20230926 11:31:03.133"/>
+</kw>
+<status status="FAIL" starttime="20230926 11:31:03.133" endtime="20230926 11:31:03.133"/>
+</branch>
+<branch type="ELSE">
+<kw name="Fail" library="BuiltIn">
+<arg>\nUnknown Error</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20230926 11:31:03.133" endtime="20230926 11:31:03.133"/>
+</kw>
+<status status="NOT RUN" starttime="20230926 11:31:03.133" endtime="20230926 11:31:03.133"/>
+</branch>
+<status status="FAIL" starttime="20230926 11:31:03.132" endtime="20230926 11:31:03.133"/>
+</if>
+<status status="FAIL" starttime="20230926 11:31:03.127" endtime="20230926 11:31:03.133">
+None</status>
+</test>
+<status status="FAIL" starttime="20230926 11:31:03.073" endtime="20230926 11:31:03.134"/>
+</suite>
+<status status="FAIL" starttime="20230926 11:31:03.065" endtime="20230926 11:31:03.134"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="E2E Ue Performance Rtt Test Cnf">E2E Ue Performance Rtt Test Cnf</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1" name="E2E Ue Performance Rtt Test">E2E Ue Performance Rtt Test Cnf.E2E Ue Performance Rtt Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
