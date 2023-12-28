@@ -19,7 +19,7 @@ Run Locust Requests Per Second Test
     # The locust test result is a JSON that will be processed by a python
     # library to evaluate if the target api/server complies with the desired
     # number of requests served per seconds.  
-    ${output}=    Run Process   locust    -f    locust_performance_test.py    --headless    -u    50    -r    50    --run-time    5    --host    %{api_performance_requests_per_second_host}    --endpoint    %{api_performance_requests_per_second_endpoint}    --http-method    %{api_performance_requests_per_second_http_method}    --json
+    ${output}=    Run Process   locust    -f    locust_performance_test.py    --headless    -u    50    -r    50    --run-time    10    --host    %{api_performance_requests_per_second_host}    --endpoint    %{api_performance_requests_per_second_endpoint}    --http-method    %{api_performance_requests_per_second_http_method}    --json
     #Log    ${output.stdout} # This can be used for debugging
     ${median_requests_per_second}=    Evaluate Locust Results    ${output.stdout}
     # Log the result
