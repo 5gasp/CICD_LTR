@@ -2,7 +2,7 @@
 # @Author: Rafael Direito
 # @Date:   2023-12-28 10:06:27
 # @Last Modified by:   Rafael Direito
-# @Last Modified time: 2023-12-28 14:02:17
+# @Last Modified time: 2023-12-28 14:24:06
 from locust import HttpUser, task, between, events
 import os
 
@@ -31,6 +31,5 @@ class NetworkApplicationUser(HttpUser):
 
         if http_method == "GET":
             self.client.get(endpoint)
-
-        if http_method == "POST":
+        elif http_method == "POST":
             self.client.post(endpoint)
