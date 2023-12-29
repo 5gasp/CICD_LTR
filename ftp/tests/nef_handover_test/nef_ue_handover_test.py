@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 # @Author: Rafael Direito
 # @Date:   2023-03-13 15:34:19
-# @Last Modified by:   Eduardo Santos
-# @Last Modified time: 2023-12-26 21:16:36
+# @Last Modified by:   Rafael Direito
+# @Last Modified time: 2023-12-29 13:52:13
 
 # Return Codes:
 # 0 - Success (PASS)
 # 1 - Test Failed due to errors in the authentication process
 # 2 - Test Failed due to an exception
-
 
 import requests
 import json
@@ -18,25 +17,31 @@ def validate_report(report, supi):
     errors = []
     for i in range(len(report)-1, -1, -1):
         request = report[i]
-        if request["endpoint"] == f"/test//api/v1/UEs/{supi}/handover" and request["method"] == "GET":
+        if (
+            request["endpoint"] == f"/test/api/v1/UEs/{supi}/handover"
+            and
+            request["method"] == "GET"
+        ):
             print("Request: ", request)
             if request["nef_response_code"] not in [200, 409]:
-                errors.append("Invalid Login")
+                errors.append("Invalid Handover Request")
                 break
         # Other validations...
         # here
     return errors
 
 
-def test_nef_ue_handover(mini_api_endpoint_to_invoke, reporting_api_ip, 
-                            reporting_api_port, ue1_supi):
+def test_nef_ue_handover(
+    mini_api_endpoint_to_invoke, reporting_api_ip, reporting_api_port,
+    ue1_supi
+):
 
     # 1. Trigger MiniAPIs endpoint
     print("Entering...")
     response = None
     try:
-        response =  requests.post(mini_api_endpoint_to_invoke)
-    
+        response = requests.post(mini_api_endpoint_to_invoke)
+
         if response.status_code not in [200, 409]:
             response.raise_for_status()    
         print(f"Response: {response.text}")
@@ -49,21 +54,20 @@ def test_nef_ue_handover(mini_api_endpoint_to_invoke, reporting_api_ip,
     try:
         url = f"http://{reporting_api_ip}:{reporting_api_port}/report"
         response = requests.get(url)
-    
+
         if response.status_code not in [200, 409]:
             response.raise_for_status()    
         print(f"Response: {response.text}")
         report_json = json.loads(response.text)
         print("NEF's Obtained Report: ")
         print(json.dumps(report_json, indent=4))
-        
+
         errors = validate_report(report_json, ue1_supi)
-        
+
     except Exception as e:
         error = response.text if response else None
         print(f"Error: {error} - {e}")
         return 2, error
-
 
     # 6. Validate Report
     errors = validate_report(report_json, ue1_supi)
