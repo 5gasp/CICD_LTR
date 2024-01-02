@@ -2,11 +2,10 @@
 # @Author: Rafael Direito
 # @Date:   2023-12-29 16:40:46
 # @Last Modified by:   Rafael Direito
-# @Last Modified time: 2024-01-02 20:19:47
+# @Last Modified time: 2024-01-02 20:19:31
 import requests
 from urllib.parse import urlparse, urlunparse
 import time
-
 
 def start_server_mini_api(mini_api_start_endpoint_to_invoke):
 
@@ -44,7 +43,9 @@ def stop_server_mini_api(mini_api_stop_endpoint_to_invoke):
     return True
 
 
-def start_client_mini_api(mini_api_start_endpoint_to_invoke, target_ip):
+def start_client_mini_api(
+    mini_api_start_endpoint_to_invoke, target_ip, ue_count
+):
 
     parsed_url = urlparse(mini_api_start_endpoint_to_invoke)
     path_parts = parsed_url.path.rstrip('/').split('/')
@@ -54,7 +55,7 @@ def start_client_mini_api(mini_api_start_endpoint_to_invoke, target_ip):
     # iperf server if it is located there. Therefore, we launch the iperf
     # server in the 'UE' which is a VM inside the 5G Network running the
     # Mini API 
-    path_parts[-1] += f"?target_ip={target_ip}"
+    path_parts[-1] += f"?target_ip={target_ip}&ue_count={ue_count}"
 
     # Reconstruct the URL with the modified path
     mini_api_start_modified_url = urlunparse(
