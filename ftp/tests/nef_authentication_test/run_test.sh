@@ -4,7 +4,7 @@
 # @Last Modified by:   Rafael Direito
 # @Last Modified time: 2023-05-31 16:10:34
 
-export nef_authentication_test_reporting_api_ip=127.0.0.1
+export nef_authentication_test_reporting_api_ip=10.255.28.173
 export nef_authentication_test_reporting_api_port=3000
-export nef_authentication_test_mini_api_endpoint_to_invoke=http://127.0.0.1:8000/start/1
+export nef_authentication_test_mini_api_endpoint_to_invoke=http://10.255.28.206:3001/start/1
 python3 -m robot .
