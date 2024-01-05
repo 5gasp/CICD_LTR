@@ -2,7 +2,7 @@
 # @Author: Eduardo Santos
 # @Date:   2023-12-31 17:02:22
 # @Last Modified by:   Eduardo Santos
-# @Last Modified time: 2023-12-31 18:38:42
+# @Last Modified time: 2024-01-05 19:38:26
 
 
 # Return Codes:
@@ -33,14 +33,17 @@ def validate_report(report):
 
 
 def test_nef_qos_subscription(
-    mini_api_endpoint_to_invoke, reporting_api_ip, reporting_api_port
+    mini_api_endpoint_to_invoke, reporting_api_ip, reporting_api_port, monitoring_payload
 ):
 
     # 1. Trigger MiniAPIs endpoint
     print("Entering...")
     response = None
     try:
-        response = requests.post(mini_api_endpoint_to_invoke)
+        response = requests.post(
+            url=mini_api_endpoint_to_invoke, 
+            data=monitoring_payload
+        )
 
         if response.status_code not in [200, 409]:
             response.raise_for_status()    
