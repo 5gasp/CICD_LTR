@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Eduardo Santos
 # @Date:   2023-12-31 17:02:22
-# @Last Modified by:   Eduardo Santos
-# @Last Modified time: 2023-12-31 18:38:42
+# @Last Modified by:   Rafael Direito
+# @Last Modified time: 2024-01-06 11:28:24
 
 
 # Return Codes:
@@ -19,7 +19,8 @@ def validate_report(report):
     for i in range(len(report)-1, -1, -1):
         request = report[i]
         if (
-            request["endpoint"] == f"/api/v1/3gpp-as-session-with-qos/v1/netapp/subscriptions"
+            request["endpoint"] == "/api/v1/3gpp-as-session-with-qos/v1/"
+            "netapp/subscriptions"
             and
             request["method"] == "POST"
         ):
@@ -33,17 +34,20 @@ def validate_report(report):
 
 
 def test_nef_qos_subscription(
-    mini_api_endpoint_to_invoke, reporting_api_ip, reporting_api_port
+    mini_api_endpoint_to_invoke, reporting_api_ip, reporting_api_port,
+    monitoring_payload
 ):
-
     # 1. Trigger MiniAPIs endpoint
     print("Entering...")
     response = None
     try:
-        response = requests.post(mini_api_endpoint_to_invoke)
+        response = requests.post(
+            url=mini_api_endpoint_to_invoke,
+            data=monitoring_payload
+        )
 
         if response.status_code not in [200, 409]:
-            response.raise_for_status()    
+            response.raise_for_status()
         print(f"Response: {response.text}")
     except Exception as e:
         error = response.text if response else None
@@ -77,7 +81,7 @@ def test_nef_qos_subscription(
         print(f"Test Failed due to the following errors: {errors_str}")
         return 1, f"Test Failed due to the following errors: {errors_str}"
 
-    print("Test Successful! NApp was able to subscribe a QoS compromised " \
+    print("Test Successful! NApp was able to subscribe a QoS compromised "
           "event in the  NEF")
-    return 0, "Test Successful! NApp was able to subscribe a QoS compromised " \
-          "event in the  NEF"
+    return 0, "Test Successful! NApp was able to subscribe a QoS compromised "\
+        "event in the  NEF"
