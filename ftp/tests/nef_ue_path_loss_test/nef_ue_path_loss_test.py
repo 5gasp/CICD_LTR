@@ -2,7 +2,7 @@
 # @Author: Rafael Direito
 # @Date:   2023-03-13 15:34:19
 # @Last Modified by:   Rafael Direito
-# @Last Modified time: 2023-05-31 09:49:09
+# @Last Modified time: 2024-01-22 14:54:37
 
 # Return Codes:
 # 0 - Success (PASS)
@@ -29,7 +29,7 @@ def validate_report(report, supi):
 
 
 def test_nef_ue_path_loss(mini_api_endpoint_to_invoke, reporting_api_ip, 
-                            reporting_api_port, ue1_supi):
+                            reporting_api_port, ue_supi):
 
     # 1. Trigger MiniAPIs endpoint
     print("Entering...")
@@ -57,7 +57,7 @@ def test_nef_ue_path_loss(mini_api_endpoint_to_invoke, reporting_api_ip,
         print("NEF's Obtained Report: ")
         print(json.dumps(report_json, indent=4))
         
-        errors = validate_report(report_json, ue1_supi)
+        errors = validate_report(report_json, ue_supi)
         
     except Exception as e:
         error = response.text if response else None
@@ -66,7 +66,7 @@ def test_nef_ue_path_loss(mini_api_endpoint_to_invoke, reporting_api_ip,
 
 
     # 6. Validate Report
-    errors = validate_report(report_json, ue1_supi)
+    errors = validate_report(report_json, ue_supi)
 
     if len(errors) != 0:
         errors_str = '\n\t- '.join(errors)

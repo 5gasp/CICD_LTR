@@ -1,0 +1,533 @@
+{
+  "vnf_instance_2869a444-6ef5-444d-90a2-0593ee091d18": {
+    "_id": "2869a444-6ef5-444d-90a2-0593ee091d18",
+    "id": "2869a444-6ef5-444d-90a2-0593ee091d18",
+    "nsr-id-ref": "2de7b965-e66d-4325-9195-73ddf3e7e159",
+    "member-vnf-index-ref": "vnf2",
+    "additionalParamsForVnf": null,
+    "created-time": 1677695908.8419266,
+    "vnfd-ref": "hackfest_cloudinit-vnf",
+    "vnfd-id": "10d93d41-ba08-4c6a-84ff-3b5f4b1421e7",
+    "vim-account-id": "4b7ce9b9-f354-43b2-888e-523e8ae824dd",
+    "vca-id": null,
+    "vdur": [
+      {
+        "_id": "61227a36-e70a-4f78-bf10-371923ef4e07",
+        "additionalParams": {
+          "OSM": {
+            "count_index": 0,
+            "member_vnf_index": "vnf2",
+            "ns_id": "2de7b965-e66d-4325-9195-73ddf3e7e159",
+            "vdu": {
+              "mgmtVM-0": {
+                "count_index": 0,
+                "interfaces": {
+                  "mgmtVM-eth0": {
+                    "name": "mgmtVM-eth0"
+                  },
+                  "mgmtVM-eth1": {
+                    "name": "mgmtVM-eth1"
+                  }
+                },
+                "vdu_id": "mgmtVM"
+              }
+            },
+            "vdu_id": "mgmtVM",
+            "vim_account_id": "4b7ce9b9-f354-43b2-888e-523e8ae824dd",
+            "vnf_id": "2869a444-6ef5-444d-90a2-0593ee091d18",
+            "vnfd_id": "10d93d41-ba08-4c6a-84ff-3b5f4b1421e7",
+            "vnfd_ref": "hackfest_cloudinit-vnf"
+          }
+        },
+        "alt-image-ids": [
+          "0"
+        ],
+        "cloud-init": "10d93d41-ba08-4c6a-84ff-3b5f4b1421e7:file:cloud-config.txt",
+        "count-index": 0,
+        "id": "61227a36-e70a-4f78-bf10-371923ef4e07",
+        "interfaces": [
+          {
+            "external-connection-point-ref": "vnf-mgmt-ext",
+            "internal-connection-point-ref": "mgmtVM-eth0-int",
+            "mgmt-interface": true,
+            "mgmt-vnf": true,
+            "name": "mgmtVM-eth0",
+            "ns-vld-id": "mgmtnet",
+            "type": "PARAVIRT",
+            "port_security": false,
+            "compute_node": "jarvis-node3",
+            "ip-address": "10.0.30.106",
+            "mac-address": "fa:16:3e:30:50:ee",
+            "pci": null,
+            "vlan": 1011
+          },
+          {
+            "internal-connection-point-ref": "mgmtVM-eth1-int",
+            "name": "mgmtVM-eth1",
+            "type": "PARAVIRT",
+            "vnf-vld-id": "internal",
+            "compute_node": "jarvis-node3",
+            "ip-address": "192.168.205.148",
+            "mac-address": "fa:16:3e:ab:2d:4b",
+            "pci": null,
+            "vlan": null
+          }
+        ],
+        "internal-connection-point": [
+          {
+            "connection-point-id": "mgmtVM-eth0-int",
+            "id": "mgmtVM-eth0-int",
+            "name": "mgmtVM-eth0-int"
+          },
+          {
+            "connection-point-id": "mgmtVM-eth1-int",
+            "id": "mgmtVM-eth1-int",
+            "name": "mgmtVM-eth1-int"
+          }
+        ],
+        "ip-address": "10.0.30.106",
+        "ns-flavor-id": "0",
+        "ns-image-id": "0",
+        "vdu-id-ref": "mgmtVM",
+        "vdu-name": "mgmtVM",
+        "vim_info": {
+          "vim:4b7ce9b9-f354-43b2-888e-523e8ae824dd": {
+            "interfaces": [
+              {
+                "vim_info": "{admin_state_up: true, allowed_address_pairs: [], 'binding:host_id': jarvis-node3, 'binding:profile': {}, 'binding:vif_details': {bound_drivers: {'0': linuxbridge}, connectivity: l2, port_filter: true}, 'binding:vif_type': bridge, 'binding:vnic_type': normal,\n  created_at: '2023-03-01T18:38:47Z', description: '', device_id: 1698e243-dfcd-458b-95bd-88d288615815, device_owner: 'compute:nova', extra_dhcp_opts: [], fixed_ips: [{ip_address: 10.0.30.106, subnet_id: fc23c7ab-dd13-4ac8-a2c1-a090ab31f375}], id: 43a5c2f1-f7a4-4aa8-84ff-a62bff41d048,\n  mac_address: 'fa:16:3e:30:50:ee', name: mgmtVM-eth0, network_id: 9cafdc71-2e50-48a0-9e4a-900e442e90bc, port_security_enabled: false, project_id: 810aa7702c3e450fb3189ed216787ae0, revision_number: 8, security_groups: [], status: ACTIVE, tags: [], tenant_id: 810aa7702c3e450fb3189ed216787ae0,\n  updated_at: '2023-03-01T18:39:02Z'}\n",
+                "mac_address": "fa:16:3e:30:50:ee",
+                "vim_net_id": "9cafdc71-2e50-48a0-9e4a-900e442e90bc",
+                "vim_interface_id": "43a5c2f1-f7a4-4aa8-84ff-a62bff41d048",
+                "compute_node": "jarvis-node3",
+                "pci": null,
+                "vlan": 1011,
+                "ip_address": "10.0.30.106",
+                "mgmt_vnf_interface": true,
+                "mgmt_vdu_interface": true
+              },
+              {
+                "vim_info": "{admin_state_up: true, allowed_address_pairs: [], 'binding:host_id': jarvis-node3, 'binding:profile': {}, 'binding:vif_details': {bound_drivers: {'0': linuxbridge}, connectivity: l2, port_filter: true}, 'binding:vif_type': bridge, 'binding:vnic_type': normal,\n  created_at: '2023-03-01T18:38:48Z', description: '', device_id: 1698e243-dfcd-458b-95bd-88d288615815, device_owner: 'compute:nova', extra_dhcp_opts: [], fixed_ips: [{ip_address: 192.168.205.148, subnet_id: 483f9294-d722-4f07-9a10-e3f3c24ab78c}], id: 4807a063-f959-4476-82bd-d973ba2d951a,\n  mac_address: 'fa:16:3e:ab:2d:4b', name: mgmtVM-eth1, network_id: 7ac1df67-01f2-4a96-9bf8-906b45947e24, port_security_enabled: true, project_id: 810aa7702c3e450fb3189ed216787ae0, revision_number: 5, security_groups: [5e1eda52-019d-49a3-ae40-5a9b7ed4b6a9], status: ACTIVE,\n  tags: [], tenant_id: 810aa7702c3e450fb3189ed216787ae0, updated_at: '2023-03-01T18:38:58Z'}\n",
+                "mac_address": "fa:16:3e:ab:2d:4b",
+                "vim_net_id": "7ac1df67-01f2-4a96-9bf8-906b45947e24",
+                "vim_interface_id": "4807a063-f959-4476-82bd-d973ba2d951a",
+                "compute_node": "jarvis-node3",
+                "pci": null,
+                "vlan": null,
+                "ip_address": "192.168.205.148"
+              }
+            ],
+            "vim_details": "{'OS-DCF:diskConfig': MANUAL, 'OS-EXT-AZ:availability_zone': nova, 'OS-EXT-SRV-ATTR:host': jarvis-node3, 'OS-EXT-SRV-ATTR:hypervisor_hostname': jarvis-node3, 'OS-EXT-SRV-ATTR:instance_name': instance-0000013d, 'OS-EXT-STS:power_state': 1, 'OS-EXT-STS:task_state': null,\n  'OS-EXT-STS:vm_state': active, 'OS-SRV-USG:launched_at': '2023-03-01T18:38:58.000000', 'OS-SRV-USG:terminated_at': null, accessIPv4: '', accessIPv6: '', addresses: {projects: [{'OS-EXT-IPS-MAC:mac_addr': 'fa:16:3e:30:50:ee', 'OS-EXT-IPS:type': fixed, addr: 10.0.30.106,\n        version: 4}], test-internal: [{'OS-EXT-IPS-MAC:mac_addr': 'fa:16:3e:ab:2d:4b', 'OS-EXT-IPS:type': fixed, addr: 192.168.205.148, version: 4}]}, config_drive: '', created: '2023-03-01T18:38:50Z', flavor: {id: b19b9b85-726a-4ee8-bdff-1768803aea5d, links: [\n      {href: 'http://jarvis-controller:8774/flavors/b19b9b85-726a-4ee8-bdff-1768803aea5d', rel: bookmark}]}, hostId: 8b613a038447b82cc3309136645f56b51ce99590ed1a16eca42e0284, id: 1698e243-dfcd-458b-95bd-88d288615815, image: {id: ed673622-1cb8-4642-9d96-7a22e6719aaa,\n    links: [{href: 'http://jarvis-controller:8774/images/ed673622-1cb8-4642-9d96-7a22e6719aaa', rel: bookmark}]}, key_name: null, links: [{href: 'http://jarvis-controller:8774/v2.1/servers/1698e243-dfcd-458b-95bd-88d288615815', rel: self}, {href: 'http://jarvis-controller:8774/servers/1698e243-dfcd-458b-95bd-88d288615815',\n      rel: bookmark}], metadata: {}, name: test-vnf2-mgmtVM-0, 'os-extended-volumes:volumes_attached': [], progress: 0, security_groups: [{name: all_open}], status: ACTIVE, tenant_id: 810aa7702c3e450fb3189ed216787ae0, updated: '2023-03-01T18:38:58Z', user_id: 5fe87522ac7039f5ef285f3642bbeb08af77eb40ad81798bc726db591ec79978}\n",
+            "vim_id": "1698e243-dfcd-458b-95bd-88d288615815",
+            "vim_status": "ACTIVE",
+            "vim_name": "test-vnf2-mgmtVM-0"
+          }
+        },
+        "virtual-storages": [
+          {
+            "id": "mgmtVM-storage",
+            "size-of-storage": "10"
+          }
+        ],
+        "status": "ACTIVE",
+        "vim-id": "1698e243-dfcd-458b-95bd-88d288615815",
+        "name": "test-vnf2-mgmtVM-0"
+      }
+    ],
+    "connection-point": [
+      {
+        "name": "vnf-mgmt-ext",
+        "connection-point-id": "mgmtVM-eth0-int",
+        "connection-point-vdu-id": "mgmtVM",
+        "id": "vnf-mgmt-ext"
+      }
+    ],
+    "ip-address": "10.0.30.106",
+    "vld": [
+      {
+        "id": "internal",
+        "vim_info": {
+          "vim:4b7ce9b9-f354-43b2-888e-523e8ae824dd": {
+            "vim_network_name": null,
+            "vim_details": "{admin_state_up: true, availability_zone_hints: [], availability_zones: [nova], created_at: '2023-03-01T18:38:46Z', description: '', encapsulation: vxlan, encapsulation_id: 445, encapsulation_type: vxlan, id: 7ac1df67-01f2-4a96-9bf8-906b45947e24, ipv4_address_scope: null,\n  ipv6_address_scope: null, mtu: 1450, name: test-internal, port_security_enabled: true, project_id: 810aa7702c3e450fb3189ed216787ae0, 'provider:network_type': vxlan, 'provider:physical_network': null, 'provider:segmentation_id': 445, revision_number: 2, 'router:external': false,\n  segmentation_id: 445, shared: false, status: ACTIVE, subnets: [{subnet: {allocation_pools: [{end: 192.168.205.254, start: 192.168.205.1}], cidr: 192.168.205.0/24, created_at: '2023-03-01T18:38:47Z', description: '', dns_nameservers: [], enable_dhcp: true,\n        gateway_ip: null, host_routes: [], id: 483f9294-d722-4f07-9a10-e3f3c24ab78c, ip_version: 4, ipv6_address_mode: null, ipv6_ra_mode: null, name: test-internal-subnet, network_id: 7ac1df67-01f2-4a96-9bf8-906b45947e24, project_id: 810aa7702c3e450fb3189ed216787ae0,\n        revision_number: 0, service_types: [], subnetpool_id: null, tags: [], tenant_id: 810aa7702c3e450fb3189ed216787ae0, updated_at: '2023-03-01T18:38:47Z'}}], tags: [], tenant_id: 810aa7702c3e450fb3189ed216787ae0, type: bridge, updated_at: '2023-03-01T18:38:47Z'}\n",
+            "vim_id": "7ac1df67-01f2-4a96-9bf8-906b45947e24",
+            "vim_status": "ACTIVE"
+          }
+        }
+      }
+    ],
+    "_admin": {
+      "created": 1677695908.848128,
+      "modified": 1677695908.848128,
+      "projects_read": [
+        "6fa68b57-cf6d-423e-a307-4e090ea13868"
+      ],
+      "projects_write": [
+        "6fa68b57-cf6d-423e-a307-4e090ea13868"
+      ],
+      "nsState": "INSTANTIATED"
+    }
+  },
+  "vnf_instance_44f1518d-4cac-4bd0-a684-9824151a53fb": {
+    "_id": "44f1518d-4cac-4bd0-a684-9824151a53fb",
+    "id": "44f1518d-4cac-4bd0-a684-9824151a53fb",
+    "nsr-id-ref": "2de7b965-e66d-4325-9195-73ddf3e7e159",
+    "member-vnf-index-ref": "vnf1",
+    "additionalParamsForVnf": null,
+    "created-time": 1677695908.8313365,
+    "vnfd-ref": "hackfest_cloudinit-vnf",
+    "vnfd-id": "10d93d41-ba08-4c6a-84ff-3b5f4b1421e7",
+    "vim-account-id": "4b7ce9b9-f354-43b2-888e-523e8ae824dd",
+    "vca-id": null,
+    "vdur": [
+      {
+        "_id": "dcac21bb-e03d-4819-9bd9-d75a67225dd0",
+        "additionalParams": {
+          "OSM": {
+            "count_index": 0,
+            "member_vnf_index": "vnf1",
+            "ns_id": "2de7b965-e66d-4325-9195-73ddf3e7e159",
+            "vdu": {
+              "mgmtVM-0": {
+                "count_index": 0,
+                "interfaces": {
+                  "mgmtVM-eth0": {
+                    "name": "mgmtVM-eth0"
+                  },
+                  "mgmtVM-eth1": {
+                    "name": "mgmtVM-eth1"
+                  }
+                },
+                "vdu_id": "mgmtVM"
+              }
+            },
+            "vdu_id": "mgmtVM",
+            "vim_account_id": "4b7ce9b9-f354-43b2-888e-523e8ae824dd",
+            "vnf_id": "44f1518d-4cac-4bd0-a684-9824151a53fb",
+            "vnfd_id": "10d93d41-ba08-4c6a-84ff-3b5f4b1421e7",
+            "vnfd_ref": "hackfest_cloudinit-vnf"
+          }
+        },
+        "alt-image-ids": [
+          "0"
+        ],
+        "cloud-init": "10d93d41-ba08-4c6a-84ff-3b5f4b1421e7:file:cloud-config.txt",
+        "count-index": 0,
+        "id": "dcac21bb-e03d-4819-9bd9-d75a67225dd0",
+        "interfaces": [
+          {
+            "external-connection-point-ref": "vnf-mgmt-ext",
+            "internal-connection-point-ref": "mgmtVM-eth0-int",
+            "mgmt-interface": true,
+            "mgmt-vnf": true,
+            "name": "mgmtVM-eth0",
+            "ns-vld-id": "mgmtnet",
+            "type": "PARAVIRT",
+            "port_security": false,
+            "compute_node": "jarvis-node1",
+            "ip-address": "10.0.30.123",
+            "mac-address": "fa:16:3e:4a:b0:8f",
+            "pci": null,
+            "vlan": 1011
+          },
+          {
+            "internal-connection-point-ref": "mgmtVM-eth1-int",
+            "name": "mgmtVM-eth1",
+            "type": "PARAVIRT",
+            "vnf-vld-id": "internal",
+            "compute_node": "jarvis-node1",
+            "ip-address": "192.168.144.164",
+            "mac-address": "fa:16:3e:83:1d:ea",
+            "pci": null,
+            "vlan": null
+          }
+        ],
+        "internal-connection-point": [
+          {
+            "connection-point-id": "mgmtVM-eth0-int",
+            "id": "mgmtVM-eth0-int",
+            "name": "mgmtVM-eth0-int"
+          },
+          {
+            "connection-point-id": "mgmtVM-eth1-int",
+            "id": "mgmtVM-eth1-int",
+            "name": "mgmtVM-eth1-int"
+          }
+        ],
+        "ip-address": "10.0.30.123",
+        "ns-flavor-id": "0",
+        "ns-image-id": "0",
+        "vdu-id-ref": "mgmtVM",
+        "vdu-name": "mgmtVM",
+        "vim_info": {
+          "vim:4b7ce9b9-f354-43b2-888e-523e8ae824dd": {
+            "interfaces": [
+              {
+                "vim_info": "{admin_state_up: true, allowed_address_pairs: [], 'binding:host_id': jarvis-node1, 'binding:profile': {}, 'binding:vif_details': {bound_drivers: {'0': linuxbridge}, connectivity: l2, port_filter: true}, 'binding:vif_type': bridge, 'binding:vnic_type': normal,\n  created_at: '2023-03-01T18:38:33Z', description: '', device_id: 48301b1f-f20f-4490-add6-5917aa077576, device_owner: 'compute:nova', extra_dhcp_opts: [], fixed_ips: [{ip_address: 10.0.30.123, subnet_id: fc23c7ab-dd13-4ac8-a2c1-a090ab31f375}], id: 2dcaf21a-3207-4382-96f1-650dfa5240c0,\n  mac_address: 'fa:16:3e:4a:b0:8f', name: mgmtVM-eth0, network_id: 9cafdc71-2e50-48a0-9e4a-900e442e90bc, port_security_enabled: false, project_id: 810aa7702c3e450fb3189ed216787ae0, revision_number: 8, security_groups: [], status: ACTIVE, tags: [], tenant_id: 810aa7702c3e450fb3189ed216787ae0,\n  updated_at: '2023-03-01T18:38:51Z'}\n",
+                "mac_address": "fa:16:3e:4a:b0:8f",
+                "vim_net_id": "9cafdc71-2e50-48a0-9e4a-900e442e90bc",
+                "vim_interface_id": "2dcaf21a-3207-4382-96f1-650dfa5240c0",
+                "compute_node": "jarvis-node1",
+                "pci": null,
+                "vlan": 1011,
+                "ip_address": "10.0.30.123",
+                "mgmt_vnf_interface": true,
+                "mgmt_vdu_interface": true
+              },
+              {
+                "vim_info": "{admin_state_up: true, allowed_address_pairs: [], 'binding:host_id': jarvis-node1, 'binding:profile': {}, 'binding:vif_details': {bound_drivers: {'0': linuxbridge}, connectivity: l2, port_filter: true}, 'binding:vif_type': bridge, 'binding:vnic_type': normal,\n  created_at: '2023-03-01T18:38:34Z', description: '', device_id: 48301b1f-f20f-4490-add6-5917aa077576, device_owner: 'compute:nova', extra_dhcp_opts: [], fixed_ips: [{ip_address: 192.168.144.164, subnet_id: 3d534fe5-6326-449c-afae-25b7dfca6201}], id: 1611b9de-72a9-49d9-91f9-acc76775be36,\n  mac_address: 'fa:16:3e:83:1d:ea', name: mgmtVM-eth1, network_id: 6f28cfa4-8e87-4b1f-9e51-8965448c24d8, port_security_enabled: true, project_id: 810aa7702c3e450fb3189ed216787ae0, revision_number: 5, security_groups: [5e1eda52-019d-49a3-ae40-5a9b7ed4b6a9], status: ACTIVE,\n  tags: [], tenant_id: 810aa7702c3e450fb3189ed216787ae0, updated_at: '2023-03-01T18:38:44Z'}\n",
+                "mac_address": "fa:16:3e:83:1d:ea",
+                "vim_net_id": "6f28cfa4-8e87-4b1f-9e51-8965448c24d8",
+                "vim_interface_id": "1611b9de-72a9-49d9-91f9-acc76775be36",
+                "compute_node": "jarvis-node1",
+                "pci": null,
+                "vlan": null,
+                "ip_address": "192.168.144.164"
+              }
+            ],
+            "vim_details": "{'OS-DCF:diskConfig': MANUAL, 'OS-EXT-AZ:availability_zone': nova, 'OS-EXT-SRV-ATTR:host': jarvis-node1, 'OS-EXT-SRV-ATTR:hypervisor_hostname': jarvis-node1, 'OS-EXT-SRV-ATTR:instance_name': instance-0000013b, 'OS-EXT-STS:power_state': 1, 'OS-EXT-STS:task_state': null,\n  'OS-EXT-STS:vm_state': active, 'OS-SRV-USG:launched_at': '2023-03-01T18:38:44.000000', 'OS-SRV-USG:terminated_at': null, accessIPv4: '', accessIPv6: '', addresses: {projects: [{'OS-EXT-IPS-MAC:mac_addr': 'fa:16:3e:4a:b0:8f', 'OS-EXT-IPS:type': fixed, addr: 10.0.30.123,\n        version: 4}], test-internal: [{'OS-EXT-IPS-MAC:mac_addr': 'fa:16:3e:83:1d:ea', 'OS-EXT-IPS:type': fixed, addr: 192.168.144.164, version: 4}]}, config_drive: '', created: '2023-03-01T18:38:35Z', flavor: {id: b19b9b85-726a-4ee8-bdff-1768803aea5d, links: [\n      {href: 'http://jarvis-controller:8774/flavors/b19b9b85-726a-4ee8-bdff-1768803aea5d', rel: bookmark}]}, hostId: 379517523c4bc788ec1170e1a93b986dce9591f9e9a2ad0e01362823, id: 48301b1f-f20f-4490-add6-5917aa077576, image: {id: ed673622-1cb8-4642-9d96-7a22e6719aaa,\n    links: [{href: 'http://jarvis-controller:8774/images/ed673622-1cb8-4642-9d96-7a22e6719aaa', rel: bookmark}]}, key_name: null, links: [{href: 'http://jarvis-controller:8774/v2.1/servers/48301b1f-f20f-4490-add6-5917aa077576', rel: self}, {href: 'http://jarvis-controller:8774/servers/48301b1f-f20f-4490-add6-5917aa077576',\n      rel: bookmark}], metadata: {}, name: test-vnf1-mgmtVM-0, 'os-extended-volumes:volumes_attached': [], progress: 0, security_groups: [{name: all_open}], status: ACTIVE, tenant_id: 810aa7702c3e450fb3189ed216787ae0, updated: '2023-03-01T18:38:44Z', user_id: 5fe87522ac7039f5ef285f3642bbeb08af77eb40ad81798bc726db591ec79978}\n",
+            "vim_id": "48301b1f-f20f-4490-add6-5917aa077576",
+            "vim_status": "ACTIVE",
+            "vim_name": "test-vnf1-mgmtVM-0"
+          }
+        },
+        "virtual-storages": [
+          {
+            "id": "mgmtVM-storage",
+            "size-of-storage": "10"
+          }
+        ],
+        "status": "ACTIVE",
+        "vim-id": "48301b1f-f20f-4490-add6-5917aa077576",
+        "name": "test-vnf1-mgmtVM-0"
+      }
+    ],
+    "connection-point": [
+      {
+        "name": "vnf-mgmt-ext",
+        "connection-point-id": "mgmtVM-eth0-int",
+        "connection-point-vdu-id": "mgmtVM",
+        "id": "vnf-mgmt-ext"
+      }
+    ],
+    "ip-address": "10.0.30.123",
+    "vld": [
+      {
+        "id": "internal",
+        "vim_info": {
+          "vim:4b7ce9b9-f354-43b2-888e-523e8ae824dd": {
+            "vim_network_name": null,
+            "vim_details": "{admin_state_up: true, availability_zone_hints: [], availability_zones: [nova], created_at: '2023-03-01T18:38:33Z', description: '', encapsulation: vxlan, encapsulation_id: 823, encapsulation_type: vxlan, id: 6f28cfa4-8e87-4b1f-9e51-8965448c24d8, ipv4_address_scope: null,\n  ipv6_address_scope: null, mtu: 1450, name: test-internal, port_security_enabled: true, project_id: 810aa7702c3e450fb3189ed216787ae0, 'provider:network_type': vxlan, 'provider:physical_network': null, 'provider:segmentation_id': 823, revision_number: 2, 'router:external': false,\n  segmentation_id: 823, shared: false, status: ACTIVE, subnets: [{subnet: {allocation_pools: [{end: 192.168.144.254, start: 192.168.144.1}], cidr: 192.168.144.0/24, created_at: '2023-03-01T18:38:33Z', description: '', dns_nameservers: [], enable_dhcp: true,\n        gateway_ip: null, host_routes: [], id: 3d534fe5-6326-449c-afae-25b7dfca6201, ip_version: 4, ipv6_address_mode: null, ipv6_ra_mode: null, name: test-internal-subnet, network_id: 6f28cfa4-8e87-4b1f-9e51-8965448c24d8, project_id: 810aa7702c3e450fb3189ed216787ae0,\n        revision_number: 0, service_types: [], subnetpool_id: null, tags: [], tenant_id: 810aa7702c3e450fb3189ed216787ae0, updated_at: '2023-03-01T18:38:33Z'}}], tags: [], tenant_id: 810aa7702c3e450fb3189ed216787ae0, type: bridge, updated_at: '2023-03-01T18:38:33Z'}\n",
+            "vim_id": "6f28cfa4-8e87-4b1f-9e51-8965448c24d8",
+            "vim_status": "ACTIVE"
+          }
+        }
+      }
+    ],
+    "_admin": {
+      "created": 1677695908.8315828,
+      "modified": 1677695908.8315828,
+      "projects_read": [
+        "6fa68b57-cf6d-423e-a307-4e090ea13868"
+      ],
+      "projects_write": [
+        "6fa68b57-cf6d-423e-a307-4e090ea13868"
+      ],
+      "nsState": "INSTANTIATED"
+    }
+  },
+  "ns_instance_2de7b965-e66d-4325-9195-73ddf3e7e159": {
+    "_id": "2de7b965-e66d-4325-9195-73ddf3e7e159",
+    "name": "test",
+    "name-ref": "test",
+    "short-name": "test",
+    "admin-status": "ENABLED",
+    "nsState": "READY",
+    "currentOperation": "IDLE",
+    "currentOperationID": null,
+    "errorDescription": null,
+    "errorDetail": null,
+    "deploymentStatus": null,
+    "configurationStatus": [],
+    "vcaStatus": null,
+    "nsd": {
+      "_id": "c13e6d24-3475-4ef6-bb4a-6a532673b0d3",
+      "id": "hackfest_cloudinit-ns",
+      "version": "1.0",
+      "name": "hackfest_cloudinit-ns",
+      "vnfd-id": [
+        "hackfest_cloudinit-vnf"
+      ],
+      "virtual-link-desc": [
+        {
+          "id": "mgmtnet",
+          "mgmt-network": true,
+          "vim-network-name": "projects"
+        }
+      ],
+      "df": [
+        {
+          "id": "default-df",
+          "vnf-profile": [
+            {
+              "id": "vnf1",
+              "virtual-link-connectivity": [
+                {
+                  "constituent-cpd-id": [
+                    {
+                      "constituent-base-element-id": "vnf1",
+                      "constituent-cpd-id": "vnf-mgmt-ext"
+                    }
+                  ],
+                  "virtual-link-profile-id": "mgmtnet"
+                }
+              ],
+              "vnfd-id": "hackfest_cloudinit-vnf"
+            },
+            {
+              "id": "vnf2",
+              "virtual-link-connectivity": [
+                {
+                  "constituent-cpd-id": [
+                    {
+                      "constituent-base-element-id": "vnf2",
+                      "constituent-cpd-id": "vnf-mgmt-ext"
+                    }
+                  ],
+                  "virtual-link-profile-id": "mgmtnet"
+                }
+              ],
+              "vnfd-id": "hackfest_cloudinit-vnf"
+            }
+          ]
+        }
+      ],
+      "description": "NS with 2 VNFs with cloudinit connected by datanet and mgmtnet VLs",
+      "_admin": {
+        "userDefinedData": {},
+        "created": 1677695898.2166293,
+        "modified": 1677695898.5157304,
+        "projects_read": [
+          "6fa68b57-cf6d-423e-a307-4e090ea13868"
+        ],
+        "projects_write": [
+          "6fa68b57-cf6d-423e-a307-4e090ea13868"
+        ],
+        "onboardingState": "ONBOARDED",
+        "operationalState": "ENABLED",
+        "usageState": "NOT_IN_USE",
+        "storage": {
+          "fs": "mongo",
+          "path": "/app/storage/",
+          "folder": "c13e6d24-3475-4ef6-bb4a-6a532673b0d3",
+          "pkg-dir": "hackfest_cloudinit_ns",
+          "descriptor": "hackfest_cloudinit_ns/hackfest_cloudinit_nsd.yaml",
+          "zipfile": "package.tar.gz"
+        }
+      }
+    },
+    "datacenter": "4b7ce9b9-f354-43b2-888e-523e8ae824dd",
+    "resource-orchestrator": "osmopenmano",
+    "description": "test",
+    "constituent-vnfr-ref": [
+      "44f1518d-4cac-4bd0-a684-9824151a53fb",
+      "2869a444-6ef5-444d-90a2-0593ee091d18"
+    ],
+    "operational-status": "running",
+    "config-status": "configured",
+    "detailed-status": "Done",
+    "orchestration-progress": {},
+    "create-time": 1677695908.8223422,
+    "nsd-name-ref": "hackfest_cloudinit-ns",
+    "operational-events": [],
+    "nsd-ref": "hackfest_cloudinit-ns",
+    "nsd-id": "c13e6d24-3475-4ef6-bb4a-6a532673b0d3",
+    "vnfd-id": [
+      "10d93d41-ba08-4c6a-84ff-3b5f4b1421e7"
+    ],
+    "instantiate_params": {
+      "nsName": "test",
+      "nsDescription": "test",
+      "nsdId": "c13e6d24-3475-4ef6-bb4a-6a532673b0d3",
+      "vimAccountId": "4b7ce9b9-f354-43b2-888e-523e8ae824dd"
+    },
+    "additionalParamsForNs": null,
+    "ns-instance-config-ref": "2de7b965-e66d-4325-9195-73ddf3e7e159",
+    "id": "2de7b965-e66d-4325-9195-73ddf3e7e159",
+    "ssh-authorized-key": null,
+    "flavor": [
+      {
+        "id": "0",
+        "memory-mb": 1024,
+        "name": "mgmtVM-flv",
+        "storage-gb": "10",
+        "vcpu-count": 1,
+        "vim_info": {
+          "vim:4b7ce9b9-f354-43b2-888e-523e8ae824dd": {
+            "vim_details": null,
+            "vim_id": "b19b9b85-726a-4ee8-bdff-1768803aea5d",
+            "vim_status": "DONE"
+          }
+        }
+      },
+      {
+        "vcpu-count": 1,
+        "memory-mb": 1024,
+        "storage-gb": "10",
+        "name": "mgmtVM-flv",
+        "id": "1"
+      }
+    ],
+    "image": [
+      {
+        "id": "0",
+        "image": "ubuntu-20.04-server-cloudimg",
+        "vim_info": {
+          "vim:4b7ce9b9-f354-43b2-888e-523e8ae824dd": {
+            "vim_details": null,
+            "vim_id": "ed673622-1cb8-4642-9d96-7a22e6719aaa",
+            "vim_status": "DONE"
+          }
+        }
+      }
+    ],
+    "vld": [
+      {
+        "id": "mgmtnet",
+        "mgmt-network": true,
+        "name": "mgmtnet",
+        "type": null,
+        "vim_info": {
+          "vim:4b7ce9b9-f354-43b2-888e-523e8ae824dd": {
+            "vim_account_id": "4b7ce9b9-f354-43b2-888e-523e8ae824dd",
+            "vim_network_name": "projects",
+            "vim_details": "{admin_state_up: true, availability_zone_hints: [nova], availability_zones: [nova], created_at: '2023-01-13T17:53:21Z', description: '', encapsulation: vlan, encapsulation_id: 1011, encapsulation_type: vlan, id: 9cafdc71-2e50-48a0-9e4a-900e442e90bc, ipv4_address_scope: null,\n  ipv6_address_scope: null, mtu: 1500, name: projects, port_security_enabled: true, project_id: 0487b06f1c1349aca3de7ecdecb34614, 'provider:network_type': vlan, 'provider:physical_network': Vlans, 'provider:segmentation_id': 1011, revision_number: 9, 'router:external': true,\n  segmentation_id: 1011, shared: true, status: ACTIVE, subnets: [{subnet: {allocation_pools: [{end: 10.0.30.175, start: 10.0.30.105}], cidr: 10.0.30.0/23, created_at: '2023-01-13T17:53:21Z', description: '', dns_nameservers: [193.136.92.73, 193.136.92.74], enable_dhcp: true,\n        gateway_ip: 10.0.30.1, host_routes: [], id: fc23c7ab-dd13-4ac8-a2c1-a090ab31f375, ip_version: 4, ipv6_address_mode: null, ipv6_ra_mode: null, name: projects-subnet, network_id: 9cafdc71-2e50-48a0-9e4a-900e442e90bc, project_id: 0487b06f1c1349aca3de7ecdecb34614,\n        revision_number: 0, service_types: [], subnetpool_id: null, tags: [], tenant_id: 0487b06f1c1349aca3de7ecdecb34614, updated_at: '2023-01-13T17:53:21Z'}}], tags: [], tenant_id: 0487b06f1c1349aca3de7ecdecb34614, type: data, updated_at: '2023-02-10T12:32:28Z'}\n",
+            "vim_id": "9cafdc71-2e50-48a0-9e4a-900e442e90bc",
+            "vim_status": "ACTIVE"
+          }
+        }
+      }
+    ],
+    "_admin": {
+      "created": 1677695908.8494062,
+      "modified": 1677752338.8271606,
+      "projects_read": [
+        "6fa68b57-cf6d-423e-a307-4e090ea13868"
+      ],
+      "projects_write": [
+        "6fa68b57-cf6d-423e-a307-4e090ea13868"
+      ],
+      "nsState": "INSTANTIATED",
+      "current-operation": null,
+      "nslcmop": null,
+      "operation-type": null,
+      "deployed": {
+        "RO": {
+          "vnfd": [],
+          "operational-status": "running"
+        },
+        "VCA": [],
+        "K8s": []
+      }
+    }
+  }
+}
