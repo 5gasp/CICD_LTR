@@ -2,9 +2,10 @@
 # @Author: Luka Korsic
 # @Date:   2023-06-10 16:09:37
 # @Last Modified by:   Rafael Direito
-# @Last Modified time: 2023-06-10 16:32:39
+# @Last Modified time: 2024-01-22 16:50:04
 import time
 import requests
+
 
 def response_time(target):
     try:
