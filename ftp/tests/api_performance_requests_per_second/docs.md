@@ -2,11 +2,11 @@
 
 ## 1. Test Goals
 
-Validate by measuring how many requests the Network Application API can serve per second.
+This test is designed to evaluate the performance of an API under various conditions. It primarily focuses on measuring the API's ability to handle a high volume of requests per second, ensuring both robustness and scalability.
 
 ## 2. Test Description
 
-This test is designed to evaluate the performance of an API under various conditions. It primarily focuses on measuring the API's ability to handle a high volume of requests per second, ensuring both robustness and scalability.
+Validate by measuring how many requests the Network Application API can serve per second.
 
 ## 3. Inputs
 

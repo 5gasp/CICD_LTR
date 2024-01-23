@@ -2,11 +2,11 @@
 
 ## 1. Test Goals
 
-This test will validate the authentication and authorization of a Network Application to use 5GS resources (NEF) 
+This test is specifically designed to evaluate the authentication processes of our Network Exposure Function (NEF). Its primary aim is to ensure the NEF's authentication mechanisms are not only robust and secure but also effectively manage and control access to network capabilities and services. The suite tests various authentication scenarios to guarantee that NEF adheres to our strict security protocols and standards, thus maintaining the integrity and reliability of network interactions. This is vital for protecting the network from unauthorized access and ensuring secure communication between different network elements and services.
 
 ## 2. Test Description
 
-This test is specifically designed to evaluate the authentication processes of our Network Exposure Function (NEF). Its primary aim is to ensure the NEF's authentication mechanisms are not only robust and secure but also effectively manage and control access to network capabilities and services. The suite tests various authentication scenarios to guarantee that NEF adheres to our strict security protocols and standards, thus maintaining the integrity and reliability of network interactions. This is vital for protecting the network from unauthorized access and ensuring secure communication between different network elements and services.
+This test will validate the authentication and authorization of a Network Application to use 5GS resources (NEF).
 
 ## 3. Inputs
 

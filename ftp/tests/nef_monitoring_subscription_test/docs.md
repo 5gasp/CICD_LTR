@@ -2,11 +2,11 @@
 
 ## 1. Test Goals
 
-This test will validate that a Network Application is able to retrieve an indicative UE location.
+This test is designed to comprehensively evaluate the monitoring and subscription functionalities of the Network Exposure Function (NEF) in our system. The primary objective is to ensure that NEF effectively handles and manages subscriptions and monitoring requests, maintaining high standards of performance and reliability. By thoroughly testing these functionalities, the suite aims to validate that NEF operates correctly and efficiently, ensuring consistent and secure management of network exposure data. This is crucial for the seamless integration and operation of NEF within our network's ecosystem, providing vital support for network operations and services.
 
 ## 2. Test Description
 
-This test is designed to comprehensively evaluate the monitoring and subscription functionalities of the Network Exposure Function (NEF) in our system. The primary objective is to ensure that NEF effectively handles and manages subscriptions and monitoring requests, maintaining high standards of performance and reliability. By thoroughly testing these functionalities, the suite aims to validate that NEF operates correctly and efficiently, ensuring consistent and secure management of network exposure data. This is crucial for the seamless integration and operation of NEF within our network's ecosystem, providing vital support for network operations and services.
+This test will validate that a Network Application is able to retrieve an indicative UE location.
 
 ## 3. Inputs
 

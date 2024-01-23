@@ -2,11 +2,11 @@
 
 ## 1. Test Goals
 
-Validate by measuring Network Application API response time.
+This test is designed to rigorously assess the performance and responsiveness of an API. The primary aim is to ensure that the API can handle high traffic efficiently while maintaining optimal response times. By simulating realistic load scenarios and analyzing response behaviors under various conditions, this test suite helps in identifying potential performance bottlenecks and ensures that the API can deliver a reliable, high-quality user experience even under peak load conditions.
 
 ## 2. Test Description
 
-This test is designed to rigorously assess the performance and responsiveness of an API. The primary aim is to ensure that the API can handle high traffic efficiently while maintaining optimal response times. By simulating realistic load scenarios and analyzing response behaviors under various conditions, this test suite helps in identifying potential performance bottlenecks and ensures that the API can deliver a reliable, high-quality user experience even under peak load conditions.
+Validate by measuring Network Application API response time.
 
 ## 3. Inputs
 
