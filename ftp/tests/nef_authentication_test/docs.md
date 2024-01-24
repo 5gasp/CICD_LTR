@@ -6,7 +6,7 @@ This test is specifically designed to evaluate the authentication processes of o
 
 ## 2. Test Description
 
-This test will validate the authentication and authorization of a Network Application to use 5GS resources (NEF).
+Validate if a Network Application is able to authenticate with the NEF before making any requests.
 
 ## 3. Inputs
 
