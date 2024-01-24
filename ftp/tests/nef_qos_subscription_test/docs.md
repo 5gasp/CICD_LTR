@@ -2,6 +2,8 @@
 
 ## 1. Test Goals
 
+This test is designed to evaluate the Quality of Service (QoS) subscription management capabilities of the Network Exposure Function (NEF) within our network infrastructure. The primary goal is to ensure that NEF effectively handles QoS subscriptions, enabling the network to dynamically adjust and allocate resources based on the varying QoS requirements of different services and users. This suite tests the NEF's ability to manage these subscriptions accurately and efficiently, ensuring optimal network performance and user experience by maintaining the desired quality standards for various network services.
+
 ## 2. Test Description
 
 This test will validate that a Network Application is able to subscribe and eventually retrieve information about a QoS compromised event.
