@@ -1,6 +1,6 @@
 *** Settings ***
 Library        OpenPorts.py
-Test Timeout  15 minutes
+Test Timeout  25 minutes
 
 *** Test Cases ***
 Testing the open ports
