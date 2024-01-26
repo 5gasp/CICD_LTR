@@ -70,6 +70,7 @@ Report:  /Users/eduardosantos/Documents/Bolsa 5GASP/repos/CICD_LTR/ftp/tests/ope
 
 ### 5.1. OS-Level Requirements
 
+For this test to run, `nmap` must be installed on the CI/CD Agent.
 `sudo apt-get install nmap`
 
 ### 5.2. Python Requirements
