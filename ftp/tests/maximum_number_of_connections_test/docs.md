@@ -301,7 +301,7 @@ Report:  /Users/eduardosantos/Documents/Bolsa 5GASP/repos/CICD_LTR/ftp/tests/max
 
 ### 5.1. OS-Level Requirements
 
-`None`
+For this test to run, either `netstat` or `ss` must be installed on the VNF.
 
 ### 5.2. Python Requirements
 
