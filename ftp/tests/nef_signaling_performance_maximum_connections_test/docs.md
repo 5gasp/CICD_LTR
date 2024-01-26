@@ -229,7 +229,7 @@ Report:  /Users/eduardosantos/Documents/Bolsa 5GASP/repos/CICD_LTR/ftp/tests/nef
 
 ### 5.1. OS-Level Requirements
 
-`None`
+For this test to run, either `netstat` or `ss` must be installed on the VNF that comprises the API that was declared for the NEF Callback.
 
 ### 5.2. Python Requirements
 
