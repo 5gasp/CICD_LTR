@@ -2,7 +2,7 @@
 
 ## 1. Test Goals
 
-This test is designed to assess the availability and continuity of a service during communicaiton loss.
+This test is designed to assess the availability and continuity of a service during communication loss.
 
 ## 2. Test Description
 
@@ -11,10 +11,10 @@ Validate by bringing down and up the NIC using tc rules.
 ## 3. Inputs
 
 Environment Variables that must be specified:
-- `availability_and_continuity_bandwidth_NEFURL`
+- `availability_and_continuity_communication_loss_NEFURL`
 
 Example:
-- 'export availability_and_continuity_bandwidth_NEFURL=http://10.10.10.20:8888'
+- 'export availability_and_continuity_communication_loss_NEFURL=http://10.10.10.20:8888'
 
 ## 4. Outputs
 
