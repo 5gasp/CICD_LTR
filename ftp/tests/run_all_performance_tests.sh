@@ -2,7 +2,7 @@
 # @Author: Rafael Direito
 # @Date:   2024-01-31 16:33:39
 # @Last Modified by:   Eduardo Santos
-# @Last Modified time: 2024-02-02 11:53:30
+# @Last Modified time: 2024-02-02 12:01:15
 
 # Save the current working directory
 root_directory="$(pwd)"
@@ -205,6 +205,9 @@ export nef_qos_subscription_test_monitoring_payload='{"ipv4Addr":"10.0.0.1","not
 #              openstack_port_security               #
 #                                                    #
 ######################################################
+
+export openstack_port_security_deployment_info_file_path=NONE
+#run_test "openstack_port_security"
 
 ######################################################
 #                                                    #
