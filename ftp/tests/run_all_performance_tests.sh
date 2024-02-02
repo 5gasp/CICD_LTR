@@ -2,7 +2,7 @@
 # @Author: Rafael Direito
 # @Date:   2024-01-31 16:33:39
 # @Last Modified by:   Eduardo Santos
-# @Last Modified time: 2024-02-02 12:01:15
+# @Last Modified time: 2024-02-02 12:05:12
 
 # Save the current working directory
 root_directory="$(pwd)"
@@ -51,10 +51,8 @@ run_test() {
     source venv/bin/activate
     pip install -r "$test_folder"/requirements.txt
 
-    echo "54- $(pwd)"
     # Finally, perform the test
     cd "$test_folder"
-    echo "57- $(pwd)"
     python3 -m robot --outputdir "../$results_folder" .
 
     # If the test failed, save its name for later
@@ -65,8 +63,7 @@ run_test() {
         failed_tests+=("$test_folder")
     fi
 
-    cd $root_directory
-    echo "69 -$(pwd)"
+    cd "$root_directory"
 }
 
 print_failed_tests(){
