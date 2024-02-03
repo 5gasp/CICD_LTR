@@ -19,7 +19,9 @@ In the case of CNFs, the MiniAPI comprised by the Network Application shall be u
 
 For VNFs, the MiniAPI comprised by the Network Application shall be used as a server, and the manually deployed one will be the client.
 
-In regards to the OS dependencies required to run the MiniAPI, you may find them at: https://github.com/5gasp/NetworkAppControl-MiniAPI. This repository also includes instructions on how to deploy your application's MiniAPI. When adding the MiniAPI to your application, remember that the MiniAPI should be automatically started alongside all other Network Applicaiton components. The configuration needed to achieve this is completely delegated to the Network Application owners.
+In regards to the OS dependencies required to run the MiniAPI, you may find them at: https://github.com/5gasp/NetworkAppControl-MiniAPI. This repository also includes instructions on how to deploy your application's MiniAPI. 
+
+When adding the MiniAPI to your application, remember that the MiniAPI should be automatically started alongside all other Network Applicaiton components. The configuration needed to achieve this is completely delegated to the Network Application owners.
 
 #### Application-Level MiniAPI Placement
 
@@ -35,8 +37,15 @@ Please take this into consideration when providing your Network Application Mini
 ### Scenario
 
 To illustrate the abovementioned scenario, you may have a look at the following diagram.
+![TestingScenario](./docs/TestingScenario.drawio.png)
 
-(TODO - ADD DIAGRAM HERE)
+This diagram assumes that both the NEF callback target API and the target API for the Def14Perf11 Test are comprised by VNF1.
+
+An alternative scenario would be the following one.
+![TestingScenario2](./docs/TestingScenario2.drawio.png)
+
+
+In this scenario, the aforementioned APIs can be located either inside VNF1 or inside VNF2.
 
 ## Network Applications - Local Testing
 
