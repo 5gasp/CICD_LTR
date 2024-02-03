@@ -2,7 +2,7 @@
 # @Author: Rafael Direito
 # @Date:   2024-01-31 16:33:39
 # @Last Modified by:   Eduardo Santos
-# @Last Modified time: 2024-02-02 12:05:12
+# @Last Modified time: 2024-02-03 15:47:28
 
 # Save the current working directory
 root_directory="$(pwd)"
@@ -80,13 +80,13 @@ print_failed_tests(){
 create_venv
 
 # 2. Define some global variables
-mini_api_ip_server=10.255.28.233
+mini_api_ip_server=10.255.28.201
 mini_api_port_server=8000
-mini_api_endpoint_to_invoke_server=10.255.28.233:8000
+mini_api_endpoint_to_invoke_server=10.255.28.201:8000
 
-mini_api_ip_ue=10.255.28.210
+mini_api_ip_ue=10.255.28.229
 mini_api_port_ue=8000
-mini_api_endpoint_to_invoke_ue=10.255.28.210:8000
+mini_api_endpoint_to_invoke_ue=10.255.28.229:8000
 
 reporting_api_ip=10.255.28.173
 reporting_api_port=3000
@@ -231,6 +231,10 @@ export passwords_list_file_path=example_artifacts/1000-most-common-passwords.txt
 #                                                    #
 ######################################################
 
+# OS-Level Requirements
+# Ubuntu 20.04 - for this test to run, `nmap` must be installed on the CI/CD Agent.
+# Ubuntu 22.04 - for this test to run, `nmap` must be installed on the CI/CD Agent.
+
 export open_ports_host=$mini_api_ip_server
 export open_ports_expected_open_ports=22/tcp
 #run_test "open_ports"
@@ -253,6 +257,7 @@ export ssh_audit_ssh_port=22
 
 # OS-Level Requirements
 # Ubuntu 20.04 - for this test to run, `iperf3` must be installed on the VNF.
+# Ubuntu 22.04 - for this test to run, `iperf3` must be installed on the VNF.
 
 export e2e_single_ue_latency_and_throughput_test_server_mini_api_start_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/start/Def14Perf1
 export e2e_single_ue_latency_and_throughput_test_server_mini_api_stop_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/stop/Def14Perf1
@@ -271,6 +276,7 @@ export e2e_single_ue_latency_and_throughput_test_max_rtt_ms_threshold=20
 
 # OS-Level Requirements
 # Ubuntu 20.04 - for this test to run, `iperf3` must be installed on the VNF.
+# Ubuntu 22.04 - for this test to run, `iperf3` must be installed on the VNF.
 
 export e2e_multiple_ue_latency_and_throughput_test_server_mini_api_start_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/start/Def14Perf1
 export e2e_multiple_ue_latency_and_throughput_test_server_mini_api_stop_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/stop/Def14Perf1
@@ -289,7 +295,7 @@ export e2e_multiple_ue_latency_and_throughput_test_max_rtt_ms_threshold=10
 ######################################################
 
 export nef_signaling_performance_response_time_test_host=https://webhook.site
-export nef_signaling_performance_response_time_test_endpoint=/8c969d79-a392-41e4-9805-07c430cd0d41
+export nef_signaling_performance_response_time_test_endpoint=/373a8242-3512-4cb9-b06a-1811995caa13
 export nef_signaling_performance_response_time_test_max_response_time_threshold_secs=2
 #run_test "nef_signaling_performance_response_time_test"
 
@@ -300,7 +306,7 @@ export nef_signaling_performance_response_time_test_max_response_time_threshold_
 ######################################################
 
 export nef_signaling_performance_requests_per_second_test_host=https://webhook.site
-export nef_signaling_performance_requests_per_second_test_endpoint=/be0358ea-77d3-4496-9574-1203590b2b0c
+export nef_signaling_performance_requests_per_second_test_endpoint=/a7f643d8-159f-4941-8474-2c2a8263d92b
 export nef_signaling_performance_requests_per_second_test_min_threshold=5
 #run_test "nef_signaling_performance_requests_per_second_test"
 
@@ -312,6 +318,7 @@ export nef_signaling_performance_requests_per_second_test_min_threshold=5
 
 # OS-Level Requirements
 # Ubuntu 20.04 - for this test to run, either `netstat` or `ss` must be installed on the VNF that comprises the API that was declared for the NEF Callback.
+# Ubuntu 22.04 - for this test to run, either `netstat` or `ss` must be installed on the VNF that comprises the API that was declared for the NEF Callback.
 
 export nef_signaling_performance_maximum_connections_test_load_test_host=http://$mini_api_ip_server:8080
 export nef_signaling_performance_maximum_connections_test_load_test_endpoint=/
@@ -339,6 +346,7 @@ export web_performance_static_page_web_speed_net_threshold_bps=5000000 #5 MBs pe
 
 # OS-Level Requirements
 # Ubuntu 20.04 - for this test to run, either `netstat` or `ss` must be installed on the VNF that comprises the API that was declared for the NEF Callback.
+# Ubuntu 22.04 - for this test to run, either `netstat` or `ss` must be installed on the VNF that comprises the API that was declared for the NEF Callback.
 
 export maximum_number_of_connections_test_load_test_host=http://$mini_api_ip_server:8080
 export maximum_number_of_connections_test_load_test_endpoint=/
@@ -367,6 +375,7 @@ export network_application_performance_rtt_threshold_ms=500 # 500 milliseconds
 
 # OS-Level Requirements
 # Ubuntu 20.04 - for this test to run, `ping` must be installed on the VNF.
+# Ubuntu 22.04 - for this test to run, `ping` must be installed on the VNF.
 
 export hops_until_target_test_target=8.8.8.8
 export hops_until_target_test_max_hops_threshold=20
