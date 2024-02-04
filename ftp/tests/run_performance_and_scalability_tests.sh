@@ -1,8 +1,8 @@
 #!/bin/bash
 # @Author: Eduardo Santos
 # @Date:   2024-02-03 18:30:41
-# @Last Modified by:   Eduardo Santos
-# @Last Modified time: 2024-02-03 22:06:12
+# @Last Modified by:   Rafael Direito
+# @Last Modified time: 2024-02-04 12:26:45
 
 # Save the current working directory
 root_directory="$(pwd)"
@@ -73,6 +73,8 @@ print_failed_tests(){
         for folder in "${failed_tests[@]}"; do
             echo "  - $folder"
         done
+    else
+        echo "ALL TESTS PASSED!"
     fi
 }
 
@@ -80,13 +82,15 @@ print_failed_tests(){
 create_venv
 
 # 2. Define some global variables
-mini_api_ip_server=10.255.28.208
-mini_api_port_server=8000
-mini_api_endpoint_to_invoke_server=10.255.28.208:8000
 
-mini_api_ip_ue=10.255.28.249
-mini_api_port_ue=8000
-mini_api_endpoint_to_invoke_ue=10.255.28.249:8000
+# - Mini APIs
+mini_api_server_url=http://10.255.28.201:3001
+mini_api_ue_url=http://10.255.28.192:3001
+mini_api_ip_server=10.255.28.201
+
+# - Reporting API
+reporting_api_ip=10.255.28.236
+reporting_api_port=3000
 
 # 3. Run the tests
 
@@ -95,11 +99,10 @@ mini_api_endpoint_to_invoke_ue=10.255.28.249:8000
 #          mini_api_configuration (Server)           #
 #                                                    #
 ######################################################
-
-export mini_api_configuration_api_ip=$mini_api_ip_server
-export mini_api_configuration_api_port=$mini_api_port_server
-export mini_api_configuration_configuration_payload='{"variables":{"NEF_IP":"10.255.28.173","NEF_PORT":8888,"NEF_LOGIN_USERNAME":"admin@my-email.com","NEF_LOGIN_PASSWORD":"pass","SUBS_MONITORING_TYPE":"LOCATION_REPORTING", "SUBS_EXTERNAL_ID": "123456789@domain.com", "SUBS_CALLBACK_URL":"https://webhook.site/43d72330-0f8e-4a52-af1c-65c77d9aafd0","SUBS_MONITORING_EXPIRE_TIME":"2024-03-09T13:18:19.495000+00:00","UE1_NAME":"My UE","UE1_DESCRIPTION":"My UE Description","UE1_IPV4":"10.10.10.10","UE1_IPV6":"0:0:0:0:0:0:0:0","UE1_MAC_ADDRESS":"22-00-00-00-00-02","UE1_SUPI":"202010000000001"}}'
-#run_test "mini_api_configuration"
+export mini_api_configuration_configuration_endpoint="$mini_api_server_url/configure"
+export mini_api_configuration_configuration_payload='{"variables":{"NEF_IP":"10.255.28.236","NEF_PORT":8888,"NEF_LOGIN_USERNAME":"admin@my-email.com","NEF_LOGIN_PASSWORD":"pass","SUBS_MONITORING_TYPE":"LOCATION_REPORTING", "SUBS_EXTERNAL_ID": "123456789@domain.com", "SUBS_CALLBACK_URL":"https://webhook.site/43d72330-0f8e-4a52-af1c-65c77d9aafd0","SUBS_MONITORING_EXPIRE_TIME":"2024-03-09T13:18:19.495000+00:00","UE1_NAME":"My UE","UE1_DESCRIPTION":"My UE Description","UE1_IPV4":"10.10.10.10","UE1_IPV6":"0:0:0:0:0:0:0:0","UE1_MAC_ADDRESS":"22-00-00-00-00-02","UE1_SUPI":"202010000000001"}}'
+# mini_api_configuration_configuration_payload - Must be updated (e.g. nef's ip and port, at least)
+run_test "mini_api_configuration"
 
 
 ######################################################
@@ -107,11 +110,10 @@ export mini_api_configuration_configuration_payload='{"variables":{"NEF_IP":"10.
 #           mini_api_configuration (UE)              #
 #                                                    #
 ######################################################
-
-export mini_api_configuration_api_ip=$mini_api_ip_ue
-export mini_api_configuration_api_port=$mini_api_port_ue
-export mini_api_configuration_configuration_payload='{"variables":{"NEF_IP":"10.255.28.173","NEF_PORT":8888,"NEF_LOGIN_USERNAME":"admin@my-email.com","NEF_LOGIN_PASSWORD":"pass","SUBS_MONITORING_TYPE":"LOCATION_REPORTING", "SUBS_EXTERNAL_ID": "123456789@domain.com", "SUBS_CALLBACK_URL":"https://webhook.site/43d72330-0f8e-4a52-af1c-65c77d9aafd0","SUBS_MONITORING_EXPIRE_TIME":"2024-03-09T13:18:19.495000+00:00","UE1_NAME":"My UE","UE1_DESCRIPTION":"My UE Description","UE1_IPV4":"10.10.10.10","UE1_IPV6":"0:0:0:0:0:0:0:0","UE1_MAC_ADDRESS":"22-00-00-00-00-02","UE1_SUPI":"202010000000001"}}'
-#run_test "mini_api_configuration"
+export mini_api_configuration_configuration_endpoint="$mini_api_server_url/configure"
+export mini_api_configuration_configuration_payload='{"variables":{"NEF_IP":"10.255.28.236","NEF_PORT":8888,"NEF_LOGIN_USERNAME":"admin@my-email.com","NEF_LOGIN_PASSWORD":"pass","SUBS_MONITORING_TYPE":"LOCATION_REPORTING", "SUBS_EXTERNAL_ID": "123456789@domain.com", "SUBS_CALLBACK_URL":"https://webhook.site/43d72330-0f8e-4a52-af1c-65c77d9aafd0","SUBS_MONITORING_EXPIRE_TIME":"2024-03-09T13:18:19.495000+00:00","UE1_NAME":"My UE","UE1_DESCRIPTION":"My UE Description","UE1_IPV4":"10.10.10.10","UE1_IPV6":"0:0:0:0:0:0:0:0","UE1_MAC_ADDRESS":"22-00-00-00-00-02","UE1_SUPI":"202010000000001"}}'
+# mini_api_configuration_configuration_payload - Must be updated (e.g. nef's ip and port, at least)
+run_test "mini_api_configuration"
 
 
 ######################################################
@@ -119,18 +121,16 @@ export mini_api_configuration_configuration_payload='{"variables":{"NEF_IP":"10.
 #      e2e_single_ue_latency_and_throughput_test     #
 #                                                    #
 ######################################################
-
 # OS-Level Requirements
 # For this test to run, `iperf3` must be installed on the VNF.
-
-export e2e_single_ue_latency_and_throughput_test_server_mini_api_start_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/start/Def14Perf1
-export e2e_single_ue_latency_and_throughput_test_server_mini_api_stop_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/stop/Def14Perf1
-export e2e_single_ue_latency_and_throughput_test_client_mini_api_start_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_ue/start/Def14Perf1
-export e2e_single_ue_latency_and_throughput_test_client_mini_api_results_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_ue/results/Def14Perf1
+export e2e_single_ue_latency_and_throughput_test_server_mini_api_start_endpoint_to_invoke="$mini_api_server_url/start/Def14Perf1"
+export e2e_single_ue_latency_and_throughput_test_server_mini_api_stop_endpoint_to_invoke="$mini_api_server_url/stop/Def14Perf1"
+export e2e_single_ue_latency_and_throughput_test_client_mini_api_start_endpoint_to_invoke="$mini_api_ue_url/start/Def14Perf1"
+export e2e_single_ue_latency_and_throughput_test_client_mini_api_results_endpoint_to_invoke="$mini_api_ue_url/results/Def14Perf1"
 export e2e_single_ue_latency_and_throughput_test_iperf_server_ip=$mini_api_ip_server # iperf server ip should point to the MiniAPI Server VNF
 export e2e_single_ue_latency_and_throughput_test_min_bandwidth_mbps_threshold=100
 export e2e_single_ue_latency_and_throughput_test_max_rtt_ms_threshold=20
-#run_test "e2e_single_ue_latency_and_throughput_test"
+run_test "e2e_single_ue_latency_and_throughput_test"
 
 
 ######################################################
@@ -138,19 +138,17 @@ export e2e_single_ue_latency_and_throughput_test_max_rtt_ms_threshold=20
 #     e2e_multiple_ue_latency_and_throughput_test    #
 #                                                    #
 ######################################################
-
 # OS-Level Requirements
 # For this test to run, `iperf3` must be installed on the VNF.
-
-export e2e_multiple_ue_latency_and_throughput_test_server_mini_api_start_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/start/Def14Perf1
-export e2e_multiple_ue_latency_and_throughput_test_server_mini_api_stop_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/stop/Def14Perf1
-export e2e_multiple_ue_latency_and_throughput_test_client_mini_api_start_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_ue/start/Def14Perf1
-export e2e_multiple_ue_latency_and_throughput_test_client_mini_api_results_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_ue/results/Def14Perf1
+export e2e_multiple_ue_latency_and_throughput_test_server_mini_api_start_endpoint_to_invoke="$mini_api_server_url/start/Def14Perf1"
+export e2e_multiple_ue_latency_and_throughput_test_server_mini_api_stop_endpoint_to_invoke="$mini_api_server_url/stop/Def14Perf1"
+export e2e_multiple_ue_latency_and_throughput_test_client_mini_api_start_endpoint_to_invoke="$mini_api_ue_url/start/Def14Perf1"
+export e2e_multiple_ue_latency_and_throughput_test_client_mini_api_results_endpoint_to_invoke="$mini_api_ue_url/results/Def14Perf1"
 export e2e_multiple_ue_latency_and_throughput_test_iperf_server_ip=$mini_api_ip_server # iperf server ip should point to the MiniAPI Server VNF
 export e2e_multiple_ue_latency_and_throughput_test_ue_count=50
 export e2e_multiple_ue_latency_and_throughput_test_min_bandwidth_mbps_threshold=100
 export e2e_multiple_ue_latency_and_throughput_test_max_rtt_ms_threshold=10
-#run_test "e2e_multiple_ue_latency_and_throughput_test"
+run_test "e2e_multiple_ue_latency_and_throughput_test"
 
 
 ######################################################
@@ -158,11 +156,12 @@ export e2e_multiple_ue_latency_and_throughput_test_max_rtt_ms_threshold=10
 #    nef_signaling_performance_response_time_test    #
 #                                                    #
 ######################################################
-
-export nef_signaling_performance_response_time_test_host=https://webhook.site
-export nef_signaling_performance_response_time_test_endpoint=/3cbeb864-de38-4076-98fd-59796f29d94a
-export nef_signaling_performance_response_time_test_max_response_time_threshold_secs=2
-#run_test "nef_signaling_performance_response_time_test"
+export nef_signaling_performance_response_time_test_host=https://webhook.site 
+# nef_signaling_performance_response_time_test_host - Should be replaced with the host of the Network Application's API that will deal with the NEF Callbacks
+export nef_signaling_performance_response_time_test_endpoint=/02fd42f7-9e1e-41c8-9537-ec6abfdfdd08
+# nef_signaling_performance_response_time_test_endpoint - Should be replaced with the endpoint of the Network Application's API that will deal with the NEF Callbacks
+export nef_signaling_performance_response_time_test_max_response_time_threshold_secs=5
+run_test "nef_signaling_performance_response_time_test"
 
 
 ######################################################
@@ -170,11 +169,12 @@ export nef_signaling_performance_response_time_test_max_response_time_threshold_
 # nef_signaling_performance_requests_per_second_test #
 #                                                    #
 ######################################################
-
 export nef_signaling_performance_requests_per_second_test_host=https://webhook.site
-export nef_signaling_performance_requests_per_second_test_endpoint=/9ab58dc6-c620-456b-bee4-f05c379fdf32
+# nef_signaling_performance_requests_per_second_test_host - Should be replaced with the host of the Network Application's API that will deal with the NEF Callbacks
+export nef_signaling_performance_requests_per_second_test_endpoint=/02fd42f7-9e1e-41c8-9537-ec6abfdfdd08
+# nef_signaling_performance_requests_per_second_test_endpoint - Should be replaced with the endpoint of the Network Application's API that will deal with the NEF Callbacks
 export nef_signaling_performance_requests_per_second_test_min_threshold=5
-#run_test "nef_signaling_performance_requests_per_second_test"
+run_test "nef_signaling_performance_requests_per_second_test"
 
 
 ######################################################
@@ -186,13 +186,15 @@ export nef_signaling_performance_requests_per_second_test_min_threshold=5
 # OS-Level Requirements
 # For this test to run, either `netstat` or `ss` must be installed on the VNF that comprises the API that was declared for the NEF Callback.
 
-export nef_signaling_performance_maximum_connections_test_load_test_host=http://$mini_api_ip_server:8080
+export nef_signaling_performance_maximum_connections_test_load_test_host="$mini_api_server_url"
+# nef_signaling_performance_maximum_connections_test_load_test_host - Should be replaced with the host of the Network Application's API that will deal with the NEF Callbacks
 export nef_signaling_performance_maximum_connections_test_load_test_endpoint=/
-export nef_signaling_performance_maximum_connections_test_mini_api_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/start/Def14Perf7
-export nef_signaling_performance_maximum_connections_test_mini_api_endpoint_to_invoke_cleanup=http://$mini_api_endpoint_to_invoke_server/stop/Def14Perf7
-export nef_signaling_performance_maximum_connections_test_mini_api_endpoint_to_invoke_results=http://$mini_api_endpoint_to_invoke_server/results/Def14Perf7
+# nef_signaling_performance_maximum_connections_test_load_test_endpoint - Should be replaced with the endpoint of the Network Application's API that will deal with the NEF Callbacks
+export nef_signaling_performance_maximum_connections_test_mini_api_endpoint_to_invoke="$mini_api_server_url/start/Def14Perf7"
+export nef_signaling_performance_maximum_connections_test_mini_api_endpoint_to_invoke_cleanup="$mini_api_server_url/stop/Def14Perf7"
+export nef_signaling_performance_maximum_connections_test_mini_api_endpoint_to_invoke_results="$mini_api_server_url/results/Def14Perf7"
 export nef_signaling_performance_maximum_connections_test_connections_minimum_threshold=2
-#run_test "nef_signaling_performance_maximum_connections_test"
+run_test "nef_signaling_performance_maximum_connections_test"
 
 
 ######################################################
@@ -200,10 +202,10 @@ export nef_signaling_performance_maximum_connections_test_connections_minimum_th
 #            web_performance_static_page             #
 #                                                    #
 ######################################################
-
 export web_performance_static_page_target=https://google.pt
-export web_performance_static_page_web_speed_net_threshold_bps=5000000 #5 MBs per second
-#run_test "web_performance_static_page"
+# web_performance_static_page_target - Should be replaced with the URL of one of the static pages offered by Network Application
+export web_performance_static_page_web_speed_net_threshold_bps=1000000 #1 MBs per second
+run_test "web_performance_static_page"
 
 
 ######################################################
@@ -212,8 +214,9 @@ export web_performance_static_page_web_speed_net_threshold_bps=5000000 #5 MBs pe
 #                                                    #
 ######################################################
 export api_performance_response_time_api_target=https://google.pt
+# api_performance_response_time_api_target - Should be replaced with the URL of one of the APIs offered by Network Application
 export api_performance_response_time_threshold_ms=1000
-#run_test "api_performance_response_time"
+run_test "api_performance_response_time"
 
 
 ######################################################
@@ -222,10 +225,12 @@ export api_performance_response_time_threshold_ms=1000
 #                                                    #
 ######################################################
 export api_performance_requests_per_second_host=https://google.pt
+# api_performance_requests_per_second_host - Should be replaced with the host of one of the APIs offered by Network Application
 export api_performance_requests_per_second_endpoint=/
+# api_performance_requests_per_second_endpoint - Should be replaced with the endpoint of one of the APIs offered by Network Application
 export api_performance_requests_per_second_http_method=GET
 export api_performance_requests_per_second_min_threshold=10
-#run_test "api_performance_requests_per_second"
+run_test "api_performance_requests_per_second"
 
 
 ######################################################
@@ -233,18 +238,18 @@ export api_performance_requests_per_second_min_threshold=10
 #         maximum_number_of_connections_test         #
 #                                                    #
 ######################################################
-
 # OS-Level Requirements
 # For this test to run, either `netstat` or `ss` must be installed on the VNF that comprises the API that was declared for the NEF Callback.
-
-export maximum_number_of_connections_test_load_test_host=http://$mini_api_ip_server:8080
+export maximum_number_of_connections_test_load_test_host="$mini_api_server_url"
+# maximum_number_of_connections_test_load_test_host - Should be replaced with the host of one of the APIs offered by Network Application
 export maximum_number_of_connections_test_load_test_endpoint=/
+# maximum_number_of_connections_test_load_test_endpoint - Should be replaced with the endpoint of one of the APIs offered by Network Application
 export maximum_number_of_connections_test_load_test_http_method=GET
-export maximum_number_of_connections_test_mini_api_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/start/Def14Perf11
-export maximum_number_of_connections_test_mini_api_endpoint_to_invoke_cleanup=http://$mini_api_endpoint_to_invoke_server/stop/Def14Perf11
-export maximum_number_of_connections_test_mini_api_endpoint_to_invoke_results=http://$mini_api_endpoint_to_invoke_server/results/Def14Perf11
+export maximum_number_of_connections_test_mini_api_endpoint_to_invoke="$mini_api_server_url/start/Def14Perf11"
+export maximum_number_of_connections_test_mini_api_endpoint_to_invoke_cleanup="$mini_api_server_url/stop/Def14Perf11"
+export maximum_number_of_connections_test_mini_api_endpoint_to_invoke_results="$mini_api_server_url/results/Def14Perf11"
 export maximum_number_of_connections_test_connections_minimum_threshold=10
-#run_test "maximum_number_of_connections_test"
+run_test "maximum_number_of_connections_test"
 
 ######################################################
 #                                                    #
@@ -253,23 +258,23 @@ export maximum_number_of_connections_test_connections_minimum_threshold=10
 ######################################################
 
 export network_application_performance_rtt_target=5gasp.eu
+# network_application_performance_rtt_target - Should be replaced with the url of one of the APIs offered by Network Application
 export network_application_performance_rtt_threshold_ms=500 # 500 milliseconds
-#run_test "network_application_performance_rtt"
+run_test "network_application_performance_rtt"
 
 ######################################################
 #                                                    #
 #              hops_until_target_test                #
 #                                                    #
 ######################################################
-
 # OS-Level Requirements
 # For this test to run, `ping` must be installed on the VNF.
-
 export hops_until_target_test_target=8.8.8.8
+# network_application_performance_rtt_target - Should be replaced with a meaningful value - ideally the ip of one of the other VNFs
 export hops_until_target_test_max_hops_threshold=20
-export hops_until_target_test_mini_api_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/start/Def14Perf13
-export hops_until_target_test_mini_api_endpoint_to_invoke_results=http://$mini_api_endpoint_to_invoke_server/results/Def14Perf13
-#run_test "hops_until_target_test"
+export hops_until_target_test_mini_api_endpoint_to_invoke="$mini_api_server_url/start/Def14Perf13"
+export hops_until_target_test_mini_api_endpoint_to_invoke_results="$mini_api_server_url/results/Def14Perf13"
+run_test "hops_until_target_test"
 
 
 # 4. Finally, print the tests that failed
