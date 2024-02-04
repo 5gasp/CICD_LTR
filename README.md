@@ -52,11 +52,12 @@ In this scenario, the aforementioned APIs can be located either inside VNF1 or i
 This repository offers a vast collection of tests than may be used (i) through 5GASP's CI/CD Pipeline and (ii) locally.
 Before onboarding your application in 5GASP's CI/CD Pipeline, you should first perform these tests manually.
 
-To simplify the local testing processes, this repository also makes available N (TODO) bash scripts that execute the different tests:
-- `/ftp/tests/run_all_performance_tests.sh`
-- ... (TODO)
-- ... (TODO)
-- 
+To simplify the local testing processes, this repository also makes available 4 bash scripts that execute the different tests:
+- `/ftp/tests/run_5G_readiness_tests.sh`
+- `/ftp/tests/run_performance_and_scalability_tests.sh`
+- `/ftp/tests/run_security_and_privacy_tests.sh`
+- `/ftp/tests/run_availability_and_continuity_tests.sh` (Note: The Availability and Continuity tests can only be performed at UoP's testbed)
+
 
 Before running these scripts, you shoul first update the configuration variables of each test. When you have look at the scripts, you will see that updating the configuration variables is a straightforward process.
 
