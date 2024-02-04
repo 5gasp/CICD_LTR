@@ -1,8 +1,8 @@
 #!/bin/bash
 # @Author: Eduardo Santos
 # @Date:   2024-02-03 18:23:29
-# @Last Modified by:   Eduardo Santos
-# @Last Modified time: 2024-02-03 22:06:17
+# @Last Modified by:   Rafael Direito
+# @Last Modified time: 2024-02-04 12:02:41
 
 # Save the current working directory
 root_directory="$(pwd)"
@@ -73,6 +73,8 @@ print_failed_tests(){
         for folder in "${failed_tests[@]}"; do
             echo "  - $folder"
         done
+    else
+        echo "ALL TESTS PASSED!"
     fi
 }
 
@@ -80,16 +82,13 @@ print_failed_tests(){
 create_venv
 
 # 2. Define some global variables
-mini_api_ip_server=10.255.28.208
-mini_api_port_server=8000
-mini_api_endpoint_to_invoke_server=10.255.28.208:8000
-
-mini_api_ip_ue=10.255.28.249
-mini_api_port_ue=8000
-mini_api_endpoint_to_invoke_ue=10.255.28.249:8000
-
-reporting_api_ip=10.255.28.173
+# - Mini APIs
+mini_api_server_url=http://10.255.28.201:3001
+mini_api_ue_url=http://10.255.28.192:3001
+# - Reporting API
+reporting_api_ip=10.255.28.236
 reporting_api_port=3000
+
 
 # 3. Run the tests
 
@@ -98,11 +97,9 @@ reporting_api_port=3000
 #          mini_api_configuration (Server)           #
 #                                                    #
 ######################################################
-
-export mini_api_configuration_api_ip=$mini_api_ip_server
-export mini_api_configuration_api_port=$mini_api_port_server
-export mini_api_configuration_configuration_payload='{"variables":{"NEF_IP":"10.255.28.173","NEF_PORT":8888,"NEF_LOGIN_USERNAME":"admin@my-email.com","NEF_LOGIN_PASSWORD":"pass","SUBS_MONITORING_TYPE":"LOCATION_REPORTING", "SUBS_EXTERNAL_ID": "123456789@domain.com", "SUBS_CALLBACK_URL":"https://webhook.site/43d72330-0f8e-4a52-af1c-65c77d9aafd0","SUBS_MONITORING_EXPIRE_TIME":"2024-03-09T13:18:19.495000+00:00","UE1_NAME":"My UE","UE1_DESCRIPTION":"My UE Description","UE1_IPV4":"10.10.10.10","UE1_IPV6":"0:0:0:0:0:0:0:0","UE1_MAC_ADDRESS":"22-00-00-00-00-02","UE1_SUPI":"202010000000001"}}'
-#run_test "mini_api_configuration"
+export mini_api_configuration_configuration_endpoint="$mini_api_server_url/configure"
+export mini_api_configuration_configuration_payload='{"variables":{"NEF_IP":"10.255.28.236","NEF_PORT":8888,"NEF_LOGIN_USERNAME":"admin@my-email.com","NEF_LOGIN_PASSWORD":"pass","SUBS_MONITORING_TYPE":"LOCATION_REPORTING", "SUBS_EXTERNAL_ID": "123456789@domain.com", "SUBS_CALLBACK_URL":"https://webhook.site/43d72330-0f8e-4a52-af1c-65c77d9aafd0","SUBS_MONITORING_EXPIRE_TIME":"2024-03-09T13:18:19.495000+00:00","UE1_NAME":"My UE","UE1_DESCRIPTION":"My UE Description","UE1_IPV4":"10.10.10.10","UE1_IPV6":"0:0:0:0:0:0:0:0","UE1_MAC_ADDRESS":"22-00-00-00-00-02","UE1_SUPI":"202010000000001"}}'
+run_test "mini_api_configuration"
 
 
 ######################################################
@@ -110,11 +107,9 @@ export mini_api_configuration_configuration_payload='{"variables":{"NEF_IP":"10.
 #           mini_api_configuration (UE)              #
 #                                                    #
 ######################################################
-
-export mini_api_configuration_api_ip=$mini_api_ip_ue
-export mini_api_configuration_api_port=$mini_api_port_ue
-export mini_api_configuration_configuration_payload='{"variables":{"NEF_IP":"10.255.28.173","NEF_PORT":8888,"NEF_LOGIN_USERNAME":"admin@my-email.com","NEF_LOGIN_PASSWORD":"pass","SUBS_MONITORING_TYPE":"LOCATION_REPORTING", "SUBS_EXTERNAL_ID": "123456789@domain.com", "SUBS_CALLBACK_URL":"https://webhook.site/43d72330-0f8e-4a52-af1c-65c77d9aafd0","SUBS_MONITORING_EXPIRE_TIME":"2024-03-09T13:18:19.495000+00:00","UE1_NAME":"My UE","UE1_DESCRIPTION":"My UE Description","UE1_IPV4":"10.10.10.10","UE1_IPV6":"0:0:0:0:0:0:0:0","UE1_MAC_ADDRESS":"22-00-00-00-00-02","UE1_SUPI":"202010000000001"}}'
-#run_test "mini_api_configuration"
+export mini_api_configuration_configuration_endpoint="$mini_api_ue_url/configure"
+export mini_api_configuration_configuration_payload='{"variables":{"NEF_IP":"10.255.28.236","NEF_PORT":8888,"NEF_LOGIN_USERNAME":"admin@my-email.com","NEF_LOGIN_PASSWORD":"pass","SUBS_MONITORING_TYPE":"LOCATION_REPORTING", "SUBS_EXTERNAL_ID": "123456789@domain.com", "SUBS_CALLBACK_URL":"https://webhook.site/43d72330-0f8e-4a52-af1c-65c77d9aafd0","SUBS_MONITORING_EXPIRE_TIME":"2024-03-09T13:18:19.495000+00:00","UE1_NAME":"My UE","UE1_DESCRIPTION":"My UE Description","UE1_IPV4":"10.10.10.10","UE1_IPV6":"0:0:0:0:0:0:0:0","UE1_MAC_ADDRESS":"22-00-00-00-00-02","UE1_SUPI":"202010000000001"}}'
+run_test "mini_api_configuration"
 
 
 ######################################################
@@ -122,11 +117,10 @@ export mini_api_configuration_configuration_payload='{"variables":{"NEF_IP":"10.
 #             nef_authentication_test                #
 #                                                    #
 ######################################################
-
 export nef_authentication_test_reporting_api_ip=$reporting_api_ip
 export nef_authentication_test_reporting_api_port=$reporting_api_port
-export nef_authentication_test_mini_api_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/start/Def19Sec9
-#run_test "nef_authentication_test"
+export nef_authentication_test_mini_api_endpoint_to_invoke="$mini_api_server_url/start/Def19Sec9"
+run_test "nef_authentication_test"
 
 
 ######################################################
@@ -134,11 +128,10 @@ export nef_authentication_test_mini_api_endpoint_to_invoke=http://$mini_api_endp
 #            authentication_with_5gs_test            #
 #                                                    #
 ######################################################
-
 export authentication_with_5gs_test_reporting_api_ip=$reporting_api_ip
 export authentication_with_5gs_test_reporting_api_port=$reporting_api_port
-export authentication_with_5gs_test_mini_api_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/start/Def115G1
-#run_test "authentication_with_5gs_test"
+export authentication_with_5gs_test_mini_api_endpoint_to_invoke="$mini_api_server_url/start/Def115G1"
+run_test "authentication_with_5gs_test"
 
 
 ######################################################
@@ -146,11 +139,10 @@ export authentication_with_5gs_test_mini_api_endpoint_to_invoke=http://$mini_api
 #          nef_monitoring_subscription_test          #
 #                                                    #
 ######################################################
-
 export nef_monitoring_subscription_test_reporting_api_ip=$reporting_api_ip
 export nef_monitoring_subscription_test_reporting_api_port=$reporting_api_port
-export nef_monitoring_subscription_test_mini_api_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/start/Def115G2
-#run_test "nef_monitoring_subscription_test"
+export nef_monitoring_subscription_test_mini_api_endpoint_to_invoke="$mini_api_server_url/start/Def115G2"
+run_test "nef_monitoring_subscription_test"
 
 
 ######################################################
@@ -158,12 +150,11 @@ export nef_monitoring_subscription_test_mini_api_endpoint_to_invoke=http://$mini
 #                nef_handover_test                   #
 #                                                    #
 ######################################################
-
 export nef_ue_handover_test_reporting_api_ip=$reporting_api_ip
 export nef_ue_handover_test_reporting_api_port=$reporting_api_port
-export nef_ue_handover_test_mini_api_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/start/Def115G3
+export nef_ue_handover_test_mini_api_endpoint_to_invoke="$mini_api_server_url/start/Def115G3"
 export nef_ue_handover_test_ue_supi=202010000000001
-#run_test "nef_handover_test"
+run_test "nef_handover_test"
 
 
 ######################################################
@@ -171,12 +162,11 @@ export nef_ue_handover_test_ue_supi=202010000000001
 #           nef_ue_rsrp_acquisition_test             #
 #                                                    #
 ######################################################
-
 export nef_ue_rsrp_acquisition_test_reporting_api_ip=$reporting_api_ip
 export nef_ue_rsrp_acquisition_test_reporting_api_port=$reporting_api_port
-export nef_ue_rsrp_acquisition_test_mini_api_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/start/Def115G4
+export nef_ue_rsrp_acquisition_test_mini_api_endpoint_to_invoke="$mini_api_server_url/start/Def115G4"
 export nef_ue_rsrp_acquisition_test_ue_supi=202010000000001
-#run_test "nef_ue_rsrp_acquisition_test"
+run_test "nef_ue_rsrp_acquisition_test"
 
 
 ######################################################
@@ -184,12 +174,11 @@ export nef_ue_rsrp_acquisition_test_ue_supi=202010000000001
 #              nef_ue_path_loss_test                 #
 #                                                    #
 ######################################################
-
 export nef_ue_path_loss_test_reporting_api_ip=$reporting_api_ip
 export nef_ue_path_loss_test_reporting_api_port=$reporting_api_port
-export nef_ue_path_loss_test_mini_api_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/start/Def115G5
+export nef_ue_path_loss_test_mini_api_endpoint_to_invoke="$mini_api_server_url/start/Def115G5"
 export nef_ue_path_loss_test_ue_supi=202010000000001
-#run_test "nef_ue_path_loss_test"
+run_test "nef_ue_path_loss_test"
 
 
 ######################################################
@@ -197,12 +186,11 @@ export nef_ue_path_loss_test_ue_supi=202010000000001
 #             nef_serving_cell_info_test             #
 #                                                    #
 ######################################################
-
 export nef_serving_cell_info_test_reporting_api_ip=$reporting_api_ip
 export nef_serving_cell_info_test_reporting_api_port=$reporting_api_port
-export nef_serving_cell_info_test_mini_api_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/start/Def115G6
+export nef_serving_cell_info_test_mini_api_endpoint_to_invoke="$mini_api_server_url/start/Def115G6"
 export nef_serving_cell_info_test_ue_supi=202010000000001
-#run_test "nef_serving_cell_info_test"
+run_test "nef_serving_cell_info_test"
 
 
 ######################################################
@@ -210,12 +198,11 @@ export nef_serving_cell_info_test_ue_supi=202010000000001
 #             nef_qos_subscription_test              #
 #                                                    #
 ######################################################
-
 export nef_qos_subscription_test_reporting_api_ip=$reporting_api_ip
 export nef_qos_subscription_test_reporting_api_port=$reporting_api_port
-export nef_qos_subscription_test_mini_api_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/start/Def115G7
+export nef_qos_subscription_test_mini_api_endpoint_to_invoke="$mini_api_server_url/start/Def115G7"
 export nef_qos_subscription_test_monitoring_payload='{"ipv4Addr":"10.0.0.1","notificationDestination":"http://127.0.0.1/callback","snssai":{"sst":1,"sd":"000001"},"dnn":"province1.mnc01.mcc202.gprs","qosReference":9,"altQoSReferences":[0],"usageThreshold":{"duration":0,"totalVolume":0,"downlinkVolume":0,"uplinkVolume":0},"qosMonInfo":{"reqQosMonParams":["DOWNLINK"],"repFreqs":["EVENT_TRIGGERED"],"latThreshDl":0,"latThreshUl":0,"latThreshRp":0,"waitTime":0,"repPeriod":0}}'
-#run_test "nef_qos_subscription_test"
+run_test "nef_qos_subscription_test"
 
 
 # 4. Finally, print the tests that failed
