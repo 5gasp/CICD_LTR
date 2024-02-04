@@ -1,8 +1,8 @@
 #!/bin/bash
 # @Author: Eduardo Santos
 # @Date:   2024-02-03 18:40:52
-# @Last Modified by:   Eduardo Santos
-# @Last Modified time: 2024-02-03 22:09:19
+# @Last Modified by:   Rafael Direito
+# @Last Modified time: 2024-02-04 12:51:51
 # Save the current working directory
 root_directory="$(pwd)"
 # Initialize an empty list to store failed tests
@@ -72,6 +72,8 @@ print_failed_tests(){
         for folder in "${failed_tests[@]}"; do
             echo "  - $folder"
         done
+    else
+        echo "ALL TESTS PASSED!"
     fi
 }
 
@@ -79,32 +81,16 @@ print_failed_tests(){
 create_venv
 
 # 2. Define some global variables
-
-reporting_api_ip=10.255.28.173
-reporting_api_port=3000
-
-nef_url=http://10.255.28.173:8888
+nef_url=http://10.255.28.236:8888
 
 # 3. Run the tests
 
 ######################################################
 #                                                    #
-#             nef_authentication_test                #
-#                                                    #
-######################################################
-
-export nef_authentication_test_reporting_api_ip=$reporting_api_ip
-export nef_authentication_test_reporting_api_port=$reporting_api_port
-export nef_authentication_test_mini_api_endpoint_to_invoke=http://$mini_api_endpoint_to_invoke_server/start/Def19Sec9
-#run_test "nef_authentication_test"
-
-
-######################################################
-#                                                    #
 #       availability_and_continuity_bandwidth        #
+#THIS TEST CASE CAN ONLY BE EXECUTED AT UOP'S TESTBED#
 #                                                    #
 ######################################################
-
 export availability_and_continuity_bandwidth_NEFURL=$nef_url
 #run_test "availability_and_continuity_bandwidth"
 
@@ -112,9 +98,9 @@ export availability_and_continuity_bandwidth_NEFURL=$nef_url
 ######################################################
 #                                                    #
 #        availability_and_continuity_latency         #
+#THIS TEST CASE CAN ONLY BE EXECUTED AT UOP'S TESTBED#
 #                                                    #
 ######################################################
-
 export availability_and_continuity_latency_NEFURL=$nef_url
 #run_test "availability_and_continuity_latency"
 
@@ -122,9 +108,9 @@ export availability_and_continuity_latency_NEFURL=$nef_url
 ######################################################
 #                                                    #
 #      availability_and_continuity_packet_loss       #
+#THIS TEST CASE CAN ONLY BE EXECUTED AT UOP'S TESTBED#
 #                                                    #
 ######################################################
-
 export availability_and_continuity_packet_loss_NEFURL=$nef_url
 #run_test "availability_and_continuity_packet_loss"
 
@@ -132,9 +118,9 @@ export availability_and_continuity_packet_loss_NEFURL=$nef_url
 ######################################################
 #                                                    #
 #   availability_and_continuity_packet_corruption    #
+#THIS TEST CASE CAN ONLY BE EXECUTED AT UOP'S TESTBED#
 #                                                    #
 ######################################################
-
 export availability_and_continuity_packet_corruption_NEFURL=$nef_url
 #run_test "availability_and_continuity_packet_corruption"
 
@@ -142,9 +128,9 @@ export availability_and_continuity_packet_corruption_NEFURL=$nef_url
 ######################################################
 #                                                    #
 #   availability_and_continuity_communication_loss   #
+#THIS TEST CASE CAN ONLY BE EXECUTED AT UOP'S TESTBED#
 #                                                    #
 ######################################################
-
 export availability_and_continuity_communication_loss_NEFURL=$nef_url
 #run_test "availability_and_continuity_communication_loss"
 
