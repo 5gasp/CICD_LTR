@@ -2,7 +2,7 @@
 # @Author: Eduardo Santos
 # @Date:   2024-02-03 18:30:41
 # @Last Modified by:   Rafael Direito
-# @Last Modified time: 2024-02-04 12:26:45
+# @Last Modified time: 2024-02-05 09:15:45
 
 # Save the current working directory
 root_directory="$(pwd)"
@@ -84,9 +84,9 @@ create_venv
 # 2. Define some global variables
 
 # - Mini APIs
-mini_api_server_url=http://10.255.28.201:3001
-mini_api_ue_url=http://10.255.28.192:3001
-mini_api_ip_server=10.255.28.201
+mini_api_server_url=http://10.255.28.239:3001
+mini_api_ue_url=http://10.255.28.246:3001
+mini_api_ip_server=10.255.28.239
 
 # - Reporting API
 reporting_api_ip=10.255.28.236
@@ -158,7 +158,7 @@ run_test "e2e_multiple_ue_latency_and_throughput_test"
 ######################################################
 export nef_signaling_performance_response_time_test_host=https://webhook.site 
 # nef_signaling_performance_response_time_test_host - Should be replaced with the host of the Network Application's API that will deal with the NEF Callbacks
-export nef_signaling_performance_response_time_test_endpoint=/02fd42f7-9e1e-41c8-9537-ec6abfdfdd08
+export nef_signaling_performance_response_time_test_endpoint=/eadccb05-90a2-4745-a5aa-772e4a060fc3
 # nef_signaling_performance_response_time_test_endpoint - Should be replaced with the endpoint of the Network Application's API that will deal with the NEF Callbacks
 export nef_signaling_performance_response_time_test_max_response_time_threshold_secs=5
 run_test "nef_signaling_performance_response_time_test"
@@ -171,7 +171,7 @@ run_test "nef_signaling_performance_response_time_test"
 ######################################################
 export nef_signaling_performance_requests_per_second_test_host=https://webhook.site
 # nef_signaling_performance_requests_per_second_test_host - Should be replaced with the host of the Network Application's API that will deal with the NEF Callbacks
-export nef_signaling_performance_requests_per_second_test_endpoint=/02fd42f7-9e1e-41c8-9537-ec6abfdfdd08
+export nef_signaling_performance_requests_per_second_test_endpoint=/eadccb05-90a2-4745-a5aa-772e4a060fc3
 # nef_signaling_performance_requests_per_second_test_endpoint - Should be replaced with the endpoint of the Network Application's API that will deal with the NEF Callbacks
 export nef_signaling_performance_requests_per_second_test_min_threshold=5
 run_test "nef_signaling_performance_requests_per_second_test"
@@ -202,7 +202,7 @@ run_test "nef_signaling_performance_maximum_connections_test"
 #            web_performance_static_page             #
 #                                                    #
 ######################################################
-export web_performance_static_page_target=https://google.pt
+export web_performance_static_page_target="$mini_api_server_url"
 # web_performance_static_page_target - Should be replaced with the URL of one of the static pages offered by Network Application
 export web_performance_static_page_web_speed_net_threshold_bps=1000000 #1 MBs per second
 run_test "web_performance_static_page"
@@ -213,7 +213,7 @@ run_test "web_performance_static_page"
 #             api_performance_response_time          #
 #                                                    #
 ######################################################
-export api_performance_response_time_api_target=https://google.pt
+export api_performance_response_time_api_target="$mini_api_server_url"
 # api_performance_response_time_api_target - Should be replaced with the URL of one of the APIs offered by Network Application
 export api_performance_response_time_threshold_ms=1000
 run_test "api_performance_response_time"
@@ -224,7 +224,7 @@ run_test "api_performance_response_time"
 #          api_performance_requests_per_second       #
 #                                                    #
 ######################################################
-export api_performance_requests_per_second_host=https://google.pt
+export api_performance_requests_per_second_host="$mini_api_server_url"
 # api_performance_requests_per_second_host - Should be replaced with the host of one of the APIs offered by Network Application
 export api_performance_requests_per_second_endpoint=/
 # api_performance_requests_per_second_endpoint - Should be replaced with the endpoint of one of the APIs offered by Network Application
