@@ -20,12 +20,15 @@ def perform_mini_api_configuration(
     response = None
     try:
         print("Configuration Payload:", configuration_payload)
+        headers = {}
+        headers["Content-Type"] = "application/json"
         response = requests.post(
             url=mini_api_configuration_url,
-            data=configuration_payload
+            headers=headers,
+            data=configuration_payload,
         )
         if response.status_code not in [200, 409]:
-            response.raise_for_status()    
+            response.raise_for_status()
         print(f"Response: {response.text}")
         return 0, "OK"
 
