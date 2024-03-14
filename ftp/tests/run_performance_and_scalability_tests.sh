@@ -88,9 +88,6 @@ mini_api_server_url=http://10.255.28.239:3001
 mini_api_ue_url=http://10.255.28.246:3001
 mini_api_ip_server=10.255.28.239
 
-# - Reporting API
-reporting_api_ip=10.255.28.236
-reporting_api_port=3000
 
 # 3. Run the tests
 
@@ -140,10 +137,10 @@ run_test "e2e_single_ue_latency_and_throughput_test"
 ######################################################
 # OS-Level Requirements
 # For this test to run, `iperf3` must be installed on the VNF.
-export e2e_multiple_ue_latency_and_throughput_test_server_mini_api_start_endpoint_to_invoke="$mini_api_server_url/start/Def14Perf1"
-export e2e_multiple_ue_latency_and_throughput_test_server_mini_api_stop_endpoint_to_invoke="$mini_api_server_url/stop/Def14Perf1"
-export e2e_multiple_ue_latency_and_throughput_test_client_mini_api_start_endpoint_to_invoke="$mini_api_ue_url/start/Def14Perf1"
-export e2e_multiple_ue_latency_and_throughput_test_client_mini_api_results_endpoint_to_invoke="$mini_api_ue_url/results/Def14Perf1"
+export e2e_multiple_ue_latency_and_throughput_test_server_mini_api_start_endpoint_to_invoke="$mini_api_server_url/start/Def14Perf2"
+export e2e_multiple_ue_latency_and_throughput_test_server_mini_api_stop_endpoint_to_invoke="$mini_api_server_url/stop/Def14Perf2"
+export e2e_multiple_ue_latency_and_throughput_test_client_mini_api_start_endpoint_to_invoke="$mini_api_ue_url/start/Def14Perf2"
+export e2e_multiple_ue_latency_and_throughput_test_client_mini_api_results_endpoint_to_invoke="$mini_api_ue_url/results/Def14Perf2"
 export e2e_multiple_ue_latency_and_throughput_test_iperf_server_ip=$mini_api_ip_server # iperf server ip should point to the MiniAPI Server VNF
 export e2e_multiple_ue_latency_and_throughput_test_ue_count=50
 export e2e_multiple_ue_latency_and_throughput_test_min_bandwidth_mbps_threshold=100
