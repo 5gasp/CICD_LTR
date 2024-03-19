@@ -26,8 +26,6 @@ install_requirements()
 # ----------------------- END OF INSTALL REQUIREMENTS ----------------------- #
 
 import requests
-import socket
-import dns.resolver
 import logging
 import time
 
@@ -38,8 +36,8 @@ def getAuthBearer(username: str, password: str, nef_url: str) -> str:
     }
     data = {
         "grant_type": "",
-        "username": "admin@my-email.com",
-        "password": "pass",
+        "username": username,
+        "password": password,
         "scope": "",
         "client_id": "",
         "client_secret": ""
@@ -58,59 +56,6 @@ def getAuthBearer(username: str, password: str, nef_url: str) -> str:
         logging.error("Request failed with status code:" + str(response.status_code) + response.content.decode('utf-8'))
         return None
 
-def getIP():
-
-    # Set the hostname that you want to look up
-    hostname = "cameraaistr.fidegad.external.ip"
-
-    try:
-        # Use the socket module to get the IP address of the pod's default DNS server
-        dns_server = socket.gethostbyname("kube-dns.kube-system.svc.cluster.local")
-    except:
-        return "127.0.0.1"
-    # Use the dns.resolver module to perform the nslookup using the pod's default DNS server
-    resolver = dns.resolver.Resolver(configure=False)
-    resolver.nameservers = [dns_server]
-    result = resolver.resolve(hostname)
-
-    # Print the IP addresses returned by the nslookup
-    for ip in result:
-        return ip
-
-def createNEFMonitoringSubscription(bearer, nef_url, externalId):
-    streaming_server_ip_address = getIP()
-    print("Streaming Server IP address by kubernetes: " + str(streaming_server_ip_address))
-    headers = {
-        "accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + bearer
-    }
-    data = {
-        "externalId": externalId,
-        "notificationDestination": "http://" + str(streaming_server_ip_address) + ":85/handover_event_hook",
-        "monitoringType": "LOCATION_REPORTING",
-        "maximumNumberOfReports": 1000,
-        "monitorExpireTime": "2025-02-12T09:06:50.811Z",
-        "maximumDetectionTime": 1000,
-        "reachabilityType": "DATA"
-    }
-
-    response = requests.post(
-        nef_url.rstrip('/') + "/nef/api/v1/3gpp-monitoring-event/v1/myNetapp/subscriptions"
-        , headers=headers
-        , json=data
-    )
-
-    if response.status_code == 201:
-        logging.info("Subscription succeeded with status code:" + str(response.status_code) + response.content.decode('utf-8'))
-        # Do something with the response data
-        data = response.json()
-        logging.info(data)
-        return True
-    else:
-        # Handle the error
-        logging.error("Subscription request failed with status code:" + str(response.status_code) + response.content.decode('utf-8'))
-        return False
 
 def startMovingUE(bearer, nef_url, supi):
     headers = {
@@ -168,44 +113,10 @@ def stopMovingUE(bearer, nef_url, supi):
         logging.info("Stop looping of UE with SUPI " + supi + " failed with status code:" + str(response.status_code) + response.content.decode('utf-8'))
         return False
 
-def deleteNEFMonitoringSubscription(bearer, nef_url, externalId):
-    headers = {
-        "accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + bearer
-    }
-    response = requests.get(
-        nef_url.rstrip('/') + "/nef/api/v1/3gpp-monitoring-event/v1/myNetapp/subscriptions"
-        , headers=headers
-    )
 
-    if 200 <= response.status_code < 300:
-        logging.info("Get Subscription succeeded with status code:" + str(response.status_code) + response.content.decode('utf-8'))
-        if len(response.content) > 0:
-            # Do something with the response data
-            data = response.json()
-            for row in data:
-                if row["externalId"] == externalId:
-                    delete_response = requests.delete(row["link"], headers=headers)
-                    if delete_response.status_code == 200:
-                        logging.info("Deletion of  Subscription request of " + row["externalId"] + " succeeded with status code: " + str(
-                            delete_response.status_code) + delete_response.content.decode('utf-8'))
-                    else:
-                        logging.error("Deletion of Subscription request of " + row["externalId"] + " failed with status code: " + str(
-                            delete_response.status_code) + delete_response.content.decode('utf-8'))
-                        return False
-            logging.info(data)
-        else:
-            logging.info("No active subscriptions found")
-        return True
-    else:
-        # Handle the error
-        logging.error("Subscription deletion request failed with status code:" + str(response.status_code) + response.content.decode('utf-8'))
-        return False
-
-def iterateForAUE(nef_url: str, ue: str, timeforacircle: str)-> str :
+def iterateForAUE(nef_url: str, nef_username: str, nef_password: str, ue: str, timeforacircle: str, liveness_url: str)-> str :
     try:
-        bearer = getAuthBearer("admin@my-email.com", "pass", nef_url)
+        bearer = getAuthBearer(nef_username, nef_password, nef_url)
         if bearer is not None:
             stopMovingUE(bearer, nef_url, "202010000000004")
             stopMovingUE(bearer, nef_url, "202010000000005")
@@ -220,20 +131,34 @@ def iterateForAUE(nef_url: str, ue: str, timeforacircle: str)-> str :
         return -1
 
     try:
-        bearer = getAuthBearer("admin@my-email.com", "pass", nef_url)
+        bearer = getAuthBearer(nef_username, nef_password, nef_url)
         if bearer is not None:
-            createNEFMonitoringSubscription(bearer, nef_url, "1000" + ue + "@domain.com")
             startMovingUE(bearer, nef_url, "20201000000000" + ue)
             time.sleep(int(timeforacircle) * 2)
             stopMovingUE(bearer, nef_url, "20201000000000" + ue)
-            deleteNEFMonitoringSubscription(bearer, nef_url, "1000" + ue + "@domain.com")
-            return "Success"
+            if check_liveness(liveness_url):
+                return "Success"
+            else:
+                return -1
     except ConnectionError:
         logging.error("Connection with NEF failed!")
     except:
         logging.error("Communication with NEF failed!")
     return -1
 
+def check_liveness(url):
+    try:
+        response = requests.get(url)
+        # A status code of 200 means OK, which indicates the page is live.
+        if response.status_code == 200:
+            print(f"The page at {url} is live. Status Code: {response.status_code}")
+            return True
+        else:
+            print(f"The page at {url} encountered an issue. Status Code: {response.status_code}")
+            return False
+    except requests.ConnectionError:
+        print(f"Failed to connect to {url}")
+        return False
 # -------------------------- UNINSTALL REQUIREMENTS ------------------------- #
 def uninstall_requirements():
     curr_dir = os.path.dirname(os.path.realpath(__file__))
@@ -257,5 +182,7 @@ logger = logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelna
 
 if __name__ == '__main__':
     nef_url = "http://10.10.10.20:8888"
-    iterateForAUE(nef_url, "4", "36")
+    nef_username = "admin@my-email.com"
+    nef_password = "pass"
+    iterateForAUE(nef_url, nef_username, nef_password, "4", "36")
 
