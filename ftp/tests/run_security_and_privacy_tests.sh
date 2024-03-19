@@ -107,7 +107,7 @@ run_test "mini_api_configuration"
 
 ######################################################
 #                                                    #
-#                    ssl_audit                       #
+#             ssl_audit (Def19Sec4)                  #
 #                                                    #
 ######################################################
 export ssl_audit_url=5gasp.eu
@@ -117,7 +117,7 @@ run_test "ssl_audit"
 
 ######################################################
 #                                                    #
-#                 ssh_brute_force                    #
+#          ssh_brute_force (Def19Sec5)               #
 #                                                    #
 ######################################################
 export usernames_list_file_path=example_artifacts/top-usernames-shortlist.txt
@@ -130,7 +130,7 @@ run_test "ssh_brute_force"
 
 ######################################################
 #                                                    #
-#                    open_ports                      #
+#             open_ports (Def19Sec7)                 #
 #                                                    #
 ######################################################
 # OS-Level Requirements
@@ -142,7 +142,7 @@ run_test "open_ports"
 
 ######################################################
 #                                                    #
-#                    ssh_audit                       #
+#             ssh_audit (Def19Sec8)                  #
 #                                                    #
 ######################################################
 export ssh_audit_ssh_host=$mini_api_ip_server
@@ -152,7 +152,7 @@ run_test "ssh_audit"
 
 ######################################################
 #                                                    #
-#             nef_authentication_test                #
+#      nef_authentication_test (Def19Sec9)           #
 #                                                    #
 ######################################################
 export nef_authentication_test_reporting_api_ip=$reporting_api_ip

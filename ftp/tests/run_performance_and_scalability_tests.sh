@@ -113,11 +113,11 @@ export mini_api_configuration_configuration_payload='{"variables":{"NEF_IP":"10.
 run_test "mini_api_configuration"
 
 
-######################################################
-#                                                    #
-#      e2e_single_ue_latency_and_throughput_test     #
-#                                                    #
-######################################################
+############################################################
+#                                                          #
+#  e2e_single_ue_latency_and_throughput_test (Def14Perf1)  #
+#                                                          #
+############################################################
 # OS-Level Requirements
 # For this test to run, `iperf3` must be installed on the VNF.
 export e2e_single_ue_latency_and_throughput_test_server_mini_api_start_endpoint_to_invoke="$mini_api_server_url/start/Def14Perf1"
@@ -130,11 +130,11 @@ export e2e_single_ue_latency_and_throughput_test_max_rtt_ms_threshold=20
 run_test "e2e_single_ue_latency_and_throughput_test"
 
 
-######################################################
-#                                                    #
-#     e2e_multiple_ue_latency_and_throughput_test    #
-#                                                    #
-######################################################
+##############################################################
+#                                                            #
+#  e2e_multiple_ue_latency_and_throughput_test (Def14Perf2)  #
+#                                                            #
+##############################################################
 # OS-Level Requirements
 # For this test to run, `iperf3` must be installed on the VNF.
 export e2e_multiple_ue_latency_and_throughput_test_server_mini_api_start_endpoint_to_invoke="$mini_api_server_url/start/Def14Perf2"
@@ -148,11 +148,11 @@ export e2e_multiple_ue_latency_and_throughput_test_max_rtt_ms_threshold=10
 run_test "e2e_multiple_ue_latency_and_throughput_test"
 
 
-######################################################
-#                                                    #
-#    nef_signaling_performance_response_time_test    #
-#                                                    #
-######################################################
+###############################################################
+#                                                             #
+#  nef_signaling_performance_response_time_test (Def14Perf5)  #
+#                                                             #
+###############################################################
 export nef_signaling_performance_response_time_test_host=https://webhook.site
 # nef_signaling_performance_response_time_test_host - Should be replaced with the host of the Network Application's API that will deal with the NEF Callbacks
 export nef_signaling_performance_response_time_test_endpoint=/eadccb05-90a2-4745-a5aa-772e4a060fc3
@@ -161,11 +161,11 @@ export nef_signaling_performance_response_time_test_max_response_time_threshold_
 run_test "nef_signaling_performance_response_time_test"
 
 
-######################################################
-#                                                    #
-# nef_signaling_performance_requests_per_second_test #
-#                                                    #
-######################################################
+#####################################################################
+#                                                                   #
+#  nef_signaling_performance_requests_per_second_test (Def14Perf6)  #
+#                                                                   #
+#####################################################################
 export nef_signaling_performance_requests_per_second_test_host=https://webhook.site
 # nef_signaling_performance_requests_per_second_test_host - Should be replaced with the host of the Network Application's API that will deal with the NEF Callbacks
 export nef_signaling_performance_requests_per_second_test_endpoint=/eadccb05-90a2-4745-a5aa-772e4a060fc3
@@ -174,11 +174,11 @@ export nef_signaling_performance_requests_per_second_test_min_threshold=5
 run_test "nef_signaling_performance_requests_per_second_test"
 
 
-######################################################
-#                                                    #
-# nef_signaling_performance_maximum_connections_test #
-#                                                    #
-######################################################
+#####################################################################
+#                                                                   #
+#  nef_signaling_performance_maximum_connections_test (Def14Perf7)  #
+#                                                                   #
+#####################################################################
 
 # OS-Level Requirements
 # For this test to run, either `netstat` or `ss` must be installed on the VNF that comprises the API that was declared for the NEF Callback.
@@ -194,33 +194,33 @@ export nef_signaling_performance_maximum_connections_test_connections_minimum_th
 run_test "nef_signaling_performance_maximum_connections_test"
 
 
-######################################################
-#                                                    #
-#            web_performance_static_page             #
-#                                                    #
-######################################################
+##############################################
+#                                            #
+#  web_performance_static_page (Def14Perf8)  #
+#                                            #
+##############################################
 export web_performance_static_page_target="$mini_api_server_url"
 # web_performance_static_page_target - Should be replaced with the URL of one of the static pages offered by Network Application
 export web_performance_static_page_web_speed_net_threshold_bps=1000000 #1 MBs per second
 run_test "web_performance_static_page"
 
 
-######################################################
-#                                                    #
-#             api_performance_response_time          #
-#                                                    #
-######################################################
+################################################
+#                                              #
+#  api_performance_response_time (Def14Perf9)  #
+#                                              #
+################################################
 export api_performance_response_time_api_target="$mini_api_server_url"
 # api_performance_response_time_api_target - Should be replaced with the URL of one of the APIs offered by Network Application
 export api_performance_response_time_threshold_ms=1000
 run_test "api_performance_response_time"
 
 
-######################################################
-#                                                    #
-#          api_performance_requests_per_second       #
-#                                                    #
-######################################################
+#######################################################
+#                                                     #
+#  api_performance_requests_per_second (Def14Perf10)  #
+#                                                     #
+#######################################################
 export api_performance_requests_per_second_host="$mini_api_server_url"
 # api_performance_requests_per_second_host - Should be replaced with the host of one of the APIs offered by Network Application
 export api_performance_requests_per_second_endpoint=/
@@ -232,7 +232,7 @@ run_test "api_performance_requests_per_second"
 
 ######################################################
 #                                                    #
-#         maximum_number_of_connections_test         #
+#  maximum_number_of_connections_test (Def14Perf11)  #
 #                                                    #
 ######################################################
 # OS-Level Requirements
@@ -248,11 +248,11 @@ export maximum_number_of_connections_test_mini_api_endpoint_to_invoke_results="$
 export maximum_number_of_connections_test_connections_minimum_threshold=10
 run_test "maximum_number_of_connections_test"
 
-######################################################
-#                                                    #
-#        network_application_performance_rtt         #
-#                                                    #
-######################################################
+#######################################################
+#                                                     #
+#  network_application_performance_rtt (Def14Perf12)  #
+#                                                     #
+#######################################################
 
 export network_application_performance_rtt_target=5gasp.eu
 # network_application_performance_rtt_target - Should be replaced with the url of one of the APIs offered by Network Application
@@ -261,7 +261,7 @@ run_test "network_application_performance_rtt"
 
 ######################################################
 #                                                    #
-#              hops_until_target_test                #
+#        hops_until_target_test (Def14Perf13)        #
 #                                                    #
 ######################################################
 # OS-Level Requirements

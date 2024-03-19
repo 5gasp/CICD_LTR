@@ -116,18 +116,7 @@ run_test "mini_api_configuration"
 
 ######################################################
 #                                                    #
-#             nef_authentication_test                #
-#                                                    #
-######################################################
-export nef_authentication_test_reporting_api_ip=$reporting_api_ip
-export nef_authentication_test_reporting_api_port=$reporting_api_port
-export nef_authentication_test_mini_api_endpoint_to_invoke="$mini_api_server_url/start/Def19Sec9"
-run_test "nef_authentication_test"
-
-
-######################################################
-#                                                    #
-#            authentication_with_5gs_test            #
+#      authentication_with_5gs_test (Def115G1)       #
 #                                                    #
 ######################################################
 export authentication_with_5gs_test_reporting_api_ip=$reporting_api_ip
@@ -138,7 +127,7 @@ run_test "authentication_with_5gs_test"
 
 ######################################################
 #                                                    #
-#          nef_monitoring_subscription_test          #
+#    nef_monitoring_subscription_test (Def115G2)     #
 #                                                    #
 ######################################################
 export nef_monitoring_subscription_test_reporting_api_ip=$reporting_api_ip
@@ -149,7 +138,7 @@ run_test "nef_monitoring_subscription_test"
 
 ######################################################
 #                                                    #
-#                nef_handover_test                   #
+#           nef_handover_test (Def115G3)             #
 #                                                    #
 ######################################################
 export nef_ue_handover_test_reporting_api_ip=$reporting_api_ip
@@ -161,7 +150,7 @@ run_test "nef_handover_test"
 
 ######################################################
 #                                                    #
-#           nef_ue_rsrp_acquisition_test             #
+#      nef_ue_rsrp_acquisition_test (Def115G4)       #
 #                                                    #
 ######################################################
 export nef_ue_rsrp_acquisition_test_reporting_api_ip=$reporting_api_ip
@@ -173,7 +162,7 @@ run_test "nef_ue_rsrp_acquisition_test"
 
 ######################################################
 #                                                    #
-#              nef_ue_path_loss_test                 #
+#         nef_ue_path_loss_test (Def115G5)           #
 #                                                    #
 ######################################################
 export nef_ue_path_loss_test_reporting_api_ip=$reporting_api_ip
@@ -185,7 +174,7 @@ run_test "nef_ue_path_loss_test"
 
 ######################################################
 #                                                    #
-#             nef_serving_cell_info_test             #
+#       nef_serving_cell_info_test (Def115G6)        #
 #                                                    #
 ######################################################
 export nef_serving_cell_info_test_reporting_api_ip=$reporting_api_ip
@@ -197,7 +186,7 @@ run_test "nef_serving_cell_info_test"
 
 ######################################################
 #                                                    #
-#             nef_qos_subscription_test              #
+#        nef_qos_subscription_test (Def115G7)        #
 #                                                    #
 ######################################################
 export nef_qos_subscription_test_reporting_api_ip=$reporting_api_ip

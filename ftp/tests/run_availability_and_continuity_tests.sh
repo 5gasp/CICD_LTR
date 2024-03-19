@@ -85,52 +85,52 @@ nef_url=http://10.255.28.236:8888
 
 # 3. Run the tests
 
-######################################################
-#                                                    #
-#       availability_and_continuity_bandwidth        #
-#THIS TEST CASE CAN ONLY BE EXECUTED AT UOP'S TESTBED#
-#                                                    #
-######################################################
+#############################################################
+#                                                           #
+#  availability_and_continuity_bandwidth (Def12AvailCont1)  #
+#   THIS TEST CASE CAN ONLY BE EXECUTED AT UOP'S TESTBED    #
+#                                                           #
+#############################################################
 export availability_and_continuity_bandwidth_NEFURL=$nef_url
 #run_test "availability_and_continuity_bandwidth"
 
 
-######################################################
-#                                                    #
-#        availability_and_continuity_latency         #
-#THIS TEST CASE CAN ONLY BE EXECUTED AT UOP'S TESTBED#
-#                                                    #
-######################################################
+###########################################################
+#                                                         #
+#  availability_and_continuity_latency (Def12AvailCont2)  #
+#  THIS TEST CASE CAN ONLY BE EXECUTED AT UOP'S TESTBED   #
+#                                                         #
+###########################################################
 export availability_and_continuity_latency_NEFURL=$nef_url
 #run_test "availability_and_continuity_latency"
 
 
-######################################################
-#                                                    #
-#      availability_and_continuity_packet_loss       #
-#THIS TEST CASE CAN ONLY BE EXECUTED AT UOP'S TESTBED#
-#                                                    #
-######################################################
+###############################################################
+#                                                             #
+#  availability_and_continuity_packet_loss (Def12AvailCont3)  #
+#    THIS TEST CASE CAN ONLY BE EXECUTED AT UOP'S TESTBED     #
+#                                                             #
+###############################################################
 export availability_and_continuity_packet_loss_NEFURL=$nef_url
 #run_test "availability_and_continuity_packet_loss"
 
 
-######################################################
-#                                                    #
-#   availability_and_continuity_packet_corruption    #
-#THIS TEST CASE CAN ONLY BE EXECUTED AT UOP'S TESTBED#
-#                                                    #
-######################################################
+#####################################################################
+#                                                                   #
+#  availability_and_continuity_packet_corruption (Def12AvailCont4)  #
+#      THIS TEST CASE CAN ONLY BE EXECUTED AT UOP'S TESTBED         #
+#                                                                   #
+#####################################################################
 export availability_and_continuity_packet_corruption_NEFURL=$nef_url
 #run_test "availability_and_continuity_packet_corruption"
 
 
-######################################################
-#                                                    #
-#   availability_and_continuity_communication_loss   #
-#THIS TEST CASE CAN ONLY BE EXECUTED AT UOP'S TESTBED#
-#                                                    #
-######################################################
+######################################################################
+#                                                                    #
+#  availability_and_continuity_communication_loss (Def12AvailCont5)  #
+#      THIS TEST CASE CAN ONLY BE EXECUTED AT UOP'S TESTBED          #
+#                                                                    #
+######################################################################
 export availability_and_continuity_communication_loss_NEFURL=$nef_url
 #run_test "availability_and_continuity_communication_loss"
 
