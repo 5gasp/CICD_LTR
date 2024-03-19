@@ -81,8 +81,10 @@ print_failed_tests(){
 create_venv
 
 # 2. Define some global variables
-nef_url=http://10.255.28.236:8888
-
+nef_url=http://10.10.10.20:8888
+nef_username="admin@my-email.com"
+nef_password="pass"
+liveness_endpoint="http://10.10.10.221:85/"
 # 3. Run the tests
 
 #############################################################
@@ -92,7 +94,10 @@ nef_url=http://10.255.28.236:8888
 #                                                           #
 #############################################################
 export availability_and_continuity_bandwidth_NEFURL=$nef_url
-#run_test "availability_and_continuity_bandwidth"
+export availability_and_continuity_bandwidth_NEFUSERNAME=$nef_username
+export availability_and_continuity_bandwidth_NEFPASSWORD=$nef_password
+export availability_and_continuity_bandwidth_LIVENESS=$liveness_endpoint
+run_test "availability_and_continuity_bandwidth"
 
 
 ###########################################################
@@ -102,7 +107,10 @@ export availability_and_continuity_bandwidth_NEFURL=$nef_url
 #                                                         #
 ###########################################################
 export availability_and_continuity_latency_NEFURL=$nef_url
-#run_test "availability_and_continuity_latency"
+export availability_and_continuity_latency_NEFUSERNAME=$nef_username
+export availability_and_continuity_latency_NEFPASSWORD=$nef_password
+export availability_and_continuity_latency_LIVENESS=$liveness_endpoint
+run_test "availability_and_continuity_latency"
 
 
 ###############################################################
@@ -112,7 +120,10 @@ export availability_and_continuity_latency_NEFURL=$nef_url
 #                                                             #
 ###############################################################
 export availability_and_continuity_packet_loss_NEFURL=$nef_url
-#run_test "availability_and_continuity_packet_loss"
+export availability_and_continuity_packet_loss_NEFUSERNAME=$nef_username
+export availability_and_continuity_packet_loss_NEFPASSWORD=$nef_password
+export availability_and_continuity_packet_loss_LIVENESS=$liveness_endpoint
+run_test "availability_and_continuity_packet_loss"
 
 
 #####################################################################
@@ -122,7 +133,10 @@ export availability_and_continuity_packet_loss_NEFURL=$nef_url
 #                                                                   #
 #####################################################################
 export availability_and_continuity_packet_corruption_NEFURL=$nef_url
-#run_test "availability_and_continuity_packet_corruption"
+export availability_and_continuity_packet_corruption_NEFUSERNAME=$nef_username
+export availability_and_continuity_packet_corruption_NEFPASSWORD=$nef_password
+export availability_and_continuity_packet_corruption_LIVENESS=$liveness_endpoint
+run_test "availability_and_continuity_packet_corruption"
 
 
 ######################################################################
@@ -132,7 +146,10 @@ export availability_and_continuity_packet_corruption_NEFURL=$nef_url
 #                                                                    #
 ######################################################################
 export availability_and_continuity_communication_loss_NEFURL=$nef_url
-#run_test "availability_and_continuity_communication_loss"
+export availability_and_continuity_communication_loss_NEFUSERNAME=$nef_username
+export availability_and_continuity_communication_loss_NEFPASSWORD=$nef_password
+export availability_and_continuity_communication_loss_LIVENESS=$liveness_endpoint
+run_test "availability_and_continuity_communication_loss"
 
 
 # 4. Finally, print the tests that failed
