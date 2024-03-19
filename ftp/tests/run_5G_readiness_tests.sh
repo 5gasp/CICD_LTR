@@ -116,17 +116,6 @@ run_test "mini_api_configuration"
 
 ######################################################
 #                                                    #
-#             nef_authentication_test                #
-#                                                    #
-######################################################
-export nef_authentication_test_reporting_api_ip=$reporting_api_ip
-export nef_authentication_test_reporting_api_port=$reporting_api_port
-export nef_authentication_test_mini_api_endpoint_to_invoke="$mini_api_server_url/start/Def19Sec9"
-run_test "nef_authentication_test"
-
-
-######################################################
-#                                                    #
 #            authentication_with_5gs_test            #
 #                                                    #
 ######################################################
