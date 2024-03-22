@@ -41,8 +41,11 @@ def test_nef_qos_subscription(
     print("Entering...")
     response = None
     try:
+        headers = {}
+        headers["Content-Type"] = "application/json"
         response = requests.post(
             url=mini_api_endpoint_to_invoke,
+            headers=headers,
             data=monitoring_payload
         )
 
@@ -60,7 +63,7 @@ def test_nef_qos_subscription(
         response = requests.get(url)
 
         if response.status_code not in [200, 409]:
-            response.raise_for_status()    
+            response.raise_for_status()
         print(f"Response: {response.text}")
         report_json = json.loads(response.text)
         print("NEF's Obtained Report: ")
