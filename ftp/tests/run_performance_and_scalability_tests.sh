@@ -84,11 +84,13 @@ create_venv
 # 2. Define some global variables
 
 # - Mini APIs
+mini_api_ue_url=http://localhost:31391/miniapi  # Network Application
 mini_api_server_url=http://localhost:3001       # NetworkAppControl-MiniAPI
-mini_api_ue_url=http://localhost:3000/miniapi   # Network Application
-mini_api_ip_server=127.0.0.1
+mini_api_ip_server=192.168.247.2
 # - NEF
-nef_ip=localhost
+nef_ip=192.168.237.6
+nef_port=80
+
 
 # 3. Run the tests
 
@@ -98,7 +100,7 @@ nef_ip=localhost
 #                                                    #
 ######################################################
 export mini_api_configuration_configuration_endpoint="$mini_api_server_url/configure"
-export mini_api_configuration_configuration_payload="{\"variables\":{\"NEF_IP\":\"$nef_ip\",\"NEF_PORT\":8888,\"NEF_LOGIN_USERNAME\":\"admin@my-email.com\",\"NEF_LOGIN_PASSWORD\":\"pass\",\"SUBS_MONITORING_TYPE\":\"LOCATION_REPORTING\", \"SUBS_EXTERNAL_ID\": \"10001@domain.com\", \"SUBS_CALLBACK_URL\":\"$mini_api_server_url/monitoring/callback\",\"SUBS_MONITORING_EXPIRE_TIME\":\"2024-03-09T13:18:19.495000+00:00\",\"UE1_NAME\":\"My UE\",\"UE1_DESCRIPTION\":\"My UE Description\",\"UE1_IPV4\":\"10.10.10.10\",\"UE1_IPV6\":\"0:0:0:0:0:0:0:0\",\"UE1_MAC_ADDRESS\":\"22-00-00-00-00-02\",\"UE1_SUPI\":\"202010000000001\"}}"
+export mini_api_configuration_configuration_payload="{\"variables\":{\"NEF_IP\":\"$nef_ip\",\"NEF_PORT\":$nef_port,\"NEF_LOGIN_USERNAME\":\"admin@my-email.com\",\"NEF_LOGIN_PASSWORD\":\"pass\",\"SUBS_MONITORING_TYPE\":\"LOCATION_REPORTING\", \"SUBS_EXTERNAL_ID\": \"10001@domain.com\", \"SUBS_CALLBACK_URL\":\"$mini_api_server_url/monitoring/callback\",\"SUBS_MONITORING_EXPIRE_TIME\":\"2024-03-09T13:18:19.495000+00:00\",\"UE1_NAME\":\"My UE\",\"UE1_DESCRIPTION\":\"My UE Description\",\"UE1_IPV4\":\"10.10.10.10\",\"UE1_IPV6\":\"0:0:0:0:0:0:0:0\",\"UE1_MAC_ADDRESS\":\"22-00-00-00-00-02\",\"UE1_SUPI\":\"202010000000001\"}}"
 # mini_api_configuration_configuration_payload - Must be updated (e.g. nef's ip and port, at least)
 run_test "mini_api_configuration"
 
@@ -109,7 +111,7 @@ run_test "mini_api_configuration"
 #                                                    #
 ######################################################
 export mini_api_configuration_configuration_endpoint="$mini_api_ue_url/configure"
-export mini_api_configuration_configuration_payload="{\"variables\":{\"NEF_IP\":\"$nef_ip\",\"NEF_PORT\":8888,\"NEF_LOGIN_USERNAME\":\"admin@my-email.com\",\"NEF_LOGIN_PASSWORD\":\"pass\",\"SUBS_MONITORING_TYPE\":\"LOCATION_REPORTING\", \"SUBS_EXTERNAL_ID\": \"10001@domain.com\", \"SUBS_CALLBACK_URL\":\"$mini_api_ue_url/monitoring/callback\",\"SUBS_MONITORING_EXPIRE_TIME\":\"2024-03-09T13:18:19.495000+00:00\",\"UE1_NAME\":\"My UE\",\"UE1_DESCRIPTION\":\"My UE Description\",\"UE1_IPV4\":\"10.10.10.10\",\"UE1_IPV6\":\"0:0:0:0:0:0:0:0\",\"UE1_MAC_ADDRESS\":\"22-00-00-00-00-02\",\"UE1_SUPI\":\"202010000000001\"}}"
+export mini_api_configuration_configuration_payload="{\"variables\":{\"NEF_IP\":\"$nef_ip\",\"NEF_PORT\":$nef_port,\"NEF_LOGIN_USERNAME\":\"admin@my-email.com\",\"NEF_LOGIN_PASSWORD\":\"pass\",\"SUBS_MONITORING_TYPE\":\"LOCATION_REPORTING\", \"SUBS_EXTERNAL_ID\": \"10001@domain.com\", \"SUBS_CALLBACK_URL\":\"$mini_api_ue_url/monitoring/callback\",\"SUBS_MONITORING_EXPIRE_TIME\":\"2024-03-09T13:18:19.495000+00:00\",\"UE1_NAME\":\"My UE\",\"UE1_DESCRIPTION\":\"My UE Description\",\"UE1_IPV4\":\"10.10.10.10\",\"UE1_IPV6\":\"0:0:0:0:0:0:0:0\",\"UE1_MAC_ADDRESS\":\"22-00-00-00-00-02\",\"UE1_SUPI\":\"202010000000001\"}}"
 # mini_api_configuration_configuration_payload - Must be updated (e.g. nef's ip and port, at least)
 run_test "mini_api_configuration"
 
