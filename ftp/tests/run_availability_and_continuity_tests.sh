@@ -81,7 +81,10 @@ print_failed_tests(){
 create_venv
 
 # 2. Define some global variables
-nef_url=http://10.255.28.236:8888
+localhost_ip=192.168.68.102
+# localhost_ip=10.0.20.127
+
+nef_url=http://${localhost_ip}:8888
 
 # 3. Run the tests
 

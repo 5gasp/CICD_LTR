@@ -82,14 +82,22 @@ print_failed_tests(){
 create_venv
 
 # 2. Define some global variables
+localhost_ip=192.168.68.102
+# localhost_ip=10.0.20.127
+
 # - Mini APIs
-mini_api_server_url=http://10.255.28.201:3001
-mini_api_ue_url=http://10.255.28.192:3001
-mini_api_ip_server=10.255.28.201
+mini_api_ip_server=192.168.68.105
+# mini_api_ip_server=10.0.20.33
+
+# mini_api_ip_server=$localhost_ip
+mini_api_server_url=http://${mini_api_ip_server}:3001
+mini_api_ue_url=http://${mini_api_ip_server}:3001
 
 # - Reporting API
-reporting_api_ip=10.255.28.236
+reporting_api_ip=$localhost_ip
 reporting_api_port=3000
+
+nef_ip=$localhost_ip
 
 
 # 3. Run the tests
@@ -100,7 +108,7 @@ reporting_api_port=3000
 #                                                    #
 ######################################################
 export mini_api_configuration_configuration_endpoint="$mini_api_server_url/configure"
-export mini_api_configuration_configuration_payload='{"variables":{"NEF_IP":"10.255.28.236","NEF_PORT":8888,"NEF_LOGIN_USERNAME":"admin@my-email.com","NEF_LOGIN_PASSWORD":"pass","SUBS_MONITORING_TYPE":"LOCATION_REPORTING", "SUBS_EXTERNAL_ID": "123456789@domain.com", "SUBS_CALLBACK_URL":"https://webhook.site/43d72330-0f8e-4a52-af1c-65c77d9aafd0","SUBS_MONITORING_EXPIRE_TIME":"2024-03-09T13:18:19.495000+00:00","UE1_NAME":"My UE","UE1_DESCRIPTION":"My UE Description","UE1_IPV4":"10.10.10.10","UE1_IPV6":"0:0:0:0:0:0:0:0","UE1_MAC_ADDRESS":"22-00-00-00-00-02","UE1_SUPI":"202010000000001"}}'
+export mini_api_configuration_configuration_payload='{"variables":{"NEF_IP":"192.168.68.102","NEF_PORT":8888,"NEF_LOGIN_USERNAME":"admin@my-email.com","NEF_LOGIN_PASSWORD":"pass","SUBS_MONITORING_TYPE":"LOCATION_REPORTING", "SUBS_EXTERNAL_ID": "123456789@domain.com", "SUBS_CALLBACK_URL":"https://webhook.site/43d72330-0f8e-4a52-af1c-65c77d9aafd0","SUBS_MONITORING_EXPIRE_TIME":"2024-03-09T13:18:19.495000+00:00","UE1_NAME":"My UE","UE1_DESCRIPTION":"My UE Description","UE1_IPV4":"10.10.10.10","UE1_IPV6":"0:0:0:0:0:0:0:0","UE1_MAC_ADDRESS":"22-00-00-00-00-02","UE1_SUPI":"202010000000001"}}'
 # mini_api_configuration_configuration_payload - Must be updated (e.g. nef's ip and port, at least)
 run_test "mini_api_configuration"
 
@@ -137,6 +145,7 @@ run_test "ssh_brute_force"
 # For this test to run, `nmap` must be installed on the CI/CD Agent.
 export open_ports_host=$mini_api_ip_server
 export open_ports_expected_open_ports="22/tcp,3001/tcp"
+# export open_ports_expected_open_ports="3002/tcp,22/tcp,3000/tcp,3001/tcp,8888/tcp"
 run_test "open_ports"
 
 
