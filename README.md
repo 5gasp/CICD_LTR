@@ -29,9 +29,9 @@ To deploy the LTR, you must first update the `docker-compose.yaml` to reflect th
 
 As the 5GASP LTR is the host of 5GASP's pre-defined test cases, it will be queried by the 5GASP Testing Agents to obtain the test cases that participate in the Network Application testing processes. Nevertheless, to achieve this, it is needed to integrate both components. This can be achieved by configuring global variables and credentials in the Testing Agents employed for Network Application validation. Therefore, you should defined the following secrets (Global Store / Plain Credentials) in your Testing Agent (offered through Jenkins):
 
-* ltr_user: should reflect the user configured in the  `docker-compose.yaml`
-* ltr_password: should reflect the password configured in the  `docker-compose.yaml`
-* ltr_location: should reflect the location of the LTR server
+* `ltr_user`: should reflect the user configured in the  `docker-compose.yaml`
+* `ltr_password`: should reflect the password configured in the  `docker-compose.yaml`
+* `ltr_location`: should reflect the location of the LTR server
 
 ## Required Components for Testing
 
