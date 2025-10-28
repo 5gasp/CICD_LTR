@@ -1,6 +1,37 @@
 
 
-# Considerations for Testing 5GASP's Network Applications
+# 5GASP's Local Testing Repository (LTR)
+
+This repository hosts the various test cases offered out-of-the-box by 5GASP's CI/CD Stack. The test cases can be found in `fpt/tests`. Each test case is defined through a Robot script, aided by a `requirements.txt` file that lists the various test case dependencies.
+
+## Network Applications - Local Testing
+
+This repository offers a vast collection of tests than may be used (i) through 5GASP's CI/CD Pipeline and (ii) locally.
+Before onboarding your application in 5GASP's CI/CD Pipeline, you should first perform these tests manually.
+
+To simplify the local testing processes, this repository also makes available 4 bash scripts that execute the different tests:
+- `/ftp/tests/run_5G_readiness_tests.sh`
+- `/ftp/tests/run_performance_and_scalability_tests.sh`
+- `/ftp/tests/run_security_and_privacy_tests.sh`
+- `/ftp/tests/run_availability_and_continuity_tests.sh` (Note: The Availability and Continuity tests can only be performed at UoP's testbed)
+
+
+Before running these scripts, you shoul first update the configuration variables of each test. When you have look at the scripts, you will see that updating the configuration variables is a straightforward process.
+
+After updating the configuration variables, you may execute the different scripts.
+The scripts will create a `results` directory, where the results will be stored. Furthermore, when the script finishes running all tests, you will also be presented with a list of the tests that failed. You may then get into the `results` directory and find the log and report files for these failed tests. Those files shall help you figure out the reason of the tests' failure.
+
+## LTR Deployment
+
+To deploy the LTR, you must first update the `docker-compose.yaml` to reflect the IP on which the LTR will be exposed. You may also update the FTP server credentials, but that is not mandatory. After updating the exposure IP, you may run `docker compose up`, and the LTR will become available.
+
+### Testing Agent Integration
+
+As the 5GASP LTR is the host of 5GASP's pre-defined test cases, it will be queried by the 5GASP Testing Agents to obtain the test cases that participate in the Network Application testing processes. Nevertheless, to achieve this, it is needed to integrate both components. This can be achieved by configuring global variables and credentials in the Testing Agents employed for Network Application validation. Therefore, you should defined the following secrets (Global Store / Plain Credentials) in your Testing Agent (offered through Jenkins):
+
+* ltr_user: should reflect the user configured in the  `docker-compose.yaml`
+* ltr_password: should reflect the password configured in the  `docker-compose.yaml`
+* ltr_location: should reflect the location of the LTR server
 
 ## Required Components for Testing
 
@@ -47,20 +78,4 @@ An alternative scenario would be the following one.
 
 In this scenario, the aforementioned APIs can be located either inside VNF1 or inside VNF2.
 
-## Network Applications - Local Testing
-
-This repository offers a vast collection of tests than may be used (i) through 5GASP's CI/CD Pipeline and (ii) locally.
-Before onboarding your application in 5GASP's CI/CD Pipeline, you should first perform these tests manually.
-
-To simplify the local testing processes, this repository also makes available 4 bash scripts that execute the different tests:
-- `/ftp/tests/run_5G_readiness_tests.sh`
-- `/ftp/tests/run_performance_and_scalability_tests.sh`
-- `/ftp/tests/run_security_and_privacy_tests.sh`
-- `/ftp/tests/run_availability_and_continuity_tests.sh` (Note: The Availability and Continuity tests can only be performed at UoP's testbed)
-
-
-Before running these scripts, you shoul first update the configuration variables of each test. When you have look at the scripts, you will see that updating the configuration variables is a straightforward process.
-
-After updating the configuration variables, you may execute the different scripts.
-The scripts will create a `results` directory, where the results will be stored. Furthermore, when the script finishes running all tests, you will also be presented with a list of the tests that failed. You may then get into the `results` directory and find the log and report files for these failed tests. Those files shall help you figure out the reason of the tests' failure.
 
