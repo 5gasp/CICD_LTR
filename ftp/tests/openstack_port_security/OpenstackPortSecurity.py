@@ -20,8 +20,10 @@ import re
 def test_openstack_port_security(deployment_info_file_path):
 
     if deployment_info_file_path == "NONE":
+        home = os.path.expanduser("~")
+
         deployment_info_file_path = os.path.join(
-            "/var", "lib", "jenkins", "test_artifacts", os.getenv("JOB_NAME"),
+            home, "test_artifacts", os.getenv("JOB_NAME"),
             "deployment-info.json"
         )
 
