@@ -1,0 +1,8 @@
+FTPIP=10.0.12.114
+FTPUser=ftp-user
+FTPPassword=ftp-password
+FTPDir=tests
+
+CI_CD_Manager_IP=10.0.12.114:8000
+CI_CD_Manager_User=admin
+CI_CD_Manager_Password=admin
